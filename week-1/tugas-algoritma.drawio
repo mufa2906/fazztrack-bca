@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-09T07:40:33.027Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="3NS7Xc6TCSYEWxifp5EW" version="21.6.7" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2023-08-09T08:17:09.888Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" etag="F6aAoZXqs_Ir9bKHFlj7" version="21.6.7" type="github" pages="5">
   <diagram name="Page-1" id="uptGJkDJzayM6wo-z8Ye">
     <mxGraphModel dx="1050" dy="534" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -283,7 +283,7 @@
         <mxCell id="h6T22s7NlERYJfCQSsAZ-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="gML1EAqQ7JN3kvN5i_yF-1" target="h6T22s7NlERYJfCQSsAZ-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gML1EAqQ7JN3kvN5i_yF-1" value="Cetak Bilangan" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="gML1EAqQ7JN3kvN5i_yF-1" value="Cetak Bilangan" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
           <mxGeometry x="360" y="550" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="h6T22s7NlERYJfCQSsAZ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="itJn7UYtdIDH7g0rvG_Y-1" target="zKiIECspEvZTemqDm6ev-1" edge="1">
