@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-import abstraction.Persegi;
-import abstraction.Lingkaran;
-import abstraction.PersegiPanjang;
-import abstraction.Kubus;
-import abstraction.Tabung;
-import abstraction.Balok;
+import bangunDatar.Lingkaran;
+import bangunDatar.Persegi;
+import bangunDatar.PersegiPanjang;
+import bangunRuang.Balok;
+import bangunRuang.Kubus;
+import bangunRuang.Tabung;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -22,6 +22,7 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
         Boolean ulang = true;
+        boolean salahInput = false;
 
         while (ulang) {
             System.out.println("=== PROGRAM MENGHITUNG BANGUN ===");
@@ -29,6 +30,7 @@ public class App {
             System.out.println("2. Bangun Ruang");
             System.out.print("Pilih: ");
             pilihBangun = scanner.nextLine();
+            String ulangProgram = "";
 
             switch (pilihBangun) {
                 case "1":
@@ -42,17 +44,21 @@ public class App {
                             System.out.print("Sisi :");
                             sisi = scanner.nextDouble();
                             Persegi persegi = new Persegi(sisi);
+                            persegi.menggambarBangun();
+                            persegi.karakteristikBangun();
                             System.out.println("Keliling: " + persegi.getKeliling());
                             System.out.println("Luas: " + persegi.getLuas());
-                            ulang = false;
+                            salahInput = false;
                             break;
                         case "2":
                             System.out.print("Jari-jari :");
                             jari = scanner.nextDouble();
                             Lingkaran lingkaran = new Lingkaran(jari);
+                            lingkaran.menggambarBangun();
+                            lingkaran.karakteristikBangun();
                             System.out.println("Keliling: " + lingkaran.getKeliling());
                             System.out.println("Luas: " + lingkaran.getLuas());
-                            ulang = false;
+                            salahInput = false;
                             break;
                         case "3":
                             System.out.print("Panjang: ");
@@ -60,15 +66,17 @@ public class App {
                             System.out.print("Lebar: ");
                             lebar = scanner.nextDouble();
                             PersegiPanjang persegiPanjang = new PersegiPanjang(panjang, lebar);
+                            persegiPanjang.menggambarBangun();
+                            persegiPanjang.karakteristikBangun();
                             System.out.println("Keliling: " + persegiPanjang.getKeliling());
                             System.out.println("Luas: " + persegiPanjang.getLuas());
-                            ulang = false;
+                            salahInput = false;
                             break;
                         default:
                             System.out.println();
                             System.out.println("Bentuknya tidak tersedia");
+                            salahInput = true;
                     }
-
                     break;
                 case "2":
                     for (int i = 0; i < PilihanBangunRuang.length; i++) {
@@ -84,7 +92,7 @@ public class App {
                             System.out.println("Keliling: " + kubus.getKeliling());
                             System.out.println("Luas: " + kubus.getLuas());
                             System.out.println("Volume: " + kubus.getVolume());
-                            ulang = false;
+                            salahInput = false;
                             break;
                         case "2":
                             System.out.print("Jari-jari :");
@@ -95,7 +103,7 @@ public class App {
                             System.out.println("Keliling: " + tabung.getKeliling());
                             System.out.println("Luas: " + tabung.getLuas());
                             System.out.println("Volume: " + tabung.getVolume());
-                            ulang = false;
+                            salahInput = false;
                             break;
                         case "3":
                             System.out.print("Panjang: ");
@@ -108,12 +116,14 @@ public class App {
                             System.out.println("Keliling: " + balok.getKeliling());
                             System.out.println("Luas: " + balok.getLuas());
                             System.out.println("Volume: " + balok.getVolume());
-                            ulang = false;
+                            salahInput = false;
                             break;
                         default:
                             System.out.println();
                             System.out.println("Bentuknya tidak tersedia");
+                            salahInput = true;
                     }
+                    salahInput = false;
                     break;
                 case "exit":
                     ulang = false;
@@ -121,7 +131,17 @@ public class App {
                 default:
                     System.out.println();
                     System.out.println("PILIH YANG TERSEDIA");
-
+                    salahInput = true;
+            }
+            if (!salahInput) {
+                scanner.nextLine();
+                while (!ulangProgram.equalsIgnoreCase("y") && !ulangProgram.equalsIgnoreCase("n")) {
+                    System.out.println("Apakah Mau Menghitung Bangun Lagi? (y/n)");
+                    ulangProgram = scanner.nextLine();
+                    if (ulangProgram.equalsIgnoreCase("n")) {
+                        ulang = (ulangProgram.equalsIgnoreCase("n")) ? false : true;
+                    }
+                }
             }
 
         }

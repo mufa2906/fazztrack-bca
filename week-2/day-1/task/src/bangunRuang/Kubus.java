@@ -1,4 +1,7 @@
-package abstraction;
+package bangunRuang;
+
+import abstraction.BangunRuang;
+import bangunDatar.Persegi;
 
 public class Kubus extends Persegi implements BangunRuang{
   public Kubus() {

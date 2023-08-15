@@ -1,4 +1,6 @@
-package abstraction;
+package bangunDatar;
+
+import abstraction.BangunDatar;
 
 public class Persegi implements BangunDatar {
   private Double sisi;
@@ -29,7 +31,7 @@ public class Persegi implements BangunDatar {
 
 
   @Override
-  public void MenggambarBangun() {
+  public void menggambarBangun() {
     System.out.println("===PERSEGI===");
     for (int i = 0; i < this.sisi; i++) {
       for (int j = 0; j < this.sisi; j++) {
@@ -38,6 +40,17 @@ public class Persegi implements BangunDatar {
       System.out.println();
     }
     
+  }
+
+  @Override
+  public void karakteristikBangun() {
+    System.out.println("Karakteristik persegi:");
+    System.out.println(
+        "  - Memiliki dua diagonal yang sama panjang (keduanya saling berpotongan dan membentuk tegak lurus serta membaginya menjadi dua bagian sama panjang).");
+    System.out.println("  - Memiliki empat sudut siku-siku yang sama besar, yakni 90 derajat.");
+    System.out.println("  - Memiliki empat sumbu simetri lipat.");
+    System.out.println("  - Memiliki empat titik sudut.");
+    System.out.println("  - Memiliki empat sumbu simetri putar.");
   }
 
   @Override

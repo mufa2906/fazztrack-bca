@@ -1,7 +1,9 @@
 package abstraction;
 
 public interface BangunDatar {
-  void MenggambarBangun();
+  void menggambarBangun();
+
+  void karakteristikBangun();
 
   Double getKeliling();
 
