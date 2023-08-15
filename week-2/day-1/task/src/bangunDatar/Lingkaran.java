@@ -3,27 +3,27 @@ package bangunDatar;
 import abstraction.BangunDatar;
 
 public class Lingkaran implements BangunDatar {
-  private Double jari;
+  private Double jariJari;
 
   public Lingkaran() {
   }
 
-  public Lingkaran(Double jari) {
-    if (jari <= 0) {
+  public Lingkaran(Double jariJari) {
+    if (jariJari <= 0) {
       throw new ArithmeticException("Jari-jari harus bilangan positif dan tidak 0");
     }
-    this.jari = jari;
+    this.jariJari = jariJari;
   }
 
-  public Double getJari() {
-    return jari;
+  public Double getJariJari() {
+    return jariJari;
   }
 
-  public void setJari(Double jari) {
-    if (jari <= 0) {
+  public void setJariJari(Double jariJari) {
+    if (jariJari <= 0) {
       throw new ArithmeticException("Jari-jari harus bilangan positif dan tidak 0");
     }
-    this.jari = jari;
+    this.jariJari = jariJari;
   }
 
   @Override
@@ -45,12 +45,12 @@ public class Lingkaran implements BangunDatar {
 
   @Override
   public Double getKeliling() {
-    return 2 * 3.14 * this.jari;
+    return 2 * 3.14 * this.jariJari;
   }
 
   @Override
   public Double getLuas() {
-    return 3.14 * this.jari * this.jari;
+    return 3.14 * this.jariJari * this.jariJari;
   }
 
 }

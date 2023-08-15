@@ -15,7 +15,7 @@ public class App {
         Double panjang;
         Double lebar;
         Double tinggi;
-        Double jari;
+        Double jariJari;
 
         String[] PilihanBangunDatar = { "Persegi", "Lingkaran", "Persegi Panjang" };
         String[] PilihanBangunRuang = { "Kubus", "Tabung", "Balok" };
@@ -52,8 +52,8 @@ public class App {
                             break;
                         case "2":
                             System.out.print("Jari-jari :");
-                            jari = scanner.nextDouble();
-                            Lingkaran lingkaran = new Lingkaran(jari);
+                            jariJari = scanner.nextDouble();
+                            Lingkaran lingkaran = new Lingkaran(jariJari);
                             lingkaran.menggambarBangun();
                             lingkaran.karakteristikBangun();
                             System.out.println("Keliling: " + lingkaran.getKeliling());
@@ -96,10 +96,10 @@ public class App {
                             break;
                         case "2":
                             System.out.print("Jari-jari :");
-                            jari = scanner.nextDouble();
+                            jariJari = scanner.nextDouble();
                             System.out.print("Tinggi :");
                             tinggi = scanner.nextDouble();
-                            Tabung tabung = new Tabung(jari, tinggi);
+                            Tabung tabung = new Tabung(jariJari, tinggi);
                             System.out.println("Keliling: " + tabung.getKeliling());
                             System.out.println("Luas: " + tabung.getLuas());
                             System.out.println("Volume: " + tabung.getVolume());
@@ -134,7 +134,8 @@ public class App {
                     salahInput = true;
             }
             if (!salahInput) {
-                scanner.nextLine();
+                //Mengapa kalo ini dihilangkan ngeprintnya dua kali?
+                // scanner.nextLine();
                 while (!ulangProgram.equalsIgnoreCase("y") && !ulangProgram.equalsIgnoreCase("n")) {
                     System.out.println("Apakah Mau Menghitung Bangun Lagi? (y/n)");
                     ulangProgram = scanner.nextLine();
