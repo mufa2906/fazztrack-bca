@@ -162,9 +162,9 @@ public class Main {
               System.out.println("Masukkan ID Anggota: ");
               Integer idAnggota = sc.nextInt();
               Anggota anggotaPinjam = userService.getUserById(idAnggota);
-              Peminjaman peminjamanBaru = new Peminjaman(bukuPinjam, anggotaPinjam);
+              Peminjaman peminjamanBuku = new Peminjaman(bukuPinjam, anggotaPinjam);
               // panggil service u/ add Peminjaman
-              transactionService.borrowBook(peminjamanBaru);
+              transactionService.borrowBook(peminjamanBuku);
 
               while (true) {
                 System.out.println("Ingin menambah peminjaman? (y|n)");
@@ -182,13 +182,22 @@ public class Main {
             }
             break;
 
+          case "9":
+            System.out.println("""
+                === KEMBALIKAN BUKU ===
+                Masukkan ID transaksi""");
+            Integer idTransaksi = sc.nextInt();
+            Peminjaman pengembalianBuku = transactionService.getTransactionById(idTransaksi);
+            transactionService.returnBook(idTransaksi, pengembalianBuku);
+            break;
+
           default:
             System.out.println("Menu tidak tersedia!");
             break;
         }
-
+        
         while (true) {
-          System.out.print("Ingin mengulang program? (y|n) ");
+          System.out.println("Ingin mengulang program? (y|n) ");
           String again = sc.nextLine();
           if ("y".equalsIgnoreCase(again)) {
             // ulang = true;

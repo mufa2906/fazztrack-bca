@@ -30,5 +30,10 @@ public class TransactionServiceImpl implements TransactionService {
   public List<Peminjaman> getAllTransactions() {
     return this.peminjamanDao.findAll();
   }
+
+  @Override
+  public Peminjaman getTransactionById(Integer id) {
+    return this.peminjamanDao.findById(id);
+  }
   
 }
