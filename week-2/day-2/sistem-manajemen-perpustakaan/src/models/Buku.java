@@ -1,4 +1,4 @@
-package library.models;
+package models;
 
 public class Buku {
   // {judul: "bla", penerbit: "isi", pengarang: "apa"}

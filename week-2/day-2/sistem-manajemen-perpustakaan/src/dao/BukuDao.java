@@ -1,17 +1,17 @@
-package library.dao;
+package dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import library.models.Buku;
-import library.services.BaseDao;
+import services.BaseDao;
+import models.Buku;
 
 public class BukuDao implements BaseDao<Buku, Integer> {
   List<Buku> books = new ArrayList<>();
 
   @Override
   public void save(Buku data) {
-    books.add(data);
+    this.books.add(data);
   }
 
   @Override
@@ -26,12 +26,12 @@ public class BukuDao implements BaseDao<Buku, Integer> {
 
   @Override
   public void update(Integer id, Buku data) {
-    books.set(id - 1, data);
+    this.books.set(id - 1, data);
   }
 
   @Override
   public void delete(Integer id) {
-    books.remove(id - 1);
+    this.books.remove(id - 1);
   }
 
 }
