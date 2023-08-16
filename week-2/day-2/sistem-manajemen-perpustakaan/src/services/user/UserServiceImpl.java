@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
     }
     this.userDao.save(user);
     System.out.println("Anggota berhasil ditambahkan!");
-    System.out.println(getAllUser());
   }
 
   @Override

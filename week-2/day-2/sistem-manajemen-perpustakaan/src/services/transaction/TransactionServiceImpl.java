@@ -16,6 +16,7 @@ public class TransactionServiceImpl implements TransactionService {
 
   @Override
   public void borrowBook(Peminjaman pinjam) {
+    pinjam.setTanggalPinjam(LocalDate.now());
     this.peminjamanDao.save(pinjam);
     System.out.println("Peminjaman buku berhasil ditambahkan!");
   }
@@ -25,7 +26,6 @@ public class TransactionServiceImpl implements TransactionService {
     data.setTanggalKembali(LocalDate.now());
     this.peminjamanDao.update(id, data);
     System.out.println("Pengembalian buku berhasil!");
-    System.out.println(getAllTransactions());
   }
 
   @Override

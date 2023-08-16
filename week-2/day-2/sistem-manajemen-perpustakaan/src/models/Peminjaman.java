@@ -14,7 +14,6 @@ public class Peminjaman {
   public Peminjaman(Buku buku, Anggota peminjam) {
     this.buku = buku;
     this.peminjam = peminjam;
-    this.tanggalPinjam = LocalDate.now();
   }
 
   public Buku getBuku() {

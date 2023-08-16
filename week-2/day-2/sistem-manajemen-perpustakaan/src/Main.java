@@ -40,6 +40,12 @@ public class Main {
     System.out.print("Input pilihan: ");
   }
 
+  private static <E> void tampilkanList(List<E> listData) {
+    for (int i = 0; i < listData.size(); i++) {
+      System.out.println((i + 1) + ". " + listData.get(i));
+    }
+  }
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     String pilih = "";
@@ -54,9 +60,7 @@ public class Main {
           case "1":
             System.out.println("=== LIST BUKU ===");
             List<Buku> listBuku = bookService.getAllBook();
-            for (int i = 0; i < listBuku.size(); i++) {
-              System.out.println((i + 1) + ". " + listBuku.get(i));
-            }
+            tampilkanList(listBuku);
             break;
 
           case "2":
@@ -102,9 +106,7 @@ public class Main {
           case "4":
             System.out.println("=== LIST ANGGOTA ===");
             List<Anggota> listAnggota = userService.getAllUser();
-            for (int i = 0; i < listAnggota.size(); i++) {
-              System.out.println((i + 1) + ". " + listAnggota.get(i));
-            }
+            tampilkanList(listAnggota);
             break;
 
           case "5":
@@ -147,9 +149,7 @@ public class Main {
           case "7":
             System.out.println("=== LIST PEMINJAMAN ====");
             List<Peminjaman> listPeminjaman = transactionService.getAllTransactions();
-            for (int i = 0; i < listPeminjaman.size(); i++) {
-              System.out.println(listPeminjaman.get(i));
-            }
+            tampilkanList(listPeminjaman);
             break;
 
           case "8":
