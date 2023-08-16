@@ -76,14 +76,14 @@ public class Main {
             Boolean ulangBuku = true;
             System.out.println("=== TAMBAH BUKU ===");
             while (ulangBuku) {
-              // System.out.print("Judul Buku: ");
-              // String judul = sc.nextLine();
-              // System.out.print("Penerbit Buku: ");
-              // String penerbit = sc.nextLine();
-              // System.out.print("Pengarang Buku: ");
-              // String pengarang = sc.nextLine();
-              // Buku buku = new Buku(judul, penerbit, pengarang);
-              Buku buku = new Buku("judul", "penerbit", "pengarang");
+              System.out.print("Judul Buku: ");
+              String judul = sc.nextLine();
+              System.out.print("Penerbit Buku: ");
+              String penerbit = sc.nextLine();
+              System.out.print("Pengarang Buku: ");
+              String pengarang = sc.nextLine();
+              Buku buku = new Buku(judul, penerbit, pengarang);
+              // Buku buku = new Buku("judul", "penerbit", "pengarang");
               // panggil service u/ create buku
               bookService.addBook(buku);
 
@@ -122,12 +122,12 @@ public class Main {
             Boolean ulangAnggota = true;
             System.out.println("=== TAMBAH ANGGOTA ===");
             while (ulangAnggota) {
-              // System.out.print("Username Anggota: ");
-              // String username = sc.nextLine();
-              // System.out.print("Email Anggota: ");
-              // String email = sc.nextLine();
-              // Anggota anggota = new Anggota(username, email);
-              Anggota anggota = new Anggota("username", "email");
+              System.out.print("Username Anggota: ");
+              String username = sc.nextLine();
+              System.out.print("Email Anggota: ");
+              String email = sc.nextLine();
+              Anggota anggota = new Anggota(username, email);
+              // Anggota anggota = new Anggota("username", "email");
               // panggil service u/ add User
               userService.addUser(anggota);
 
