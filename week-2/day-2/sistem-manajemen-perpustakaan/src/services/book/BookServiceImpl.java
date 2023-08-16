@@ -3,6 +3,8 @@ package services.book;
 import java.util.List;
 
 import dao.BukuDao;
+import exception.BookNotFoundException;
+import exception.EmptyException;
 import models.Buku;
 
 public class BookServiceImpl implements BookService {
@@ -14,11 +16,16 @@ public class BookServiceImpl implements BookService {
 
   @Override
   public void addBook(Buku buku) {
-    // validasi
+    // validasi Apakah buku semua input tidak kosong
     if (buku.getJudul() == "") {
-      // throw exception judul bukunya masih empty
+      throw new EmptyException("Judul Buku Masih Kosong");
     }
-
+    if (buku.getPenerbit() == "") {
+      throw new EmptyException("Penerbit Buku Masih Kosong");
+    }
+    if (buku.getPengarang() == "") {
+      throw new EmptyException("Pengarang Buku Masih Kosong");
+    }
     bukuDao.save(buku);
     System.out.println("Buku berhasil ditambahkan!");
   }
@@ -30,8 +37,9 @@ public class BookServiceImpl implements BookService {
 
   @Override
   public Buku getBookById(Integer id) {
-    // validasi id yg diinput misal < 0 atau > size
-    // throw exception errornya
+    if (id > bukuDao.findAll().size() || id < 1) {
+      throw new  BookNotFoundException("Buku tidak ditemukan");
+    }
     return bukuDao.findById(id);
   }
 

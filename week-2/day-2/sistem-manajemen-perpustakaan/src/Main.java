@@ -44,9 +44,6 @@ public class Main {
     Scanner sc = new Scanner(System.in);
     String pilih = "";
     Boolean ulang = true;
-    Boolean ulangBuku = true;
-    Boolean ulangAnggota = true;
-    Boolean ulangPeminjaman = true;
 
     try {
       while (ulang) {
@@ -72,6 +69,7 @@ public class Main {
             break;
 
           case "3":
+            Boolean ulangBuku = true;
             System.out.println("=== TAMBAH BUKU ===");
             while (ulangBuku) {
               // System.out.print("Judul Buku: ");
@@ -119,6 +117,7 @@ public class Main {
             break;
 
           case "6":
+            Boolean ulangAnggota = true;
             System.out.println("=== TAMBAH ANGGOTA ===");
             while (ulangAnggota) {
               // System.out.print("Username Anggota: ");
@@ -154,13 +153,14 @@ public class Main {
             break;
 
           case "8":
+            Boolean ulangPeminjaman = true;
             System.out.println("=== PINJAM BUKU ===");
             while (ulangPeminjaman) {
               System.out.println("Masukkan ID buku: ");
-              Integer idBuku = sc.nextInt();
+              Integer idBuku = Integer.valueOf(sc.nextLine());
               Buku bukuPinjam = bookService.getBookById(idBuku);
               System.out.println("Masukkan ID Anggota: ");
-              Integer idAnggota = sc.nextInt();
+              Integer idAnggota = Integer.valueOf(sc.nextLine());
               Anggota anggotaPinjam = userService.getUserById(idAnggota);
               Peminjaman peminjamanBuku = new Peminjaman(bukuPinjam, anggotaPinjam);
               // panggil service u/ add Peminjaman
@@ -186,7 +186,7 @@ public class Main {
             System.out.println("""
                 === KEMBALIKAN BUKU ===
                 Masukkan ID transaksi""");
-            Integer idTransaksi = sc.nextInt();
+            Integer idTransaksi = Integer.valueOf(sc.nextLine());
             Peminjaman pengembalianBuku = transactionService.getTransactionById(idTransaksi);
             transactionService.returnBook(idTransaksi, pengembalianBuku);
             break;
@@ -195,7 +195,7 @@ public class Main {
             System.out.println("Menu tidak tersedia!");
             break;
         }
-        
+
         while (true) {
           System.out.println("Ingin mengulang program? (y|n) ");
           String again = sc.nextLine();
