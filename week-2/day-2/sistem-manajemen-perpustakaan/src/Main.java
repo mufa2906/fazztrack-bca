@@ -75,6 +75,7 @@ public class Main {
           case "3":
             Boolean ulangBuku = true;
             System.out.println("=== TAMBAH BUKU ===");
+            // Integer num = 1;
             while (ulangBuku) {
               System.out.print("Judul Buku: ");
               String judul = sc.nextLine();
@@ -83,7 +84,8 @@ public class Main {
               System.out.print("Pengarang Buku: ");
               String pengarang = sc.nextLine();
               Buku buku = new Buku(judul, penerbit, pengarang);
-              // Buku buku = new Buku("judul", "penerbit", "pengarang");
+              // Buku buku = new Buku("judul" + num, "penerbit" + num, "pengarang"+ num);
+              // num++;
               // panggil service u/ create buku
               bookService.addBook(buku);
 
@@ -121,13 +123,15 @@ public class Main {
           case "6":
             Boolean ulangAnggota = true;
             System.out.println("=== TAMBAH ANGGOTA ===");
+            // Integer num = 1;
             while (ulangAnggota) {
               System.out.print("Username Anggota: ");
               String username = sc.nextLine();
               System.out.print("Email Anggota: ");
               String email = sc.nextLine();
               Anggota anggota = new Anggota(username, email);
-              // Anggota anggota = new Anggota("username", "email");
+              // Anggota anggota = new Anggota("username" + num, "email"+ num);
+              // num ++;
               // panggil service u/ add User
               userService.addUser(anggota);
 

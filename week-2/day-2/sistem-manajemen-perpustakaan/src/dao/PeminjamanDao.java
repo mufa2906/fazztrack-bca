@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.Peminjaman;
-import services.BaseDao;
 
 public class PeminjamanDao implements BaseDao<Peminjaman, Integer> {
   List<Peminjaman> transactions = new ArrayList<>();

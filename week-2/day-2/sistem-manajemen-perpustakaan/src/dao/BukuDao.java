@@ -3,7 +3,6 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import services.BaseDao;
 import models.Buku;
 
 public class BukuDao implements BaseDao<Buku, Integer> {

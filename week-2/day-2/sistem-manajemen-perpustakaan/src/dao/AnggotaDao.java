@@ -3,7 +3,6 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import services.BaseDao;
 import models.Anggota;
 
 public class AnggotaDao implements BaseDao<Anggota, Integer> {
