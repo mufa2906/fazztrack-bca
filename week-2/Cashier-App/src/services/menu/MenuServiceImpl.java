@@ -3,6 +3,8 @@ package services.menu;
 import java.util.List;
 
 import dao.MenuDao;
+import exceptions.EmptyException;
+import exceptions.MenuNotFoundException;
 import models.Menu;
 
 public class MenuServiceImpl implements MenuService {
@@ -22,22 +24,30 @@ public class MenuServiceImpl implements MenuService {
 
   @Override
   public Menu getSingleMenu(Integer id) {
+    if (id < 1 || id > getAllMenu().size()) {
+      throw new MenuNotFoundException("Menu tidak ditemukan");
+    }
     return menuDao.findById(id);
   }
 
   @Override
   public Menu getSingleMenu(Integer idMenu, String jenisMenu) {
+    Integer indexMenu = 0;
     Integer num = 1;
     for (int i = 0; i < getAllMenu().size(); i++) {
       if (getAllMenu().get(i).getJenis().equals(jenisMenu.toLowerCase())) {
         if (num.equals(idMenu)) {
-          num = i + 1;
+          indexMenu = i + 1;
           break;
         }
         num++;
       }
     }
-    return menuDao.findById(num);
+    if (indexMenu == 0) {
+      throw new MenuNotFoundException("Menu tidak ditemukan");
+    }
+
+    return menuDao.findById(indexMenu);
   }
 
   @Override
@@ -54,6 +64,16 @@ public class MenuServiceImpl implements MenuService {
 
   @Override
   public void addMenu(Menu menu) {
+    if (menu.getNama().isEmpty()) {
+      throw new EmptyException("Nama menu harus diisi");
+    }
+    if (menu.getHarga() == null) {
+      throw new EmptyException("Harga menu harus diisi");
+    }
+    if (menu.getJenis().isEmpty()) {
+      throw new EmptyException("Jenis menu harus diisi");
+    }
+
     menuDao.add(menu);
     System.out.println("Menu Berhasil Ditambah");
   }
@@ -66,7 +86,7 @@ public class MenuServiceImpl implements MenuService {
     if (menu.getHarga() == null) {
       menu.setHarga(menuDao.findById(id).getHarga());
     }
-    if (menu.getNama().isEmpty()) {
+    if (menu.getJenis().isEmpty()) {
       menu.setNama(menuDao.findById(id).getNama());
     }
     menuDao.update(id, menu);
