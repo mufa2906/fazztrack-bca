@@ -55,6 +55,7 @@ public class App {
                 12. Update Menu
                 13. Hapus Menu
                 14. Riwayat Pembayaran
+                14. Riwayat Pembayaran
                 """);
         System.out.print("Input Pilihan: ");
     }
