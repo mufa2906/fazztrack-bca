@@ -1,6 +1,6 @@
 package models;
 
-public class Order extends Menu{
+public class Order{
   private Menu menu;
   private Integer jumlahMenu;
   

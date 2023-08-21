@@ -3,8 +3,10 @@ import java.util.Scanner;
 
 import dao.MenuDao;
 import dao.OrderDao;
+import dao.PaymentDao;
 import models.Menu;
 import models.Order;
+import models.Payment;
 import services.menu.MenuService;
 import services.menu.MenuServiceImpl;
 import services.order.OrderService;
@@ -27,8 +29,9 @@ public class App {
     private static List<Menu> semuaMenu = menuService.getAllMenu();
     private static OrderDao orderDao = new OrderDao();
     private static OrderService orderService = new OrderServiceImpl(orderDao);
-    private static List<Order> semuaOrder = orderService.getAllOrder();
-    private static PaymentService paymentService = new PaymentServiceImpl();
+    // private static List<Order> semuaOrder = orderService.getAllOrder();
+    private static PaymentDao paymentDao = new PaymentDao();
+    private static PaymentService paymentService = new PaymentServiceImpl(paymentDao);
 
     private static Scanner sc = new Scanner(System.in);
     // private static String pilihProgram = "";
@@ -70,6 +73,13 @@ public class App {
         System.out.println();
     }
 
+    private static void tampilanStrukPembayaran(Double harga, Double uangPelanggan) {
+        tampilanOrder();
+        System.out.println("Uang Pelanggan: " + uangPelanggan);
+        System.out.println("Kembalian: " + (uangPelanggan - harga));
+        System.out.println("Terima Kasih. Silahkan datang kembali :)");
+    }
+
     private static void tampilanMenuAdmin() {
         System.out.println(" === LIST MENU === ");
         for (int i = 0; i < semuaMenu.size(); i++) {
@@ -80,7 +90,7 @@ public class App {
 
     private static void loopTampilan(BooleanHolder ulang, String dataUlang) {
         while (ulang.value) {
-            System.out.print("Ingin mengulang " + dataUlang + "? (y|n) ");
+            System.out.print("Ingin kembali ke " + dataUlang + "? (y|n) ");
             String again = sc.nextLine();
             if ("y".equalsIgnoreCase(again)) {
                 break;
@@ -108,48 +118,50 @@ public class App {
                 tampilanUtama();
                 String pilihProgram = sc.nextLine();
                 BooleanHolder ulangPemesanan = new BooleanHolder(true);
-                BooleanHolder ulangJenisMenu = new BooleanHolder(true);
+                
+                BooleanHolder ulangBayar = new BooleanHolder(true);
 
                 switch (pilihProgram) {
                     case "1":
                         tampilanMenu();
                         break;
                     case "2":
-                        System.out.println(" === JENIS MENU YANG INGIN DIPESAN === ");
-                        System.out.println("1. Makanan");
-                        System.out.println("2. Minuman");
-                        System.out.println("3. Paket");          
-                        while (ulangJenisMenu.value) {
-                            System.out.println();
-                            System.out.print("Input pilihan: ");
-                            String pilihJenisMenu = sc.nextLine();
-                            switch (pilihJenisMenu) {
-                                case "1":
-                                    jenisMenuPesanan = "makanan";
-                                    menuService.getMenuByJenis(jenisMenuPesanan);
-                                    ulangJenisMenu.value = false;
-                                    break;
-                                    case "2":
-                                    jenisMenuPesanan = "minuman";
-                                    menuService.getMenuByJenis(jenisMenuPesanan);
-                                    ulangJenisMenu.value = false;
-                                    break;
-                                    case "3":
-                                    jenisMenuPesanan = "paket";
-                                    menuService.getMenuByJenis(jenisMenuPesanan);
-                                    ulangJenisMenu.value = false;
-                                    break;
-                                default:
-                                    System.out.println("Jenis menu tidak tersedia");
-                                    break;
-                            }
-                        }
-                        
+                        System.out.println();
                         while (ulangPemesanan.value) {
                             System.out.print("Ingin menambah / mengubah pesanan? (tambah/ubah/kembali) ");
                             String pilihPemesanan = sc.nextLine();
                             switch (pilihPemesanan) {
                                 case "tambah":
+                                    System.out.println(" === JENIS MENU YANG INGIN DIPESAN === ");
+                                    System.out.println("1. Makanan");
+                                    System.out.println("2. Minuman");
+                                    System.out.println("3. Paket");
+                                    BooleanHolder ulangJenisMenu = new BooleanHolder(true);
+                                    while (ulangJenisMenu.value) {
+                                        System.out.println();
+                                        System.out.print("Input pilihan: ");
+                                        String pilihJenisMenu = sc.nextLine();
+                                        switch (pilihJenisMenu) {
+                                            case "1":
+                                                jenisMenuPesanan = "makanan";
+                                                menuService.getMenuByJenis(jenisMenuPesanan);
+                                                ulangJenisMenu.value = false;
+                                                break;
+                                            case "2":
+                                                jenisMenuPesanan = "minuman";
+                                                menuService.getMenuByJenis(jenisMenuPesanan);
+                                                ulangJenisMenu.value = false;
+                                                break;
+                                            case "3":
+                                                jenisMenuPesanan = "paket";
+                                                menuService.getMenuByJenis(jenisMenuPesanan);
+                                                ulangJenisMenu.value = false;
+                                                break;
+                                            default:
+                                                System.out.println("Jenis menu tidak tersedia");
+                                                break;
+                                        }
+                                    }
                                     System.out.print("Input nomor " + jenisMenuPesanan + ": ");
                                     idMenu = Integer.valueOf(sc.nextLine());
                                     menuPilihan = menuService.getSingleMenu(idMenu, jenisMenuPesanan);
@@ -158,11 +170,13 @@ public class App {
                                     Order orderMenu = new Order(menuPilihan, jumlah);
 
                                     orderService.addOrder(orderMenu);
+                                    System.out.println();
+                                    tampilanOrder();
                                     // System.out.println(orderService.getAllOrder());
                                     break;
                                 case "ubah":
-                                    // TODO kerjain update Order tambah/kurang jumlah sama hapus pesanan
-                                    System.out.println(orderService.getAllOrder());
+                                    System.out.println();
+                                    tampilanOrder();
                                     System.out.print("Input nomor pesanan: ");
                                     idOrder = Integer.valueOf(sc.nextLine());
                                     Order orderPilihan = orderService.getSingleOrder(idOrder);
@@ -174,6 +188,8 @@ public class App {
                                             Integer jumlahOrder = Integer.valueOf(sc.nextLine());
                                             orderPilihan.setJumlahMenu(jumlahOrder);
                                             orderService.updateOrder(idOrder, orderPilihan);
+                                            System.out.println();
+                                            tampilanOrder();
                                             break;
                                         case "hapus":
                                             System.out.print("Yakin ingin menghapus pesanan? (y|n) ");
@@ -181,6 +197,8 @@ public class App {
                                                 String pilihHapusOrder = sc.nextLine();
                                                 if ("y".equalsIgnoreCase(pilihHapusOrder)) {
                                                     orderService.removeOrder(idOrder);
+                                                    System.out.println();
+                                                    tampilanOrder();
                                                     break;
                                                 } else if ("n".equalsIgnoreCase(pilihHapusOrder)) {
                                                     break;
@@ -194,15 +212,13 @@ public class App {
                                     break;
                                 case "kembali":
                                     ulangPemesanan.value = false;
-                                    // TODO balek ke menu awal
                                     break;
-                                default :
+                                default:
                                     System.out.println("Pilihan tidak tersedia");
+                                    break;
                             }
                             // loopTampilan(ulangPemesanan, "pemesanan");
                         }
-                        System.out.println();
-                        tampilanOrder();
 
                         break;
                     case "3":
@@ -210,6 +226,24 @@ public class App {
                         // jika ga yakin dibalikin ke menu awal, yakin disuruh masukkan uang
                         // validasi uang cukup apa engga, cukup cetak struk pembayaran, kurang tagih
                         // terus
+                        System.out.println();
+                        tampilanOrder();
+                        while (ulangBayar.value) {
+                            System.out.print("uang pelanggan: ");
+                            Double uangPelanggan = Double.valueOf(sc.nextLine());
+                            if (uangPelanggan < orderService.getTotalPriceOrder()) {
+                                System.out.println("Uang pelanggan kurang");
+                            } else if (uangPelanggan > orderService.getTotalPriceOrder()) {
+                                Payment paymentTerbaru = new Payment(orderService.getAllOrder(), uangPelanggan,
+                                        "Success");
+                                paymentService.addPayment(paymentTerbaru);
+                                tampilanStrukPembayaran(orderService.getTotalPriceOrder(), uangPelanggan);
+                                ulangBayar.value = false;
+                            } else {
+                                System.out.println("Masukkan uang dalam bentuk angka");
+                            }
+                        }
+
                         break;
                     case "11":
                         BooleanHolder ulangMenu = new BooleanHolder(true);
@@ -330,7 +364,7 @@ public class App {
                         break;
 
                 }
-                loopTampilan(ulangProgram, "program");
+                loopTampilan(ulangProgram, "menu awal");
 
             } catch (Exception e) {
                 e.printStackTrace();

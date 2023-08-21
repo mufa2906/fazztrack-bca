@@ -17,6 +17,10 @@ public interface OrderService {
 
   Double getPriceOrder();
 
+  Double getTaxPriceOrder();
+  
+  Double getTotalPriceOrder();
+
   void getOrderDetail();
 
 }
