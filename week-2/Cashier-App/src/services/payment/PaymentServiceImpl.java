@@ -1,6 +1,7 @@
 package services.payment;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import dao.PaymentDao;
 import models.Payment;
@@ -11,13 +12,9 @@ public class PaymentServiceImpl implements PaymentService {
   public PaymentServiceImpl() {
   }
 
-
-  
   public PaymentServiceImpl(PaymentDao paymentDao) {
     this.paymentDao = paymentDao;
   }
-
-
 
   @Override
   public void addPayment(Payment payment) {
@@ -26,7 +23,10 @@ public class PaymentServiceImpl implements PaymentService {
     System.out.println("=== BUKTI PEMBAYARAN ===");
     LocalDateTime tanggal = LocalDateTime.now();
     System.out.println(tanggal);
-    System.out.println();
   }
 
+  @Override
+  public List<Payment> getAllPayment() {
+    return paymentDao.findAll();
+  }
 }

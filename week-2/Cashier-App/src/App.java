@@ -54,6 +54,7 @@ public class App {
                 11. Tambah Menu
                 12. Update Menu
                 13. Hapus Menu
+                14. Riwayat Pembayaran
                 """);
         System.out.print("Input Pilihan: ");
     }
@@ -67,7 +68,6 @@ public class App {
     }
 
     private static void tampilanOrder() {
-        System.out.println();
         System.out.println();
         System.out.println("=== PESANAN ANDA ===");
         orderService.getOrderDetail();
@@ -121,7 +121,6 @@ public class App {
                 String pilihProgram = sc.nextLine();
                 BooleanHolder ulangPemesanan = new BooleanHolder(true);
 
-
                 BooleanHolder ulangBayar = new BooleanHolder(true);
 
                 switch (pilihProgram) {
@@ -168,7 +167,6 @@ public class App {
                                         }
                                     }
                                     System.out.println();
-                                    System.out.println();
                                     System.out.print("Input nomor " + jenisMenuPesanan + ": ");
                                     idMenu = Integer.valueOf(sc.nextLine());
                                     menuPilihan = menuService.getSingleMenu(idMenu, jenisMenuPesanan);
@@ -193,7 +191,6 @@ public class App {
                                                 orderPilihan.setJumlahMenu(jumlahOrder);
                                                 orderService.updateOrder(idOrder, orderPilihan);
                                                 System.out.println();
-                                                tampilanOrder();
                                                 break;
                                             case "hapus":
                                                 System.out.print("Yakin ingin menghapus pesanan? (y|n) ");
@@ -202,7 +199,6 @@ public class App {
                                                     if ("y".equalsIgnoreCase(pilihHapusOrder)) {
                                                         orderService.removeOrder(idOrder);
                                                         System.out.println();
-                                                        tampilanOrder();
                                                         break;
                                                     } else if ("n".equalsIgnoreCase(pilihHapusOrder)) {
                                                         break;
@@ -239,7 +235,7 @@ public class App {
                             if (uangPelanggan < orderService.getTotalPriceOrder()) {
                                 System.out.println("Uang pelanggan kurang");
                             } else if (uangPelanggan > orderService.getTotalPriceOrder()) {
-                                Payment paymentTerbaru = new Payment(orderService.getAllOrder(), uangPelanggan,
+                                Payment paymentTerbaru = new Payment(orderService.getAllOrder(), orderService.getTotalPriceOrder(),
                                         "Success");
                                 paymentService.addPayment(paymentTerbaru);
                                 tampilanStrukPembayaran(orderService.getTotalPriceOrder(), uangPelanggan);
@@ -362,7 +358,14 @@ public class App {
                             }
                         }
                         break;
-
+                    case "14":
+                        if (paymentService.getAllPayment().size() > 0) {
+                            System.out.println("=== Riwayat pembayaran ===");
+                            System.out.println(paymentService.getAllPayment());
+                        } else {
+                            System.out.println("Belum ada riwayat pembayaran");
+                        }
+                        break;
                     default:
                         System.out.println("Menu pilihan tidak tersedia");
                         // System.out.print("Input Pilihan: ");
