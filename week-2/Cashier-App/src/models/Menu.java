@@ -2,13 +2,13 @@ package models;
 
 public class Menu {
   private String nama;
-  private Integer harga;
+  private Double harga;
   private String jenis;
 
   public Menu() {
   }
 
-  public Menu(String nama, Integer harga, String jenis) {
+  public Menu(String nama, Double harga, String jenis) {
     this.nama = nama;
     this.harga = harga;
     this.jenis = jenis;
@@ -22,11 +22,11 @@ public class Menu {
     this.nama = nama;
   }
 
-  public Integer getHarga() {
+  public Double getHarga() {
     return harga;
   }
 
-  public void setHarga(Integer harga) {
+  public void setHarga(Double harga) {
     this.harga = harga;
   }
 

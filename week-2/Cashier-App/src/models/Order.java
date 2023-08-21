@@ -1,37 +1,40 @@
 package models;
 
-public class Order {
+public class Order extends Menu{
   private Menu menu;
-  private Integer numberOfMenu;
+  private Integer jumlahMenu;
+  
   
   public Order() {
   }
-
-  public Order(Menu menu, Integer numberOfMenu) {
+  
+  public Order(Menu menu, Integer jumlahMenu) {
     this.menu = menu;
-    this.numberOfMenu = numberOfMenu;
+    this.jumlahMenu = jumlahMenu;
   }
-
+  
   public Menu getMenu() {
     return menu;
   }
-
+  
   public void setMenu(Menu menu) {
     this.menu = menu;
   }
-
-  public Integer getNumberOfMenu() {
-    return numberOfMenu;
+  
+  public Integer getJumlahMenu() {
+    return jumlahMenu;
   }
-
-  public void setNumberOfMenu(Integer numberOfMenu) {
-    this.numberOfMenu = numberOfMenu;
+  
+  public void setJumlahMenu(Integer jumlahMenu) {
+    this.jumlahMenu = jumlahMenu;
   }
 
   @Override
   public String toString() {
-    return "Order [menu=" + menu + ", numberOfMenu=" + numberOfMenu + "]";
+    return "Order [menu=" + menu + ", jumlahMenu=" + jumlahMenu + "]";
   }
+  
+  
 
   
   

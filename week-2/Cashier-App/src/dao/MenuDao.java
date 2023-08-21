@@ -6,31 +6,31 @@ import java.util.List;
 import models.Menu;
 
 public class MenuDao implements BaseDao<Menu, Integer> {
-  List<Menu> menus = new ArrayList<>();
+  List<Menu> menuList = new ArrayList<>();
 
   @Override
   public void add(Menu data) {
-    menus.add(data);
+    menuList.add(data);
   }
 
   @Override
   public List<Menu> findAll() {
-    return menus;
+    return menuList;
   }
 
   @Override
   public Menu findById(Integer id) {
-    return menus.get(id - 1);
+    return menuList.get(id - 1);
   }
 
   @Override
   public void update(Integer id, Menu data) {
-    menus.set(id - 1, data);
+    menuList.set(id - 1, data);
   }
 
   @Override
   public void delete(Integer id) {
-    menus.remove(id - 1);
+    menuList.remove(id - 1);
   }
   
 }
