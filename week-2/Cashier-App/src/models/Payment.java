@@ -42,7 +42,9 @@ public class Payment {
 
   @Override
   public String toString() {
-    return "Payment [order=" + order + ", status=" + status + "]";
+    return "Payment [order=" + order + ", price=" + price + ", status=" + status + "]";
   }
+
+  
 
 }

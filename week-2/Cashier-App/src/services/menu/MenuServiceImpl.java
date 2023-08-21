@@ -70,8 +70,8 @@ public class MenuServiceImpl implements MenuService {
     if (menu.getHarga() == null) {
       throw new EmptyException("Harga menu harus diisi");
     }
-    if (menu.getJenis().isEmpty()) {
-      throw new EmptyException("Jenis menu harus diisi");
+    if (menu.getJenis().isEmpty() || !(menu.getJenis().equals("makanan") || menu.getJenis().equals("minuman") || menu.getJenis().equals("paket"))) {
+      throw new EmptyException("Jenis menu harus  ");
     }
 
     menuDao.add(menu);
@@ -87,6 +87,10 @@ public class MenuServiceImpl implements MenuService {
       menu.setHarga(menuDao.findById(id).getHarga());
     }
     if (menu.getJenis().isEmpty()) {
+      menu.setNama(menuDao.findById(id).getNama());
+    }
+    if(!(menu.getJenis().equals("makanan") || menu.getJenis().equals("minuman") || menu.getJenis().equals("paket"))){
+      System.out.println("Jenis tidak bisa diupdate selain makanan/minuman/paket"); 
       menu.setNama(menuDao.findById(id).getNama());
     }
     menuDao.update(id, menu);
