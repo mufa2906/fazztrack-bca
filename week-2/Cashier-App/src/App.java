@@ -68,6 +68,7 @@ public class App {
 
     private static void tampilanOrder() {
         System.out.println();
+        System.out.println();
         System.out.println("=== PESANAN ANDA ===");
         orderService.getOrderDetail();
     }
@@ -120,6 +121,7 @@ public class App {
                 String pilihProgram = sc.nextLine();
                 BooleanHolder ulangPemesanan = new BooleanHolder(true);
 
+
                 BooleanHolder ulangBayar = new BooleanHolder(true);
 
                 switch (pilihProgram) {
@@ -165,6 +167,7 @@ public class App {
                                                 break;
                                         }
                                     }
+                                    System.out.println();
                                     System.out.println();
                                     System.out.print("Input nomor " + jenisMenuPesanan + ": ");
                                     idMenu = Integer.valueOf(sc.nextLine());
