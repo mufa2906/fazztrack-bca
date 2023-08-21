@@ -14,33 +14,16 @@ import services.order.OrderServiceImpl;
 import services.payment.PaymentService;
 import services.payment.PaymentServiceImpl;
 
-//Agar Boolean jadi mutable sehingga tidak diinstance jadi variabel baru
-class BooleanHolder {
-    Boolean value;
-
-    public BooleanHolder(Boolean value) {
-        this.value = value;
-    }
-}
-
 public class App {
     private static MenuDao menuDao = new MenuDao();
     private static MenuService menuService = new MenuServiceImpl(menuDao);
     private static List<Menu> semuaMenu = menuService.getAllMenu();
     private static OrderDao orderDao = new OrderDao();
     private static OrderService orderService = new OrderServiceImpl(orderDao);
-    // private static List<Order> semuaOrder = orderService.getAllOrder();
     private static PaymentDao paymentDao = new PaymentDao();
     private static PaymentService paymentService = new PaymentServiceImpl(paymentDao);
 
     private static Scanner sc = new Scanner(System.in);
-    // private static String pilihProgram = "";
-    private static String jenisMenuPesanan = "";
-    // private static BooleanHolder ulangProgram = new BooleanHolder(true);
-    // private static BooleanHolder ulangMenu = new BooleanHolder(true);
-    private static Integer idMenu;
-    private static Menu menuPilihan = new Menu();
-    private static Integer idOrder;
 
     private static void tampilanUtama() {
         System.out.println("""
@@ -91,21 +74,20 @@ public class App {
         System.out.println();
     }
 
-    private static void loopTampilan(BooleanHolder ulang, String dataUlang) {
-        while (ulang.value) {
+    private static Boolean loopTampilan(Boolean ulang, String dataUlang) {
+        while (ulang) {
             System.out.print("Ingin kembali ke " + dataUlang + "? (y|n) ");
             String again = sc.nextLine();
             if ("y".equalsIgnoreCase(again)) {
-                break;
+                return true;
             } else if ("n".equalsIgnoreCase(again)) {
-                ulang.value = false;
-                break;
+                return false;
             } else {
                 System.out.println("Input salah!");
                 continue;
             }
         }
-        System.out.println();
+        return ulang;
     }
 
     public static void main(String[] args) throws Exception {
@@ -115,21 +97,25 @@ public class App {
         menuService.addMenu(new Menu("Susu Milo", 10000.0, "minuman"));
         menuService.addMenu(new Menu("Susu Kental Manis", 30000.0, "minuman"));
         menuService.addMenu(new Menu("Ayam Geprek + Nasi Putih + Susu Milo", 25000.0, "paket"));
-        BooleanHolder ulangProgram = new BooleanHolder(true);
-        while (ulangProgram.value) {
+        Boolean ulangProgram = true;
+     Integer idMenu;
+     String jenisMenuPesanan = "";
+     Menu menuPilihan;
+    Integer idOrder;
+        while (ulangProgram) {
             try {
                 tampilanUtama();
                 String pilihProgram = sc.nextLine();
-                BooleanHolder ulangPemesanan = new BooleanHolder(true);
+                Boolean ulangPemesanan = true;
 
-                BooleanHolder ulangBayar = new BooleanHolder(true);
+                Boolean ulangBayar = true;
 
                 switch (pilihProgram) {
                     case "1":
                         tampilanMenu();
                         break;
                     case "2":
-                        while (ulangPemesanan.value) {
+                        while (ulangPemesanan) {
                             tampilanOrder();
                             System.out.println();
                             System.out.print("Ingin menambah / mengubah pesanan? (tambah/ubah/kembali) ");
@@ -141,8 +127,8 @@ public class App {
                                     System.out.println("1. Makanan");
                                     System.out.println("2. Minuman");
                                     System.out.println("3. Paket");
-                                    BooleanHolder ulangJenisMenu = new BooleanHolder(true);
-                                    while (ulangJenisMenu.value) {
+                                    Boolean ulangJenisMenu = true;
+                                    while (ulangJenisMenu) {
                                         System.out.println();
                                         System.out.print("Input pilihan: ");
                                         String pilihJenisMenu = sc.nextLine();
@@ -150,17 +136,17 @@ public class App {
                                             case "1":
                                                 jenisMenuPesanan = "makanan";
                                                 menuService.getMenuByJenis(jenisMenuPesanan);
-                                                ulangJenisMenu.value = false;
+                                                ulangJenisMenu = false;
                                                 break;
                                             case "2":
                                                 jenisMenuPesanan = "minuman";
                                                 menuService.getMenuByJenis(jenisMenuPesanan);
-                                                ulangJenisMenu.value = false;
+                                                ulangJenisMenu = false;
                                                 break;
                                             case "3":
                                                 jenisMenuPesanan = "paket";
                                                 menuService.getMenuByJenis(jenisMenuPesanan);
-                                                ulangJenisMenu.value = false;
+                                                ulangJenisMenu = false;
                                                 break;
                                             default:
                                                 System.out.println("Jenis menu tidak tersedia");
@@ -176,7 +162,6 @@ public class App {
                                     Order orderMenu = new Order(menuPilihan, jumlah);
 
                                     orderService.addOrder(orderMenu);
-                                    // System.out.println(orderService.getAllOrder());
                                     break;
                                 case "ubah":
                                     if (orderService.getAllOrder().size() > 0) {
@@ -217,20 +202,19 @@ public class App {
                                     }
                                     break;
                                 case "kembali":
-                                    ulangPemesanan.value = false;
+                                    ulangPemesanan = false;
                                     break;
                                 default:
                                     System.out.println("Pilihan tidak tersedia");
                                     break;
                             }
-                            // loopTampilan(ulangPemesanan, "pemesanan");
                         }
 
                         break;
                     case "3":
                         System.out.println();
                         tampilanOrder();
-                        while (ulangBayar.value) {
+                        while (ulangBayar) {
                             System.out.print("Uang pelanggan: ");
                             Double uangPelanggan = Double.valueOf(sc.nextLine());
                             if (uangPelanggan < orderService.getTotalPriceOrder()) {
@@ -241,7 +225,7 @@ public class App {
                                         "Success");
                                 paymentService.addPayment(paymentTerbaru);
                                 tampilanStrukPembayaran(orderService.getTotalPriceOrder(), uangPelanggan);
-                                ulangBayar.value = false;
+                                ulangBayar = false;
                             } else {
                                 System.out.println("Masukkan uang dalam bentuk angka");
                             }
@@ -249,9 +233,8 @@ public class App {
 
                         break;
                     case "11":
-                        BooleanHolder ulangMenu = new BooleanHolder(true);
-                        while (ulangMenu.value) {
-                            System.out.println(ulangMenu);
+                        Boolean ulangMenu = true;
+                        while (ulangMenu) {
                             System.out.println("=== TAMBAH MENU ===");
                             System.out.print("Nama menu: ");
                             String namaMenu = sc.nextLine();
@@ -264,7 +247,7 @@ public class App {
                             menuService.addMenu(menuBaru);
 
                             tampilanMenuAdmin();
-                            loopTampilan(ulangMenu, "tambah menu");
+                            ulangMenu = loopTampilan(ulangMenu, "tambah menu");
                         }
                         break;
                     case "12":
@@ -370,12 +353,11 @@ public class App {
                         break;
                     default:
                         System.out.println("Menu pilihan tidak tersedia");
-                        // System.out.print("Input Pilihan: ");
                         break;
 
                 }
-                if (ulangPemesanan.value) {
-                    loopTampilan(ulangProgram, "menu awal");
+                if (ulangPemesanan) {
+                    ulangProgram = loopTampilan(ulangProgram, "menu awal");
                 }
 
             } catch (Exception e) {
