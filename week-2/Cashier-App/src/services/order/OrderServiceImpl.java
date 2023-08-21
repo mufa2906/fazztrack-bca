@@ -3,6 +3,8 @@ package services.order;
 import java.util.List;
 
 import dao.OrderDao;
+import exceptions.EmptyNumberOfOrder;
+import exceptions.OrderNotFoundException;
 import models.Order;
 
 public class OrderServiceImpl implements OrderService {
@@ -24,17 +26,26 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public Order getSingleOrder(Integer id) {
+    if (id < 1 || id > getAllOrder().size()) {
+      throw new OrderNotFoundException("Pesanan tidak ditemukan");
+    }
     return orderDao.findById(id);
   }
 
   @Override
   public void addOrder(Order order) {
+    if (order.getJumlahMenu() == null) {
+      throw new EmptyNumberOfOrder("Jumlah pesanan harus diisi");
+    }
     orderDao.add(order);
     System.out.println("Pemesanan Berhasil dilakukan");
   }
 
   @Override
   public void updateOrder(Integer id, Order order) {
+    if (order.getJumlahMenu() == null) {
+      throw new EmptyNumberOfOrder("Jumlah pesanan harus diisi");
+    }
     orderDao.update(id, order);
     System.out.println("Pemesanan Berhasil Diupdate");
   }

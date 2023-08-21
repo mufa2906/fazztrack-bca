@@ -67,9 +67,9 @@ public class App {
     }
 
     private static void tampilanOrder() {
+        System.out.println();
         System.out.println("=== PESANAN ANDA ===");
         orderService.getOrderDetail();
-        // System.out.println(orderService.getAllOrder());;
         System.out.println();
     }
 
@@ -118,7 +118,7 @@ public class App {
                 tampilanUtama();
                 String pilihProgram = sc.nextLine();
                 BooleanHolder ulangPemesanan = new BooleanHolder(true);
-                
+
                 BooleanHolder ulangBayar = new BooleanHolder(true);
 
                 switch (pilihProgram) {
@@ -126,8 +126,8 @@ public class App {
                         tampilanMenu();
                         break;
                     case "2":
-                        System.out.println();
                         while (ulangPemesanan.value) {
+                            tampilanOrder();
                             System.out.print("Ingin menambah / mengubah pesanan? (tambah/ubah/kembali) ");
                             String pilihPemesanan = sc.nextLine();
                             switch (pilihPemesanan) {
@@ -162,6 +162,7 @@ public class App {
                                                 break;
                                         }
                                     }
+                                    System.out.println();
                                     System.out.print("Input nomor " + jenisMenuPesanan + ": ");
                                     idMenu = Integer.valueOf(sc.nextLine());
                                     menuPilihan = menuService.getSingleMenu(idMenu, jenisMenuPesanan);
@@ -170,44 +171,46 @@ public class App {
                                     Order orderMenu = new Order(menuPilihan, jumlah);
 
                                     orderService.addOrder(orderMenu);
-                                    System.out.println();
-                                    tampilanOrder();
                                     // System.out.println(orderService.getAllOrder());
                                     break;
                                 case "ubah":
-                                    System.out.println();
-                                    tampilanOrder();
-                                    System.out.print("Input nomor pesanan: ");
-                                    idOrder = Integer.valueOf(sc.nextLine());
-                                    Order orderPilihan = orderService.getSingleOrder(idOrder);
-                                    System.out.print("Ingin mengubah jumlah/menghapus pesanan? (jumlah/hapus) ");
-                                    String pilihUbahPemesanan = sc.nextLine();
-                                    switch (pilihUbahPemesanan) {
-                                        case "jumlah":
-                                            System.out.print("Berapa jumlah pesanan yang diinginkan? ");
-                                            Integer jumlahOrder = Integer.valueOf(sc.nextLine());
-                                            orderPilihan.setJumlahMenu(jumlahOrder);
-                                            orderService.updateOrder(idOrder, orderPilihan);
-                                            System.out.println();
-                                            tampilanOrder();
-                                            break;
-                                        case "hapus":
-                                            System.out.print("Yakin ingin menghapus pesanan? (y|n) ");
-                                            while (true) {
-                                                String pilihHapusOrder = sc.nextLine();
-                                                if ("y".equalsIgnoreCase(pilihHapusOrder)) {
-                                                    orderService.removeOrder(idOrder);
-                                                    System.out.println();
-                                                    tampilanOrder();
-                                                    break;
-                                                } else if ("n".equalsIgnoreCase(pilihHapusOrder)) {
-                                                    break;
-                                                } else {
-                                                    System.out.println("Input salah!");
-                                                    continue;
+                                    if (orderService.getAllOrder().size() > 0) {
+                                        System.out.print("Input nomor pesanan: ");
+                                        idOrder = Integer.valueOf(sc.nextLine());
+                                        Order orderPilihan = orderService.getSingleOrder(idOrder);
+                                        System.out.print("Ingin mengubah jumlah/menghapus pesanan? (jumlah/hapus) ");
+                                        String pilihUbahPemesanan = sc.nextLine();
+                                        switch (pilihUbahPemesanan) {
+                                            case "jumlah":
+                                                System.out.print("Berapa jumlah pesanan yang diinginkan? ");
+                                                Integer jumlahOrder = Integer.valueOf(sc.nextLine());
+                                                orderPilihan.setJumlahMenu(jumlahOrder);
+                                                orderService.updateOrder(idOrder, orderPilihan);
+                                                System.out.println();
+                                                tampilanOrder();
+                                                break;
+                                            case "hapus":
+                                                System.out.print("Yakin ingin menghapus pesanan? (y|n) ");
+                                                while (true) {
+                                                    String pilihHapusOrder = sc.nextLine();
+                                                    if ("y".equalsIgnoreCase(pilihHapusOrder)) {
+                                                        orderService.removeOrder(idOrder);
+                                                        System.out.println();
+                                                        tampilanOrder();
+                                                        break;
+                                                    } else if ("n".equalsIgnoreCase(pilihHapusOrder)) {
+                                                        break;
+                                                    } else {
+                                                        System.out.println("Input salah!");
+                                                        continue;
+                                                    }
                                                 }
-                                            }
-                                            break;
+                                                break;
+                                            default:
+                                                System.out.println("Input ubah yang dipilih tidak tersedia!");
+                                        }
+                                    } else {
+                                        System.out.println("Belum ada pesanan");
                                     }
                                     break;
                                 case "kembali":
@@ -222,14 +225,10 @@ public class App {
 
                         break;
                     case "3":
-                        // TODO Pembayaran, ditampilin struk nya, yakin ingin membayar?
-                        // jika ga yakin dibalikin ke menu awal, yakin disuruh masukkan uang
-                        // validasi uang cukup apa engga, cukup cetak struk pembayaran, kurang tagih
-                        // terus
                         System.out.println();
                         tampilanOrder();
                         while (ulangBayar.value) {
-                            System.out.print("uang pelanggan: ");
+                            System.out.print("Uang pelanggan: ");
                             Double uangPelanggan = Double.valueOf(sc.nextLine());
                             if (uangPelanggan < orderService.getTotalPriceOrder()) {
                                 System.out.println("Uang pelanggan kurang");
@@ -364,7 +363,9 @@ public class App {
                         break;
 
                 }
-                loopTampilan(ulangProgram, "menu awal");
+                if(ulangPemesanan.value){
+                    loopTampilan(ulangProgram, "menu awal");
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
