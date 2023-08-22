@@ -38,7 +38,6 @@ public class App {
                 12. Update Menu
                 13. Hapus Menu
                 14. Riwayat Pembayaran
-                14. Riwayat Pembayaran
                 """);
         System.out.print("Input Pilihan: ");
     }
@@ -98,10 +97,10 @@ public class App {
         menuService.addMenu(new Menu("Susu Kental Manis", 30000.0, "minuman"));
         menuService.addMenu(new Menu("Ayam Geprek + Nasi Putih + Susu Milo", 25000.0, "paket"));
         Boolean ulangProgram = true;
-     Integer idMenu;
-     String jenisMenuPesanan = "";
-     Menu menuPilihan;
-    Integer idOrder;
+        Integer idMenu;
+        String jenisMenuPesanan = "";
+        Menu menuPilihan;
+        Integer idOrder;
         while (ulangProgram) {
             try {
                 tampilanUtama();
@@ -214,21 +213,26 @@ public class App {
                     case "3":
                         System.out.println();
                         tampilanOrder();
-                        while (ulangBayar) {
-                            System.out.print("Uang pelanggan: ");
-                            Double uangPelanggan = Double.valueOf(sc.nextLine());
-                            if (uangPelanggan < orderService.getTotalPriceOrder()) {
-                                System.out.println("Uang pelanggan kurang");
-                            } else if (uangPelanggan > orderService.getTotalPriceOrder()) {
-                                Payment paymentTerbaru = new Payment(orderService.getAllOrder(),
-                                        orderService.getTotalPriceOrder(),
-                                        "Success");
-                                paymentService.addPayment(paymentTerbaru);
-                                tampilanStrukPembayaran(orderService.getTotalPriceOrder(), uangPelanggan);
-                                ulangBayar = false;
-                            } else {
-                                System.out.println("Masukkan uang dalam bentuk angka");
+                        if (orderService.getAllOrder().size() > 0) {
+                            while (ulangBayar) {
+                                System.out.print("Uang pelanggan: ");
+                                Double uangPelanggan = Double.valueOf(sc.nextLine());
+                                if (uangPelanggan < orderService.getTotalPriceOrder()) {
+                                    System.out.println("Uang pelanggan kurang");
+                                } else if (uangPelanggan > orderService.getTotalPriceOrder()) {
+                                    Payment paymentTerbaru = new Payment(orderService.getAllOrder(),
+                                            orderService.getTotalPriceOrder(),
+                                            "Success");
+                                    paymentService.addPayment(paymentTerbaru);
+                                    tampilanStrukPembayaran(orderService.getTotalPriceOrder(), uangPelanggan);
+                                    orderService.removeAllOrder();
+                                    ulangBayar = false;
+                                } else {
+                                    System.out.println("Masukkan uang dalam bentuk angka");
+                                }
                             }
+                        } else {
+                            System.out.println("Belom ada pesanan");
                         }
 
                         break;

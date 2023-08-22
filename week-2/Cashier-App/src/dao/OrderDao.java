@@ -32,4 +32,8 @@ public class OrderDao implements BaseDao<Order, Integer> {
   public void delete(Integer id) {
     orderList.remove(id - 1);
   }
+
+  public void deleteAll(){
+    orderList.clear();
+  }
 }

@@ -23,4 +23,5 @@ public interface OrderService {
 
   void getOrderDetail();
 
+  void removeAllOrder();
 }

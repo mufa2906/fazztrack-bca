@@ -90,4 +90,9 @@ public class OrderServiceImpl implements OrderService {
     System.out.println("Total harga setelah PPN (11%): " + getTotalPriceOrder());
   }
 
+  @Override
+  public void removeAllOrder() {
+    orderDao.deleteAll();
+  }
+
 }
