@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import id.tokobukufarhan.library.payloads.req.BookRequest;
 import id.tokobukufarhan.library.payloads.res.ResponseHandler;
 import id.tokobukufarhan.library.services.book.BookService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/books")
@@ -23,7 +24,7 @@ public class BookController {
   BookService bookService;
 
   @PostMapping
-  public ResponseEntity<?> createBook(@RequestBody BookRequest request) {
+  public ResponseEntity<?> createBook(@RequestBody @Valid BookRequest request) {
     try {
       return bookService.addBookService(request);
     } catch (Exception e) {
@@ -32,39 +33,39 @@ public class BookController {
   }
 
   @GetMapping
-  public ResponseEntity<?> getBooks(@RequestParam(value="deleted", defaultValue = "") Boolean isDeleted) {
-    try {
+  public ResponseEntity<?> getBooks(@RequestParam(value="deleted", defaultValue = "")  Boolean isDeleted) {
+    // try {
       return bookService.getBooksService(isDeleted);
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
+    // } catch (Exception e) {
+    //   return ResponseHandler.responseError(500, e.getMessage(), null);
+    // }
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<?> getBookById(@PathVariable String id) {
-    try {
+    // try {
       return bookService.getBookByIdService(id);
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
+    // } catch (Exception e) {
+    //   return ResponseHandler.responseError(500, e.getMessage(), null);
+    // }
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<?> updateBookById(@PathVariable String id, @RequestBody BookRequest request ) {
-    try {
+  public ResponseEntity<?> updateBookById(@PathVariable String id, @RequestBody @Valid BookRequest request ) {
+    // try {
       return bookService.updateBookService(id, request);
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
+    // } catch (Exception e) {
+    //   return ResponseHandler.responseError(500, e.getMessage(), null);
+    // }
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<?> deleteBookById(@PathVariable String id) {
-    try {
+    // try {
       return bookService.deleteBookService(id);
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
+    // } catch (Exception e) {
+    //   return ResponseHandler.responseError(500, e.getMessage(), null);
+    // }
   }
 
 }

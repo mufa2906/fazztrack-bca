@@ -1,5 +1,6 @@
 package id.tokobukufarhan.library.payloads.res;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ public class ResponseHandler {
     body.put("success", false);
     body.put("message", message);
     body.put("error", error);
+    body.put("timestamp", LocalDateTime.now());
 
     return ResponseEntity.status(statusCode).body(body);
 
