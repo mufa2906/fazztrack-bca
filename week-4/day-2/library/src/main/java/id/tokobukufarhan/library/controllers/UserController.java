@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.tokobukufarhan.library.payloads.req.UserLoginRequest;
 import id.tokobukufarhan.library.payloads.req.UserRegistRequest;
-import id.tokobukufarhan.library.payloads.res.ResponseHandler;
 import id.tokobukufarhan.library.services.user.UserService;
 import jakarta.validation.Valid;
 
@@ -23,11 +22,11 @@ public class UserController {
 
   @PostMapping
   public ResponseEntity<?> createUser(@RequestBody @Valid UserRegistRequest request) {
-    try {
+    // try {
       return userService.addUserService(request);
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
+    // } catch (Exception e) {
+    //   return ResponseHandler.responseError(500, e.getMessage(), null);
+    // }
   }
 
   @GetMapping

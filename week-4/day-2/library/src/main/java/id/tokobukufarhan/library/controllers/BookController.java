@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.tokobukufarhan.library.payloads.req.BookRequest;
-import id.tokobukufarhan.library.payloads.res.ResponseHandler;
 import id.tokobukufarhan.library.services.book.BookService;
 import jakarta.validation.Valid;
 
@@ -25,11 +24,11 @@ public class BookController {
 
   @PostMapping
   public ResponseEntity<?> createBook(@RequestBody @Valid BookRequest request) {
-    try {
+    // try {
       return bookService.addBookService(request);
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
+    // } catch (Exception e) {
+    //   return ResponseHandler.responseError(500, e.getMessage(), null);
+    // }
   }
 
   @GetMapping

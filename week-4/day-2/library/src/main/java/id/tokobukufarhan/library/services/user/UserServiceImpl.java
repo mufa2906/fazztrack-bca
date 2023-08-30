@@ -67,7 +67,13 @@ public class UserServiceImpl implements UserService {
     if(!userRepository.existsByUsername(request.getUsername())){
       throw new NoSuchElementException("Username belum melakukan registrasi");
     }
+
     User user = userRepository.findByUsername(request.getUsername());
+
+    if(user.getIsDeleted()) {
+      throw new NoSuchElementException("Username sudah dihapus, tidak bisa digunakan kembali");
+    }
+ 
     if(!user.getPassword().equals(request.getPassword())){
       throw new NoSuchElementException("Password Salah");
     }

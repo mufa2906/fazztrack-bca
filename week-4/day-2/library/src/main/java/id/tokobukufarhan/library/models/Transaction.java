@@ -6,28 +6,32 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "bookTransaction")
+public class Transaction {
   @Id
   @UuidGenerator
   private String id;
 
-  @Column(length = 100, unique= true)
-  private String username;
+  @ManyToOne
+  @JoinColumn(name = "book_id")
+  private Book book;
 
-  @Column(unique= true)
-  private String email;
-  private String password;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
@@ -36,14 +40,9 @@ public class User {
   private LocalDateTime updatedAt;
   private Boolean isDeleted = false;
 
-  public User(String username, String email, String password) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-  }
-
-  public User orElseThrow(Object object) {
-    return null;
+  public Transaction(Book book, User user) {
+    this.book = book;
+    this.user = user;
   }
 
 }
