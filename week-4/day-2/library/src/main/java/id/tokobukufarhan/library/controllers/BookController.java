@@ -12,65 +12,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.tokobukufarhan.library.payloads.req.AuthorRequest;
+import id.tokobukufarhan.library.payloads.req.BookRequest;
 import id.tokobukufarhan.library.payloads.res.ResponseHandler;
-import id.tokobukufarhan.library.services.author.AuthorService;
+import id.tokobukufarhan.library.services.book.BookService;
 
 @RestController
-@RequestMapping("/authors")
-public class AuthorController {
+@RequestMapping("/books")
+public class BookController {
   @Autowired
-  AuthorService authorService;
+  BookService bookService;
 
   @PostMapping
-  public ResponseEntity<?> createAuthor(@RequestBody AuthorRequest request) {
+  public ResponseEntity<?> createBook(@RequestBody BookRequest request) {
     try {
-      return authorService.addAuthorService(request);
+      return bookService.addBookService(request);
     } catch (Exception e) {
       return ResponseHandler.responseError(500, e.getMessage(), null);
     }
   }
 
   @GetMapping
-  public ResponseEntity<?> getAuthors() {
+  public ResponseEntity<?> getBooks(@RequestParam(value="deleted", defaultValue = "") Boolean isDeleted) {
     try {
-      return authorService.getAuthorsService();
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
-  }
-
-  @GetMapping("/")
-  public ResponseEntity<?> getAuthorByName(@RequestParam String name) {
-    try {
-      return authorService.getAuthorByNameService(name);
+      return bookService.getBooksService(isDeleted);
     } catch (Exception e) {
       return ResponseHandler.responseError(500, e.getMessage(), null);
     }
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<?> getAuthorById(@PathVariable String id) {
+  public ResponseEntity<?> getBookById(@PathVariable String id) {
     try {
-      return authorService.getAuthorByIdService(id);
+      return bookService.getBookByIdService(id);
     } catch (Exception e) {
       return ResponseHandler.responseError(500, e.getMessage(), null);
     }
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<?> updateAuthorById(@PathVariable String id, @RequestBody AuthorRequest request) {
+  public ResponseEntity<?> updateBookById(@PathVariable String id, @RequestBody BookRequest request ) {
     try {
-      return authorService.updateAuthorByIdService(id, request);
+      return bookService.updateBookService(id, request);
     } catch (Exception e) {
       return ResponseHandler.responseError(500, e.getMessage(), null);
     }
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<?> deleteAuthorById(@PathVariable String id) {
+  public ResponseEntity<?> deleteBookById(@PathVariable String id) {
     try {
-      return authorService.deleteAuthorByIdService(id);
+      return bookService.deleteBookService(id);
     } catch (Exception e) {
       return ResponseHandler.responseError(500, e.getMessage(), null);
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface PublisherRepository extends JpaRepository<Publisher, String>{
-  List<Publisher> findByName(String name);
+  Publisher findByName(String name);
   
   // List<Publisher> findByNameContains(String name);
   @Query(value = "select * from Publishers where name like %?% ", nativeQuery = true)

@@ -48,7 +48,25 @@ public class PublisherController {
       return ResponseHandler.responseError(500, e.getMessage(), null);
     }
   }
-
+  
+    @GetMapping("/")
+    public ResponseEntity<?> getPublisherByName(@RequestParam String name) {
+      try {
+        return publisherService.getPublisherByNameService(name);
+      } catch (Exception e) {
+        return ResponseHandler.responseError(500, e.getMessage(), null);
+      }
+    }
+  
+    @GetMapping("/deleted/{isDeleted}")
+    public ResponseEntity<?> getPublisherByIsDeleted(@PathVariable Boolean isDeleted) {
+      try {
+        return publisherService.getPublisherByIsDeletedService(isDeleted);
+      } catch (Exception e) {
+        return ResponseHandler.responseError(500, e.getMessage(), null);
+      }
+    }
+  
   @PutMapping("/{id}")
   public ResponseEntity<?> updatePublisherById(@PathVariable String id, @RequestBody PublisherRequest request) {
     try {
@@ -62,24 +80,6 @@ public class PublisherController {
   public ResponseEntity<?> deletePublisherById(@PathVariable String id) {
     try {
       return publisherService.deletePublisherByIdService(id);
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
-  }
-
-  @GetMapping("/")
-  public ResponseEntity<?> getPublisherByName(@RequestParam String name) {
-    try {
-      return publisherService.getPublisherByNameService(name);
-    } catch (Exception e) {
-      return ResponseHandler.responseError(500, e.getMessage(), null);
-    }
-  }
-
-  @GetMapping("/deleted/{isDeleted}")
-  public ResponseEntity<?> getPublisherByIsDeleted(@PathVariable Boolean isDeleted) {
-    try {
-      return publisherService.getPublisherByIsDeletedService(isDeleted);
     } catch (Exception e) {
       return ResponseHandler.responseError(500, e.getMessage(), null);
     }
