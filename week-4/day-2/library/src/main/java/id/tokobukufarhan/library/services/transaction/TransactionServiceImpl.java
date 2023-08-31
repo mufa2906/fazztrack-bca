@@ -1,6 +1,8 @@
 package id.tokobukufarhan.library.services.transaction;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,14 +53,23 @@ public class TransactionServiceImpl implements TransactionService {
     book.setIsDeleted(true);
     bookRepository.save(book);
 
-    return ResponseHandler.responseData(HttpStatus.CREATED.value(), "Peminjaman buku berhasil", transaction);
+    Map<String, Object> response = new HashMap<>();
+    response.put("transaction_id", transaction.getId());
+    response.put("book_title", request.getBookTitle());
+    response.put("username", request.getUserUsername());
+
+    return ResponseHandler.responseData(HttpStatus.CREATED.value(), "Peminjaman buku berhasil", response);
   }
 
   @Override
   public ResponseEntity<?> returnBookService(String id) {
     Transaction transaction = transactionRepository.findById(id).orElseThrow(() -> {
-      throw new NoSuchElementException("id is not found");
+      throw new NoSuchElementException("Peminjaman buku tidak ditemukan");
     });
+
+    if (transaction.getIsDeleted()) {
+      throw new NoSuchElementException("Peminjaman buku sudah dikembalikan");
+    }
     transaction.setIsDeleted(true);
 
     transactionRepository.save(transaction);
@@ -68,12 +79,12 @@ public class TransactionServiceImpl implements TransactionService {
     book.setIsDeleted(false);
     bookRepository.save(book);
 
-    return ResponseHandler.responseData(201, "Pengembalian buku berhasil", transaction);
+    return ResponseHandler.responseData(200, "Pengembalian buku berhasil", transaction);
 
   }
 
   @Override
-  public ResponseEntity<?> getBooksService(Boolean isDeleted) {
+  public ResponseEntity<?> getBookTransactionsService(Boolean isDeleted) {
     List<Transaction> transactions;
     if (isDeleted == null) {
       transactions = transactionRepository.findAll();
@@ -81,7 +92,19 @@ public class TransactionServiceImpl implements TransactionService {
       transactions = transactionRepository.findByIsDeleted(isDeleted);
     }
 
-    return ResponseHandler.responseData(200, "Book Transaction succesfully find All ", transactions);
+    Map<String, Object> response = new HashMap<>();
+    int index = 1;
+    for (Transaction transaction : transactions) {
+      Map<String, Object> data = new HashMap<>();
+      data.put("transaction_id", transaction.getId());
+      data.put("book_title", transaction.getBook().getTitle());
+      data.put("username", transaction.getUser().getUsername());
+      data.put("status", transaction.getIsDeleted());
+      response.put("transaction_" + index,data);
+      index++;
+    }
+
+    return ResponseHandler.responseData(200, "Book Transaction succesfully find All ", response);
 
   }
 

@@ -7,6 +7,7 @@ import lombok.Data;
 public class UserRegistRequest {
   @NotEmpty(message = "Username is required!")
   private String username;
+  @NotEmpty(message = "Email is required!")
   private String email;
   @NotEmpty(message = "Password is required!")
   private String password;

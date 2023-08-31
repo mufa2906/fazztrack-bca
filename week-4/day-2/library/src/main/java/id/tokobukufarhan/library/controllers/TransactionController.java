@@ -29,7 +29,7 @@ public class TransactionController {
 
   @GetMapping
   public ResponseEntity<?> getTransactions(@RequestParam(value = "deleted", defaultValue = "") Boolean isDeleted) {
-    return transactionService.getBooksService(isDeleted);
+    return transactionService.getBookTransactionsService(isDeleted);
   }
 
   @DeleteMapping("/{id}")

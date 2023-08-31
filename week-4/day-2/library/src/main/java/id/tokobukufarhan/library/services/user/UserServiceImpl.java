@@ -21,13 +21,6 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ResponseEntity<?> addUserService(UserRegistRequest request) {
-    if (request.getUsername() == null || request.getUsername() == "") {
-      throw new IllegalArgumentException("Username is required");
-    }
-
-    if (request.getPassword() == null || request.getPassword() == "") {
-      throw new IllegalArgumentException("Password is required");
-    }
 
     if(userRepository.existsByUsername(request.getUsername())){
       throw new IllegalArgumentException("Username already registered");
@@ -37,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     userRepository.save(user);
 
-    return ResponseHandler.responseData(HttpStatus.CREATED.value(), "Publisher successfully added!", user);
+    return ResponseHandler.responseData(HttpStatus.CREATED.value(), "User successfully added!", user);
   }
 
   @Override
@@ -64,11 +57,18 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ResponseEntity<?> getUserLoginService(UserLoginRequest request) {
-    if(!userRepository.existsByUsername(request.getUsername())){
-      throw new NoSuchElementException("Username belum melakukan registrasi");
+    // if(!userRepository.existsByUsername(request.getUsername())){
+    //   throw new NoSuchElementException("Username belum melakukan registrasi");
+    // }
+
+    // User user = userRepository.findByUsername(request.getUsername());
+
+    //coba pake cek email/username
+    if(!userRepository.existsByUsername(request.getUsernameOrEmail()) && !userRepository.existsByEmail(request.getUsernameOrEmail())){
+      throw new NoSuchElementException("Username/Email belum melakukan registrasi");
     }
 
-    User user = userRepository.findByUsername(request.getUsername());
+    User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail());
 
     if(user.getIsDeleted()) {
       throw new NoSuchElementException("Username sudah dihapus, tidak bisa digunakan kembali");

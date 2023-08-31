@@ -9,6 +9,6 @@ public interface TransactionService {
 
   ResponseEntity<?> returnBookService(String id);
 
-  ResponseEntity<?> getBooksService(Boolean isDeleted);
+  ResponseEntity<?> getBookTransactionsService(Boolean isDeleted);
 
 }
