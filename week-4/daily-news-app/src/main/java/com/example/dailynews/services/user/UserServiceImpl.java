@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dailynews.models.Role;
 import com.example.dailynews.models.User;
-import com.example.dailynews.payloads.req.UserForgotPassRequest;
+import com.example.dailynews.payloads.req.UserResetPassRequest;
 import com.example.dailynews.payloads.req.UserLoginRequest;
 import com.example.dailynews.payloads.req.UserRegisRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
@@ -47,17 +47,18 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ResponseEntity<?> loginUserService(UserLoginRequest request) {
-    if(!userRepository.existsByUsername(request.getUsernameOrEmail()) && !userRepository.existsByEmail(request.getUsernameOrEmail())){
+    if (!userRepository.existsByUsername(request.getUsernameOrEmail())
+        && !userRepository.existsByEmail(request.getUsernameOrEmail())) {
       throw new NoSuchElementException("Username/Email belum melakukan registrasi");
     }
 
     User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail());
 
-    if(user.getIsDeleted()) {
+    if (user.getIsDeleted()) {
       throw new NoSuchElementException("Username sudah dihapus, tidak bisa digunakan kembali");
     }
- 
-    if(!user.getPassword().equals(request.getPassword())){
+
+    if (!user.getPassword().equals(request.getPassword())) {
       throw new NoSuchElementException("Password Salah");
     }
 
@@ -65,22 +66,18 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public ResponseEntity<?> forgotPassUserService(UserForgotPassRequest request) {
-    if(!userRepository.existsByUsername(request.getUsername())){
-      throw new IllegalArgumentException("Username is not found");
+  public ResponseEntity<?> resetPassUserService(UserResetPassRequest request) {
+    if (!userRepository.existsByUsername(request.getUsernameOrEmail())
+        && !userRepository.existsByEmail(request.getUsernameOrEmail())) {
+      throw new IllegalArgumentException("Username/Email is not found");
     }
 
-    User user = userRepository.findByUsername(request.getUsername());
-
-    if(user.getEmail().equals(request.getEmail())){
-      throw new NoSuchElementException("Email does not match the registered username");
-    }
+    User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail());
 
     user.setPassword(request.getNewPassword());
     userRepository.save(user);
 
-    return ResponseHandler.responseData(200, "Password successfully changed!",user);
-
+    return ResponseHandler.responseData(200, "Password successfully changed!", user);
 
   }
 
@@ -93,7 +90,7 @@ public class UserServiceImpl implements UserService {
       users = userRepository.findByIsDeleted(isDeleted);
     }
 
-    return ResponseHandler.responseData(200, "Users succesfully find All ", users);
+    return ResponseHandler.responseData(200, "Users succesfully showed all!", users);
   }
 
 }

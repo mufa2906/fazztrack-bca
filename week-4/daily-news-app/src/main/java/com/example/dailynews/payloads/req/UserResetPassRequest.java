@@ -4,11 +4,9 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
-public class UserForgotPassRequest {
-  @NotEmpty(message = "Username is required")
-  private String username;
-  @NotEmpty(message = "Email is required")
-  private String email;
+public class UserResetPassRequest {
+  @NotEmpty(message = "Username/email is required")
+  private String usernameOrEmail;
   @NotEmpty(message = "New Password is required")
   private String newPassword;
 }
