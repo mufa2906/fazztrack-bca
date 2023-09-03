@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dailynews.payloads.req.AddArticleRequest;
+import com.example.dailynews.payloads.req.UpdateArticleRequest;
 import com.example.dailynews.services.article.ArticleService;
 
 import jakarta.validation.Valid;
@@ -24,8 +25,23 @@ public class ArticleController {
     return articleService.addArticleService(request);
   }
 
+  @PostMapping("/update")
+  public ResponseEntity<?> updateArticle(@RequestBody @Valid UpdateArticleRequest request){
+    return articleService.updateArticlesService(request);
+  }
+
   @GetMapping
   public ResponseEntity<?> getArticles(){
     return articleService.getArticlesService();
+  }
+
+  @GetMapping("/trending")
+  public ResponseEntity<?> getTrendingArticles(){
+    return articleService.getTrendingArticlesService();
+  }
+
+  @GetMapping("/latest")
+  public ResponseEntity<?> getLatestArticles(){
+    return articleService.getLatestArticlesService();
   }
 }

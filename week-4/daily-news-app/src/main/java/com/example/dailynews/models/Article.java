@@ -44,7 +44,7 @@ public class Article {
   private LocalDateTime updatedAt;
 
   private Boolean isDeleted = false;
-  private Boolean isPublished = false;
+  private Boolean isValid = false;
   private Long viewsCount = 0L;
 
   public Article(String title, String description, User author, ArticleType articleType) {
