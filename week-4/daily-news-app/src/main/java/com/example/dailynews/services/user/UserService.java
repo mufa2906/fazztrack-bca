@@ -14,4 +14,6 @@ public interface UserService {
   ResponseEntity<?> resetPassUserService(UserResetPassRequest request);
 
   ResponseEntity<?> getUsersService(Boolean isDeleted);
+
+  ResponseEntity<?> getUserByIdService(String id);
 }

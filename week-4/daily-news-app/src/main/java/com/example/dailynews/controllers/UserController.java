@@ -3,6 +3,7 @@ package com.example.dailynews.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,22 +25,27 @@ public class UserController {
 
   @PostMapping("/register")
   public ResponseEntity<?> createUser(@RequestBody @Valid UserRegisRequest request) {
-      return userService.regisUserService(request);
+    return userService.regisUserService(request);
   }
 
   @GetMapping("/login")
   public ResponseEntity<?> loginUser(@RequestBody @Valid UserLoginRequest request) {
-      return userService.loginUserService(request);
+    return userService.loginUserService(request);
   }
 
   @GetMapping
-  public ResponseEntity<?> getUsers(@RequestParam(value="deleted", defaultValue = "")  Boolean isDeleted) {
-      return userService.getUsersService(isDeleted);
+  public ResponseEntity<?> getUsers(@RequestParam(value = "deleted", defaultValue = "") Boolean isDeleted) {
+    return userService.getUsersService(isDeleted);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<?> getUserById(@PathVariable String id) {
+    return userService.getUserByIdService(id);
   }
 
   @PutMapping("/forgot-password")
-  public ResponseEntity<?> resetPasswordUsers(@RequestBody @Valid UserResetPassRequest request){
+  public ResponseEntity<?> resetPasswordUsers(@RequestBody @Valid UserResetPassRequest request) {
     return userService.resetPassUserService(request);
   }
-  
+
 }

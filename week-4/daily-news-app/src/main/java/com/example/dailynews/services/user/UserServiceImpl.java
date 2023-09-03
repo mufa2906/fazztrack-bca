@@ -89,4 +89,15 @@ public class UserServiceImpl implements UserService {
     return ResponseHandler.responseData(200, "Show all users!", users);
   }
 
+  @Override
+  public ResponseEntity<?> getUserByIdService(String id) {
+    User user = userRepository.findById(id).orElseThrow(() -> {
+      throw new NoSuchElementException("Username/Email has not registered yet!");
+    });
+
+    return ResponseHandler.responseData(200, "Show user details!", user);
+  }
+
+  
+
 }

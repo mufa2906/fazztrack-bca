@@ -3,6 +3,7 @@ package com.example.dailynews.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,17 @@ public class ArticleCommentController {
   ArticleCommentService articleCommentService;
 
   @PostMapping
-  public ResponseEntity<?> createArticleComment(@RequestBody @Valid AddArticleCommentRequest request){
+  public ResponseEntity<?> createArticleComment(@RequestBody @Valid AddArticleCommentRequest request) {
     return articleCommentService.addArticleCommentService(request);
   }
 
   @GetMapping
-  public ResponseEntity<?> getArticleComments(){
+  public ResponseEntity<?> getArticleComments() {
     return articleCommentService.getArticleCommentsService();
+  }
+
+  @GetMapping("/{articleId}")
+  public ResponseEntity<?> getArticleCommentsByArticle(@PathVariable String articleId) {
+    return articleCommentService.getArticleCommentsByArticleService(articleId);
   }
 }

@@ -35,6 +35,10 @@ public class ArticleServiceImpl implements ArticleService {
       throw new NoSuchElementException("Username is not found!");
     });
 
+    if (!author.getRole().getRoleName().equalsIgnoreCase("creator") && !author.getRole().getRoleName().equalsIgnoreCase("admin")) {
+      throw new IllegalArgumentException("Create article only for creator or admin!");
+    }
+
     ArticleType articleType = articleTypeRepository.findById(request.getArticleType()).orElseThrow(() -> {
       throw new NoSuchElementException("Article type is not found!");
     });
@@ -71,8 +75,8 @@ public class ArticleServiceImpl implements ArticleService {
       article.setArticleType(type);
     }
 
-    if(!request.getUpdater().equalsIgnoreCase("creator") && !request.getUpdater().equalsIgnoreCase("admin")){
-      throw new IllegalArgumentException("Article update only for creator or admin!");
+    if (!request.getUpdater().equalsIgnoreCase("creator") && !request.getUpdater().equalsIgnoreCase("admin")) {
+      throw new IllegalArgumentException("Update article only for creator or admin!");
     }
 
     articleRepository.save(article);
@@ -109,7 +113,8 @@ public class ArticleServiceImpl implements ArticleService {
       throw new NoSuchElementException("Article is not found!");
     });
     article.setIsValid(true);
-    return ResponseHandler.responseMessage(200, "Article with title "+article.getTitle()+" is valid!");
+    articleRepository.save(article);
+    return ResponseHandler.responseMessage(200, "Article with title " + article.getTitle() + " is valid!");
   }
 
 }
