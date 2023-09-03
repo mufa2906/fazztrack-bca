@@ -18,6 +18,9 @@ public class ArticleTypeServiceImpl implements ArticleTypeService{
 
   @Override
   public ResponseEntity<?> addArticleTypeService(AddArticleTypeRequest request) {
+    if(articleTypeRepository.existsByArticleTypeIgnoreCase(request.getArticleType())){
+      throw new IllegalArgumentException("Article type already exists!");
+    }
     ArticleType articleType = new ArticleType(request.getArticleType());
     articleTypeRepository.save(articleType);
     return ResponseHandler.responseData(201, "Article type successfully added!", articleType);

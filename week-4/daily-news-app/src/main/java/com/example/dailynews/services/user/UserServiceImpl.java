@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     Role role = roleRepository.findById(request.getRole()).orElseThrow(() -> {
-      throw new IllegalArgumentException("Role is not found!");
+      throw new NoSuchElementException("Role is not found!");
     });
 
     User user = new User(request.getUsername(), request.getEmail(), request.getPassword(), role);
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     if (!user.getPassword().equals(request.getPassword())) {
-      throw new NoSuchElementException("Wrong password!");
+      throw new IllegalArgumentException("Wrong password!");
     }
 
     return ResponseHandler.responseMessage(200, "Login success!");

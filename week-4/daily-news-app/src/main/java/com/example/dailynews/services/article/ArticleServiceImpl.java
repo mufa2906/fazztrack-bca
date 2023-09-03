@@ -71,6 +71,10 @@ public class ArticleServiceImpl implements ArticleService {
       article.setArticleType(type);
     }
 
+    if(!request.getUpdater().equalsIgnoreCase("creator") && !request.getUpdater().equalsIgnoreCase("admin")){
+      throw new IllegalArgumentException("Article update only for creator or admin!");
+    }
+
     articleRepository.save(article);
     return ResponseHandler.responseData(200, "Article successfully updated!", article);
   }
@@ -99,5 +103,13 @@ public class ArticleServiceImpl implements ArticleService {
     return null;
   }
 
+  @Override
+  public ResponseEntity<?> validityArticlesService(String id) {
+    Article article = articleRepository.findById(id).orElseThrow(() -> {
+      throw new NoSuchElementException("Article is not found!");
+    });
+    article.setIsValid(true);
+    return ResponseHandler.responseMessage(200, "Article with title "+article.getTitle()+" is valid!");
+  }
 
 }

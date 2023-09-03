@@ -10,4 +10,6 @@ public class UpdateArticleRequest {
   private String title;
   private String description;
   private Long articleType;
+  @NotEmpty(message = "Updater is required.")
+  private String updater;
 }

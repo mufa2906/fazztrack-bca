@@ -20,5 +20,7 @@ public interface ArticleService {
 
   ResponseEntity<?> getPopularArticlesService();
 
+  ResponseEntity<?> validityArticlesService(String id);
+
 
 }
