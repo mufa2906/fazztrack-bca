@@ -14,18 +14,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "article_types")
+public class ArticleType {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @JsonIgnore
   private Long id;
 
   @Column(unique = true)
-  private String roleName;
+  private String articleType;
 
-  public Role(String roleName) {
-    this.roleName = roleName;
+  public ArticleType(String articleType) {
+    this.articleType = articleType;
   }
 
 }

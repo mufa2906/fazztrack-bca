@@ -27,15 +27,15 @@ public class UserServiceImpl implements UserService {
   @Override
   public ResponseEntity<?> regisUserService(UserRegisRequest request) {
     if (userRepository.existsByUsername(request.getUsername())) {
-      throw new IllegalArgumentException("Username already registered");
+      throw new IllegalArgumentException("Username already registered!");
     }
 
     if (userRepository.existsByEmail(request.getEmail())) {
-      throw new IllegalArgumentException("Email already registered");
+      throw new IllegalArgumentException("Email already registered!");
     }
 
     Role role = roleRepository.findById(request.getRole()).orElseThrow(() -> {
-      throw new IllegalArgumentException("Role is not found");
+      throw new IllegalArgumentException("Role is not found!");
     });
 
     User user = new User(request.getUsername(), request.getEmail(), request.getPassword(), role);
@@ -47,32 +47,28 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ResponseEntity<?> loginUserService(UserLoginRequest request) {
-    if (!userRepository.existsByUsername(request.getUsernameOrEmail())
-        && !userRepository.existsByEmail(request.getUsernameOrEmail())) {
-      throw new NoSuchElementException("Username/Email belum melakukan registrasi");
-    }
 
-    User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail());
+    User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail()).orElseThrow(() -> {
+      throw new NoSuchElementException("Username/Email has not registered yet!");
+    });
 
     if (user.getIsDeleted()) {
-      throw new NoSuchElementException("Username sudah dihapus, tidak bisa digunakan kembali");
+      throw new NoSuchElementException("Username already deleted!");
     }
 
     if (!user.getPassword().equals(request.getPassword())) {
-      throw new NoSuchElementException("Password Salah");
+      throw new NoSuchElementException("Wrong password!");
     }
 
-    return ResponseHandler.responseMessage(200, "Login success");
+    return ResponseHandler.responseMessage(200, "Login success!");
   }
 
   @Override
   public ResponseEntity<?> resetPassUserService(UserResetPassRequest request) {
-    if (!userRepository.existsByUsername(request.getUsernameOrEmail())
-        && !userRepository.existsByEmail(request.getUsernameOrEmail())) {
-      throw new IllegalArgumentException("Username/Email is not found");
-    }
 
-    User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail());
+    User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail()).orElseThrow(() -> {
+      throw new NoSuchElementException("Username/Email has not registered yet!");
+    });
 
     user.setPassword(request.getNewPassword());
     userRepository.save(user);
@@ -90,7 +86,7 @@ public class UserServiceImpl implements UserService {
       users = userRepository.findByIsDeleted(isDeleted);
     }
 
-    return ResponseHandler.responseData(200, "Users succesfully showed all!", users);
+    return ResponseHandler.responseData(200, "Show all users!", users);
   }
 
 }

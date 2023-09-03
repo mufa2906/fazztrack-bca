@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class UserResetPassRequest {
-  @NotEmpty(message = "Username/email is required")
+  @NotEmpty(message = "Username/email is required.")
   private String usernameOrEmail;
-  @NotEmpty(message = "New Password is required")
+  @NotEmpty(message = "New Password is required.")
   private String newPassword;
 }

@@ -20,14 +20,14 @@ public class RoleServiceImpl implements RoleService {
   public ResponseEntity<?> addRoleService(AddRoleRequest request) {
     Role role = new Role(request.getRoleName());
     roleRepository.save(role);
-    return ResponseHandler.responseData(201, "Role successfully added", role);
+    return ResponseHandler.responseData(201, "Role successfully added!", role);
     
   }
 
   @Override
   public ResponseEntity<?> getRolesService() {
     List<Role> roles = roleRepository.findAll();
-    return ResponseHandler.responseData(200, "Show all roles", roles);
+    return ResponseHandler.responseData(200, "Show all roles!", roles);
   }
 
 }

@@ -6,12 +6,12 @@ import lombok.Data;
 
 @Data
 public class UserRegisRequest {
-  @NotEmpty(message="Username is required")
+  @NotEmpty(message="Username is required.")
   private String username;
-  @NotEmpty(message="Email is required")
+  @NotEmpty(message="Email is required.")
   private String email;
-  @NotEmpty(message="password is required")
+  @NotEmpty(message="password is required.")
   private String password;
-  @NotNull(message="Role is required")
+  @NotNull(message="Role is required.")
   private Long role;
 }
