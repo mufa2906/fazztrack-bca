@@ -103,8 +103,8 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public ResponseEntity<?> getPopularArticlesService() {
-    // TODO populer
-    return null;
+    List<Article> articles = articleRepository.OrderByLikesCountDesc();
+    return ResponseHandler.responseData(200, "Show popular articles!", articles);
   }
 
   @Override

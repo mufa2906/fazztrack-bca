@@ -46,6 +46,7 @@ public class Article {
   private Boolean isDeleted = false;
   private Boolean isValid = false;
   private Long viewsCount = 0L;
+  private Long likesCount = 0L;
 
   public Article(String title, String description, User author, ArticleType articleType) {
     this.title = title;

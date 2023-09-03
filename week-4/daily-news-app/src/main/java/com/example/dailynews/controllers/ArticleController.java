@@ -47,6 +47,16 @@ public class ArticleController {
     return articleService.getLatestArticlesService();
   }
 
+  // @GetMapping("/recommended")
+  // public ResponseEntity<?> getRecommendedArticles(){
+  //   return articleService.getRecommendedArticlesService();
+  // }
+  
+  @GetMapping("/popular")
+  public ResponseEntity<?> getPopularArticles(){
+    return articleService.getPopularArticlesService();
+  }
+
   @PutMapping("/valid")
   public ResponseEntity<?> validateArticles(@RequestParam String id){
     return articleService.validityArticlesService(id);

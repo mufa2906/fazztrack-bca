@@ -11,6 +11,8 @@ public interface ArticleRepository extends JpaRepository<Article, String>{
   
   // @Query(value = "SELECT * FROM users WHERE username = :usernameOrEmail OR email = :usernameOrEmail ", nativeQuery = true)
   List<Article> OrderByViewsCountDesc();
+  
+  List<Article> OrderByLikesCountDesc();
 
   List<Article> OrderByCreatedAtDesc();
 }
