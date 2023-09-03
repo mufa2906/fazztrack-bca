@@ -11,13 +11,13 @@ import com.example.dailynews.models.Article;
 import com.example.dailynews.models.ArticleComment;
 import com.example.dailynews.payloads.req.AddArticleCommentRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
-import com.example.dailynews.repositories.ArticleCommentRespository;
+import com.example.dailynews.repositories.ArticleCommentRepository;
 import com.example.dailynews.repositories.ArticleRepository;
 
 @Service
 public class ArticleCommentServiceImpl implements ArticleCommentService {
   @Autowired
-  ArticleCommentRespository articleCommentRespository;
+  ArticleCommentRepository articleCommentRespository;
 
   @Autowired
   ArticleRepository articleRepository;

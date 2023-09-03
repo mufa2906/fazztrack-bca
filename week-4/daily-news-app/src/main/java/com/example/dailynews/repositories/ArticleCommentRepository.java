@@ -7,6 +7,6 @@ import com.example.dailynews.models.ArticleComment;
 import java.util.List;
 
 
-public interface ArticleCommentRespository extends JpaRepository<ArticleComment, Long> {
+public interface ArticleCommentRepository extends JpaRepository<ArticleComment, Long> {
   List<ArticleComment> findByArticle(Article article);
 }
