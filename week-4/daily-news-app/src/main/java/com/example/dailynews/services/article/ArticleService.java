@@ -23,5 +23,7 @@ public interface ArticleService {
 
   ResponseEntity<?> validityArticlesService(ValidateArticleRequest request);
 
+  ResponseEntity<?> getArticlesByIdService(String id);
+
 
 }

@@ -55,6 +55,15 @@ public class ArticleServiceImpl implements ArticleService {
   public ResponseEntity<?> getArticlesService() {
     List<Article> articles = articleRepository.findAll();
     return ResponseHandler.responseData(200, "Show all articles!", articles);
+    
+  }
+
+  @Override
+  public ResponseEntity<?> getArticlesByIdService(String id) {
+    Article article = articleRepository.findById(id).orElseThrow(() -> {
+      throw new NoSuchElementException("Article is not found!");
+    });
+    return ResponseHandler.responseData(200, "Article successfully showed!", article);
   }
 
   @Override
