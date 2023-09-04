@@ -47,10 +47,10 @@ public class ArticleController {
     return articleService.getLatestArticlesService();
   }
 
-  // @GetMapping("/recommended")
-  // public ResponseEntity<?> getRecommendedArticles(){
-  //   return articleService.getRecommendedArticlesService();
-  // }
+  @GetMapping("/recommended")
+  public ResponseEntity<?> getRecommendedArticles(){
+    return articleService.getRecommendedArticlesService();
+  }
   
   @GetMapping("/popular")
   public ResponseEntity<?> getPopularArticles(){

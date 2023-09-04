@@ -15,4 +15,6 @@ public interface ArticleRepository extends JpaRepository<Article, String>{
   List<Article> OrderByLikesCountDesc();
 
   List<Article> OrderByCreatedAtDesc();
+
+  List<Article> findByIsValidIsTrue();
 }

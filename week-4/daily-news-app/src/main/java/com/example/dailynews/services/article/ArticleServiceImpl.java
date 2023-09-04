@@ -97,8 +97,8 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public ResponseEntity<?> getRecommendedArticlesService() {
-    // TODO rekom
-    return null;
+    List<Article> articles = articleRepository.findByIsValidIsTrue();
+    return ResponseHandler.responseData(200, "Show recommended articles!", articles);
   }
 
   @Override
