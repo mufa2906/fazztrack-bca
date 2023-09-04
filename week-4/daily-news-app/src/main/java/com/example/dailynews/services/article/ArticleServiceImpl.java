@@ -12,6 +12,7 @@ import com.example.dailynews.models.ArticleType;
 import com.example.dailynews.models.User;
 import com.example.dailynews.payloads.req.AddArticleRequest;
 import com.example.dailynews.payloads.req.UpdateArticleRequest;
+import com.example.dailynews.payloads.req.ValidateArticleRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
 import com.example.dailynews.repositories.ArticleRepository;
 import com.example.dailynews.repositories.ArticleTypeRepository;
@@ -35,7 +36,8 @@ public class ArticleServiceImpl implements ArticleService {
       throw new NoSuchElementException("Username is not found!");
     });
 
-    if (!author.getRole().getRoleName().equalsIgnoreCase("creator") && !author.getRole().getRoleName().equalsIgnoreCase("admin")) {
+    if (!author.getRole().getRoleName().equalsIgnoreCase("creator")
+        && !author.getRole().getRoleName().equalsIgnoreCase("admin")) {
       throw new IllegalArgumentException("Create article only for creator or admin!");
     }
 
@@ -75,7 +77,12 @@ public class ArticleServiceImpl implements ArticleService {
       article.setArticleType(type);
     }
 
-    if (!request.getUpdater().equalsIgnoreCase("creator") && !request.getUpdater().equalsIgnoreCase("admin")) {
+    User updater = userRepository.findById(request.getUpdaterId()).orElseThrow(() -> {
+      throw new NoSuchElementException("User is not found!");
+    });
+
+    if (!updater.getRole().getRoleName().equalsIgnoreCase("creator")
+        && !updater.getRole().getRoleName().equalsIgnoreCase("admin")) {
       throw new IllegalArgumentException("Update article only for creator or admin!");
     }
 
@@ -97,8 +104,8 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public ResponseEntity<?> getRecommendedArticlesService() {
-    // TODO rekom
-    return null;
+    List<Article> articles = articleRepository.findByIsValidIsTrue();
+    return ResponseHandler.responseData(200, "Show recommended articles!", articles);
   }
 
   @Override
@@ -108,8 +115,16 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public ResponseEntity<?> validityArticlesService(String id) {
-    Article article = articleRepository.findById(id).orElseThrow(() -> {
+  public ResponseEntity<?> validityArticlesService(ValidateArticleRequest request) {
+    User validator = userRepository.findById(request.getValidatorId()).orElseThrow(() -> {
+      throw new NoSuchElementException("User is not found!");
+    });
+
+    if (!validator.getRole().getRoleName().equalsIgnoreCase("admin")) {
+      throw new IllegalArgumentException("Validate article only admin!");
+    }
+
+    Article article = articleRepository.findById(request.getArticleId()).orElseThrow(() -> {
       throw new NoSuchElementException("Article is not found!");
     });
     article.setIsValid(true);

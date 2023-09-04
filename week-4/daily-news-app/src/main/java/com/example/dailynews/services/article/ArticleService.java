@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.example.dailynews.payloads.req.AddArticleRequest;
 import com.example.dailynews.payloads.req.UpdateArticleRequest;
+import com.example.dailynews.payloads.req.ValidateArticleRequest;
 
 public interface ArticleService {
   ResponseEntity<?> addArticleService(AddArticleRequest request);
@@ -20,7 +21,7 @@ public interface ArticleService {
 
   ResponseEntity<?> getPopularArticlesService();
 
-  ResponseEntity<?> validityArticlesService(String id);
+  ResponseEntity<?> validityArticlesService(ValidateArticleRequest request);
 
 
 }

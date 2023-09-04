@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dailynews.payloads.req.AddArticleRequest;
 import com.example.dailynews.payloads.req.UpdateArticleRequest;
+import com.example.dailynews.payloads.req.ValidateArticleRequest;
 import com.example.dailynews.services.article.ArticleService;
 
 import jakarta.validation.Valid;
@@ -47,10 +47,10 @@ public class ArticleController {
     return articleService.getLatestArticlesService();
   }
 
-  // @GetMapping("/recommended")
-  // public ResponseEntity<?> getRecommendedArticles(){
-  //   return articleService.getRecommendedArticlesService();
-  // }
+  @GetMapping("/recommended")
+  public ResponseEntity<?> getRecommendedArticles(){
+    return articleService.getRecommendedArticlesService();
+  }
   
   @GetMapping("/popular")
   public ResponseEntity<?> getPopularArticles(){
@@ -58,7 +58,7 @@ public class ArticleController {
   }
 
   @PutMapping("/valid")
-  public ResponseEntity<?> validateArticles(@RequestParam String id){
-    return articleService.validityArticlesService(id);
+  public ResponseEntity<?> validateArticles(@RequestBody @Valid ValidateArticleRequest request){
+    return articleService.validityArticlesService(request);
   }
 }
