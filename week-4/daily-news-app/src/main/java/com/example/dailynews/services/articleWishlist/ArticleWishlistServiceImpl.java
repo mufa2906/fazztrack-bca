@@ -33,9 +33,7 @@ public class ArticleWishlistServiceImpl implements ArticleWishlistService {
       throw new NoSuchElementException("Article is not found!");
     });
 
-    User user = userRepository.findByUsername(request.getUserUsername()).orElseThrow(() -> {
-      throw new NoSuchElementException("User is not found!");
-    });
+    User user = userRepository.findByUsername(request.getUserUsername());
 
     ArticleWishlist wishlist = new ArticleWishlist(user, article);
     wishlistRepository.save(wishlist);

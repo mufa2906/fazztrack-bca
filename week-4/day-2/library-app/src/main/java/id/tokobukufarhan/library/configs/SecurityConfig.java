@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * kelas untuk filter jwt, request yang masuk harus dicek token jwtnya
  */
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
   @Autowired
   UserDetailsService userDetailsService;
@@ -49,7 +51,8 @@ public class SecurityConfig {
           .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
           .requestMatchers("/admin/**").hasRole("ADMIN")
           .requestMatchers("/guest/**").permitAll()
-          .requestMatchers(HttpMethod.GET, "/books/**").hasAnyRole("USER", "ADMIN")
+          // .requestMatchers(HttpMethod.GET, "/books/**").hasAnyRole("USER", "ADMIN")
+          .requestMatchers(HttpMethod.GET, "/files/**").permitAll()
           .anyRequest().fullyAuthenticated();
     });
 

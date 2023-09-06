@@ -34,11 +34,7 @@ public class UserServiceImpl implements UserService {
       throw new IllegalArgumentException("Email already registered!");
     }
 
-    Role role = roleRepository.findById(request.getRole()).orElseThrow(() -> {
-      throw new NoSuchElementException("Role is not found!");
-    });
-
-    User user = new User(request.getUsername(), request.getEmail(), request.getPassword(), role);
+    User user = new User(request.getUsername(), request.getEmail(), request.getPassword());
 
     userRepository.save(user);
 

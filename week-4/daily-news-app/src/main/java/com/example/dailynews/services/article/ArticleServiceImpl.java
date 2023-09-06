@@ -36,10 +36,10 @@ public class ArticleServiceImpl implements ArticleService {
       throw new NoSuchElementException("Username is not found!");
     });
 
-    if (!author.getRole().getRoleName().equalsIgnoreCase("creator")
-        && !author.getRole().getRoleName().equalsIgnoreCase("admin")) {
-      throw new IllegalArgumentException("Create article only for creator or admin!");
-    }
+    // if (!author.getRole().getRoleName().equalsIgnoreCase("creator")
+    //     && !author.getRole().getRoleName().equalsIgnoreCase("admin")) {
+    //   throw new IllegalArgumentException("Create article only for creator or admin!");
+    // }
 
     ArticleType articleType = articleTypeRepository.findById(request.getArticleType()).orElseThrow(() -> {
       throw new NoSuchElementException("Article type is not found!");
@@ -90,10 +90,10 @@ public class ArticleServiceImpl implements ArticleService {
       throw new NoSuchElementException("User is not found!");
     });
 
-    if (!updater.getRole().getRoleName().equalsIgnoreCase("creator")
-        && !updater.getRole().getRoleName().equalsIgnoreCase("admin")) {
-      throw new IllegalArgumentException("Update article only for creator or admin!");
-    }
+    // if (!updater.getRole().getRoleName().equalsIgnoreCase("creator")
+    //     && !updater.getRole().getRoleName().equalsIgnoreCase("admin")) {
+    //   throw new IllegalArgumentException("Update article only for creator or admin!");
+    // }
 
     articleRepository.save(article);
     return ResponseHandler.responseData(200, "Article successfully updated!", article);
@@ -129,9 +129,9 @@ public class ArticleServiceImpl implements ArticleService {
       throw new NoSuchElementException("User is not found!");
     });
 
-    if (!validator.getRole().getRoleName().equalsIgnoreCase("admin")) {
-      throw new IllegalArgumentException("Validate article only admin!");
-    }
+    // if (!validator.getRole().getRoleName().equalsIgnoreCase("admin")) {
+    //   throw new IllegalArgumentException("Validate article only admin!");
+    // }
 
     Article article = articleRepository.findById(request.getArticleId()).orElseThrow(() -> {
       throw new NoSuchElementException("Article is not found!");

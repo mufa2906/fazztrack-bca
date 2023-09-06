@@ -18,7 +18,7 @@ public class RoleServiceImpl implements RoleService {
 
   @Override
   public ResponseEntity<?> addRoleService(AddRoleRequest request) {
-    if(roleRepository.existsByRoleNameIgnoreCase(request.getRoleName())){
+    if(roleRepository.existsByNameIgnoreCase(request.getRoleName())){
       throw new IllegalArgumentException("Role already exists!");
     }
     Role role = new Role(request.getRoleName());
