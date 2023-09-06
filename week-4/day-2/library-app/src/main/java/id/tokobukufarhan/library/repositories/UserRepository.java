@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import id.tokobukufarhan.library.models.User;
-
 public interface UserRepository extends JpaRepository<User, String> {
   List<User> findByIsDeleted(Boolean isDeleted);
 
   User findByUsername(String username);
+
+  User findByEmail(String email);
 
   Boolean existsByUsername(String username);
  

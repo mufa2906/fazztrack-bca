@@ -16,7 +16,7 @@ import id.tokobukufarhan.library.services.transaction.TransactionService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("/admin/transactions")
 public class TransactionController {
   @Autowired
   TransactionService transactionService;

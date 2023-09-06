@@ -76,7 +76,7 @@ public class ArticleServiceImpl implements ArticleService {
       article.setTitle(request.getTitle());
     }
     if (!request.getDescription().isEmpty()) {
-      article.setTitle(request.getDescription());
+      article.setDescription(request.getDescription());
     }
 
     if (request.getArticleType() != null) {

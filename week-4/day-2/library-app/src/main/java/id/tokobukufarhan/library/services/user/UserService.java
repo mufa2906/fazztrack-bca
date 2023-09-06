@@ -6,7 +6,7 @@ import id.tokobukufarhan.library.payloads.req.UserLoginRequest;
 import id.tokobukufarhan.library.payloads.req.UserRegistRequest;
 
 public interface UserService {
-  ResponseEntity<?> addUserService(UserRegistRequest request);
+  ResponseEntity<?> RegisUserService(UserRegistRequest request, String role);
 
   ResponseEntity<?> getUsersService(Boolean isDeleted);
 

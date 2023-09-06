@@ -21,9 +21,9 @@ public class UserController {
   UserService userService;
 
   @PostMapping
-  public ResponseEntity<?> createUser(@RequestBody @Valid UserRegistRequest request) {
+  public ResponseEntity<?> regisUser(@RequestBody @Valid UserRegistRequest request, @RequestParam(value = "role", defaultValue = "") String role) {
     // try {
-      return userService.addUserService(request);
+      return userService.RegisUserService(request, role);
     // } catch (Exception e) {
     //   return ResponseHandler.responseError(500, e.getMessage(), null);
     // }
@@ -38,7 +38,7 @@ public class UserController {
     // }
   }
   
-  @GetMapping("/login")
+  @PostMapping("/login")
   public ResponseEntity<?> loginUser(@RequestBody @Valid UserLoginRequest request) {
     // try {
       return userService.getUserLoginService(request);

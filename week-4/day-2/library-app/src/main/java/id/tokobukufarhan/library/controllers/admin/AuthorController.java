@@ -1,4 +1,4 @@
-package id.tokobukufarhan.library.controllers;
+package id.tokobukufarhan.library.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import id.tokobukufarhan.library.payloads.req.AuthorRequest;
 import id.tokobukufarhan.library.services.author.AuthorService;
 
 @RestController
-@RequestMapping("/authors")
+@RequestMapping("/admin/authors")
 public class AuthorController {
   @Autowired
   AuthorService authorService;

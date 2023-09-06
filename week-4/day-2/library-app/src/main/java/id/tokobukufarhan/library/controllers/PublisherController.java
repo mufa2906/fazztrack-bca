@@ -17,7 +17,7 @@ import id.tokobukufarhan.library.payloads.res.ResponseHandler;
 import id.tokobukufarhan.library.services.publisher.PublisherService;
 
 @RestController
-@RequestMapping("/publishers")
+@RequestMapping("/admin/publishers")
 public class PublisherController {
   @Autowired
   PublisherService publisherService;
