@@ -29,7 +29,7 @@ public class UserDetailsImpl implements UserDetails {
     });
 
     List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(strRoles);
-    return new UserDetailsImpl(authorities, user.getPassword(), user.getEmail(), user.getIsDeleted());
+    return new UserDetailsImpl(authorities, user.getPassword(), user.getUsername(), user.getIsDeleted());
   }
 
   @Override

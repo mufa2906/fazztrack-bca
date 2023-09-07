@@ -5,66 +5,64 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dailynews.payloads.req.AddArticleRequest;
-import com.example.dailynews.payloads.req.UpdateArticleRequest;
-import com.example.dailynews.payloads.req.ValidateArticleRequest;
+import com.example.dailynews.payloads.req.AddArticleCommentRequest;
 import com.example.dailynews.services.article.ArticleService;
+import com.example.dailynews.services.articleComment.ArticleCommentService;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/articles")
-public class ArticleController {
+
+public class PublicArticleController {
   @Autowired
   ArticleService articleService;
 
-  @PostMapping
-  public ResponseEntity<?> createArticle(@RequestBody @Valid AddArticleRequest request){
-    return articleService.addArticleService(request);
-  }
-
-  @PostMapping("/update")
-  public ResponseEntity<?> updateArticle(@RequestBody @Valid UpdateArticleRequest request){
-    return articleService.updateArticlesService(request);
-  }
+  @Autowired
+  ArticleCommentService articleCommentService;
 
   @GetMapping
-  public ResponseEntity<?> getArticles(){
+  public ResponseEntity<?> getArticles() {
     return articleService.getArticlesService();
   }
 
   @GetMapping("/trending")
-  public ResponseEntity<?> getTrendingArticles(){
+  public ResponseEntity<?> getTrendingArticles() {
     return articleService.getTrendingArticlesService();
   }
 
   @GetMapping("/latest")
-  public ResponseEntity<?> getLatestArticles(){
+  public ResponseEntity<?> getLatestArticles() {
     return articleService.getLatestArticlesService();
   }
 
   @GetMapping("/recommended")
-  public ResponseEntity<?> getRecommendedArticles(){
+  public ResponseEntity<?> getRecommendedArticles() {
     return articleService.getRecommendedArticlesService();
   }
-  
+
   @GetMapping("/popular")
-  public ResponseEntity<?> getPopularArticles(){
+  public ResponseEntity<?> getPopularArticles() {
     return articleService.getPopularArticlesService();
   }
 
-  @PutMapping("/valid")
-  public ResponseEntity<?> validateArticles(@RequestBody @Valid ValidateArticleRequest request){
-    return articleService.validityArticlesService(request);
-  }
-
   @GetMapping("/{id}")
-  public ResponseEntity<?> getArticlesById(@PathVariable String id){
+  public ResponseEntity<?> getArticlesById(@PathVariable String id) {
     return articleService.getArticlesByIdService(id);
   }
+
+  @GetMapping("/{articleId}/comment")
+  public ResponseEntity<?> getArticleCommentsByArticle(@PathVariable String articleId) {
+    return articleCommentService.getArticleCommentsByArticleService(articleId);
+  }
+
+  @PostMapping("/{articleId}/comment/create")
+  public ResponseEntity<?> createArticleComment(@RequestBody @Valid AddArticleCommentRequest request, @PathVariable String articleId) {
+    return articleCommentService.addArticleCommentService(request, articleId);
+  }
+
 }

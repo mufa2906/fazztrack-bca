@@ -7,7 +7,7 @@ import com.example.dailynews.payloads.req.UserLoginRequest;
 import com.example.dailynews.payloads.req.UserRegisRequest;
 
 public interface UserService {
-  ResponseEntity<?> regisUserService(UserRegisRequest request);
+  ResponseEntity<?> regisUserService(UserRegisRequest request, String role);
 
   ResponseEntity<?> loginUserService(UserLoginRequest request);
 

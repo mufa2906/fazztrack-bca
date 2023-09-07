@@ -2,6 +2,8 @@ package com.example.dailynews.services.article;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dailynews.models.Article;
 import com.example.dailynews.models.ArticleType;
+import com.example.dailynews.models.Role;
 import com.example.dailynews.models.User;
 import com.example.dailynews.payloads.req.AddArticleRequest;
 import com.example.dailynews.payloads.req.UpdateArticleRequest;
@@ -16,6 +19,7 @@ import com.example.dailynews.payloads.req.ValidateArticleRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
 import com.example.dailynews.repositories.ArticleRepository;
 import com.example.dailynews.repositories.ArticleTypeRepository;
+import com.example.dailynews.repositories.RoleRepository;
 import com.example.dailynews.repositories.UserRepository;
 
 @Service
@@ -29,17 +33,26 @@ public class ArticleServiceImpl implements ArticleService {
   @Autowired
   ArticleTypeRepository articleTypeRepository;
 
+  @Autowired
+  RoleRepository roleRepository;
+
   @Override
   public ResponseEntity<?> addArticleService(AddArticleRequest request) {
     // validasi author ada ato tidak
-    User author = userRepository.findByUsername(request.getAuthor()).orElseThrow(() -> {
-      throw new NoSuchElementException("Username is not found!");
-    });
+    User author = userRepository.findByUsername(request.getAuthor());
+    if (Objects.isNull(author)) {
+      throw new NoSuchElementException("Author is not found!");
+    }
 
-    // if (!author.getRole().getRoleName().equalsIgnoreCase("creator")
-    //     && !author.getRole().getRoleName().equalsIgnoreCase("admin")) {
-    //   throw new IllegalArgumentException("Create article only for creator or admin!");
-    // }
+    Set<Role> userRoles = author.getRoles();
+
+    // harusnya untuk entitas yang akses endpoint sudah dicek, tapi mungkin
+    // memberikan akses ke admin untuk publish artikel atas nama author lain yg
+    // creator/admin juga rolenya
+    if (!userRoles.contains(roleRepository.findByName("ROLE_ADMIN"))
+        && !userRoles.contains(roleRepository.findByName("ROLE_CREATOR"))) {
+      throw new NoSuchElementException("You dont have authority to create article!");
+    }
 
     ArticleType articleType = articleTypeRepository.findById(request.getArticleType()).orElseThrow(() -> {
       throw new NoSuchElementException("Article type is not found!");
@@ -55,7 +68,7 @@ public class ArticleServiceImpl implements ArticleService {
   public ResponseEntity<?> getArticlesService() {
     List<Article> articles = articleRepository.findAll();
     return ResponseHandler.responseData(200, "Show all articles!", articles);
-    
+
   }
 
   @Override
@@ -67,10 +80,21 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public ResponseEntity<?> updateArticlesService(UpdateArticleRequest request) {
-    Article article = articleRepository.findById(request.getArticleId()).orElseThrow(() -> {
+  public ResponseEntity<?> updateArticlesService(UpdateArticleRequest request, String id) {
+    Article article = articleRepository.findById(id).orElseThrow(() -> {
       throw new NoSuchElementException("Article is not found!");
     });
+
+    User updater = userRepository.findById(request.getUpdaterId()).orElseThrow(() -> {
+      throw new NoSuchElementException("User is not found!");
+    });
+
+    Set<Role> updaterRoles = updater.getRoles();
+
+    if (!updaterRoles.contains(roleRepository.findByName("ROLE_ADMIN"))
+        && !updater.getId().equals(article.getAuthor().getId())) {
+      throw new NoSuchElementException("You dont have authority to update this article!");
+    }
 
     if (!request.getTitle().isEmpty()) {
       article.setTitle(request.getTitle());
@@ -85,15 +109,6 @@ public class ArticleServiceImpl implements ArticleService {
       });
       article.setArticleType(type);
     }
-
-    User updater = userRepository.findById(request.getUpdaterId()).orElseThrow(() -> {
-      throw new NoSuchElementException("User is not found!");
-    });
-
-    // if (!updater.getRole().getRoleName().equalsIgnoreCase("creator")
-    //     && !updater.getRole().getRoleName().equalsIgnoreCase("admin")) {
-    //   throw new IllegalArgumentException("Update article only for creator or admin!");
-    // }
 
     articleRepository.save(article);
     return ResponseHandler.responseData(200, "Article successfully updated!", article);
@@ -124,18 +139,21 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public ResponseEntity<?> validityArticlesService(ValidateArticleRequest request) {
+  public ResponseEntity<?> validityArticlesService(ValidateArticleRequest request, String articleId) {
     User validator = userRepository.findById(request.getValidatorId()).orElseThrow(() -> {
       throw new NoSuchElementException("User is not found!");
     });
 
-    // if (!validator.getRole().getRoleName().equalsIgnoreCase("admin")) {
-    //   throw new IllegalArgumentException("Validate article only admin!");
-    // }
+    Set<Role> validatorRoles = validator.getRoles();
 
-    Article article = articleRepository.findById(request.getArticleId()).orElseThrow(() -> {
+    if (!validatorRoles.contains(roleRepository.findByName("ROLE_ADMIN"))){
+      throw new NoSuchElementException("You dont have authority to validate this article!");
+    }
+
+    Article article = articleRepository.findById(articleId).orElseThrow(() -> {
       throw new NoSuchElementException("Article is not found!");
     });
+
     article.setIsValid(true);
     articleRepository.save(article);
     return ResponseHandler.responseMessage(200, "Article with title " + article.getTitle() + " is valid!");

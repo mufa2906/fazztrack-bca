@@ -24,8 +24,8 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
 
 
   @Override
-  public ResponseEntity<?> addArticleCommentService(AddArticleCommentRequest request) {
-    Article article = articleRepository.findById(request.getArticleId()).orElseThrow(()->{
+  public ResponseEntity<?> addArticleCommentService(AddArticleCommentRequest request, String articleId) {
+    Article article = articleRepository.findById(articleId).orElseThrow(()->{
       throw new NoSuchElementException("Article is not found!");
     });
 

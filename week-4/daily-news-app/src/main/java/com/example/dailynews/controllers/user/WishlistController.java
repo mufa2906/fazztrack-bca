@@ -1,4 +1,4 @@
-package com.example.dailynews.controllers;
+package com.example.dailynews.controllers.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,18 +16,13 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/article-wishlist")
-public class ArticleWishlistController {
+public class WishlistController {
   @Autowired
   ArticleWishlistService wishlistService;
 
-  @PostMapping
+  @PostMapping("/create")
   public ResponseEntity<?> createArticleWishlist(@RequestBody @Valid AddArticleWishlistRequest request) {
     return wishlistService.addArticleWishlist(request);
-  }
-
-  @GetMapping
-  public ResponseEntity<?> getArticleWishlist() {
-    return wishlistService.getArticleWishlistService();
   }
 
   @GetMapping("/{userId}")

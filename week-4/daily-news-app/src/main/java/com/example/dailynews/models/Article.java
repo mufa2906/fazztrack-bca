@@ -42,6 +42,9 @@ public class Article {
 
   @UpdateTimestamp
   private LocalDateTime updatedAt;
+  @ManyToOne
+  @JoinColumn(name = "updater_id")
+  private User updateBy;
 
   private Boolean isDeleted = false;
   private Boolean isValid = false;

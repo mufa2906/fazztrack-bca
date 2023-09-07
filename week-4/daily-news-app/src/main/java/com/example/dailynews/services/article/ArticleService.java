@@ -11,7 +11,7 @@ public interface ArticleService {
 
   ResponseEntity<?> getArticlesService();
 
-  ResponseEntity<?> updateArticlesService(UpdateArticleRequest request);
+  ResponseEntity<?> updateArticlesService(UpdateArticleRequest request, String id);
   
   ResponseEntity<?> getTrendingArticlesService();
 
@@ -21,7 +21,7 @@ public interface ArticleService {
 
   ResponseEntity<?> getPopularArticlesService();
 
-  ResponseEntity<?> validityArticlesService(ValidateArticleRequest request);
+  ResponseEntity<?> validityArticlesService(ValidateArticleRequest request, String id);
 
   ResponseEntity<?> getArticlesByIdService(String id);
 

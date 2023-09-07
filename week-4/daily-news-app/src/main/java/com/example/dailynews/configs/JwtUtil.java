@@ -34,7 +34,7 @@ public class JwtUtil {
       return token;
     } catch (JWTCreationException exception) {
       // Invalid Signing configuration / Couldn't convert Claims.
-      return null;
+      return "error jwtcreation";
     }
   }
 
@@ -79,7 +79,7 @@ public class JwtUtil {
       String username = decodedJWT.getClaim("username").asString();
       return username;
     } catch (Exception e) {
-      return null;
+      return "error username token";
     }
   }
 }

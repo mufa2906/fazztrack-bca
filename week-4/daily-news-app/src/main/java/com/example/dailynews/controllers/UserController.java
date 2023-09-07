@@ -2,8 +2,8 @@ package com.example.dailynews.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,32 +15,30 @@ import com.example.dailynews.payloads.req.UserLoginRequest;
 import com.example.dailynews.payloads.req.UserRegisRequest;
 import com.example.dailynews.payloads.req.UserResetPassRequest;
 import com.example.dailynews.services.user.UserService;
+
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
   @Autowired
   UserService userService;
 
   @PostMapping("/register")
-  public ResponseEntity<?> createUser(@RequestBody @Valid UserRegisRequest request) {
-    return userService.regisUserService(request);
+  public ResponseEntity<?> createUser(@RequestBody @Valid UserRegisRequest request,
+      @RequestParam(value = "role", defaultValue = "") String role) {
+    return userService.regisUserService(request, role);
   }
 
-  @GetMapping("/login")
+  @PostMapping("/login")
   public ResponseEntity<?> loginUser(@RequestBody @Valid UserLoginRequest request) {
     return userService.loginUserService(request);
   }
 
   @GetMapping
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<?> getUsers(@RequestParam(value = "deleted", defaultValue = "") Boolean isDeleted) {
     return userService.getUsersService(isDeleted);
-  }
-
-  @GetMapping("/{id}")
-  public ResponseEntity<?> getUserById(@PathVariable String id) {
-    return userService.getUserByIdService(id);
   }
 
   @PutMapping("/forgot-password")
