@@ -37,6 +37,21 @@ public class ArticleWishlistServiceImpl implements ArticleWishlistService {
       throw new NoSuchElementException("User is not found!");
     });
 
+    List<WishlistArticle> userWishlist = wishlistRepository.findByUser(user);
+    // for (WishlistArticle wishlist: userWishlist) {
+    //   if(wishlist.getArticle().equals(article)){
+    //     throw new IllegalStateException("Article has been added to wishlist!");
+    //   }
+    // }
+    
+    if(userWishlist.stream().anyMatch(articleWishlist -> articleWishlist.getArticle().equals(article))){
+      throw new IllegalStateException("Article has been added to wishlist!");
+    }
+    
+
+    article.setLikesCount(article.getLikesCount() + 1);
+    articleRepository.save(article);
+
     WishlistArticle wishlist = new WishlistArticle(user, article);
     wishlistRepository.save(wishlist);
 

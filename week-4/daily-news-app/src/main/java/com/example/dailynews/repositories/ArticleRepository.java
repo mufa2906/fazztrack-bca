@@ -10,9 +10,9 @@ import com.example.dailynews.models.Article;
 public interface ArticleRepository extends JpaRepository<Article, String>{
   
   // @Query(value = "SELECT * FROM users WHERE username = :usernameOrEmail OR email = :usernameOrEmail ", nativeQuery = true)
-  List<Article> OrderByViewsCountDesc();
+  List<Article> findFirst3ByOrderByViewsCountDesc();
   
-  List<Article> OrderByLikesCountDesc();
+  List<Article> findTop3ByOrderByLikesCountDesc();
 
   List<Article> OrderByCreatedAtDesc();
 

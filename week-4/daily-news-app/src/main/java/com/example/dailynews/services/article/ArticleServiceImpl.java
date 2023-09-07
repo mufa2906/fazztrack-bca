@@ -76,6 +76,8 @@ public class ArticleServiceImpl implements ArticleService {
     Article article = articleRepository.findById(id).orElseThrow(() -> {
       throw new NoSuchElementException("Article is not found!");
     });
+    article.setViewsCount(article.getViewsCount()+1);
+    articleRepository.save(article);
     return ResponseHandler.responseData(200, "Article successfully showed!", article);
   }
 
@@ -88,6 +90,7 @@ public class ArticleServiceImpl implements ArticleService {
     User updater = userRepository.findById(request.getUpdaterId()).orElseThrow(() -> {
       throw new NoSuchElementException("User is not found!");
     });
+    article.setUpdateBy(updater);
 
     Set<Role> updaterRoles = updater.getRoles();
 
@@ -116,7 +119,7 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public ResponseEntity<?> getTrendingArticlesService() {
-    List<Article> articles = articleRepository.OrderByViewsCountDesc();
+    List<Article> articles = articleRepository.findFirst3ByOrderByViewsCountDesc();
     return ResponseHandler.responseData(200, "Show trending articles!", articles);
   }
 
@@ -134,7 +137,7 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public ResponseEntity<?> getPopularArticlesService() {
-    List<Article> articles = articleRepository.OrderByLikesCountDesc();
+    List<Article> articles = articleRepository.findTop3ByOrderByLikesCountDesc();
     return ResponseHandler.responseData(200, "Show popular articles!", articles);
   }
 
@@ -156,7 +159,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     article.setIsValid(true);
     articleRepository.save(article);
-    return ResponseHandler.responseMessage(200, "Article with title " + article.getTitle() + " is valid!");
+    return ResponseHandler.responseMessage(200, "Article with title '" + article.getTitle() + "' is valid!");
   }
 
 }
