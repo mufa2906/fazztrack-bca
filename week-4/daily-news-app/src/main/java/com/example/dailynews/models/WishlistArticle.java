@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "article_wishlist")
-public class ArticleWishlist {
+public class WishlistArticle {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -36,7 +36,7 @@ public class ArticleWishlist {
 
   private Boolean isDeleted = false;
 
-  public ArticleWishlist(User user, Article article) {
+  public WishlistArticle(User user, Article article) {
     this.user = user;
     this.article = article;
   }

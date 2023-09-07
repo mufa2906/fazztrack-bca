@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class AddArticleTypeRequest {
   @NotEmpty(message="Article type is required.")
-  private String articleType;
+  private String type;
 }

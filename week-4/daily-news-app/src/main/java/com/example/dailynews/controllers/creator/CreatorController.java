@@ -18,7 +18,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/articles")
 @PreAuthorize("hasRole('ADMIN') or hasRole('CREATOR')")
-public class CreatorArticleController {
+public class CreatorController {
   @Autowired
   ArticleService articleService;
 

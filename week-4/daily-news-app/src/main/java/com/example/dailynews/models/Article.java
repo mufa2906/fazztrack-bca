@@ -35,7 +35,7 @@ public class Article {
 
   @ManyToOne
   @JoinColumn(name = "article_type_id")
-  private ArticleType articleType;
+  private TypeArticle articleType;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
@@ -51,7 +51,7 @@ public class Article {
   private Long viewsCount = 0L;
   private Long likesCount = 0L;
 
-  public Article(String title, String description, User author, ArticleType articleType) {
+  public Article(String title, String description, User author, TypeArticle articleType) {
     this.title = title;
     this.description = description;
     this.author = author;

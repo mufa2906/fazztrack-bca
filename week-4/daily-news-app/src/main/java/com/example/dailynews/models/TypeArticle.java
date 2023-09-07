@@ -14,16 +14,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "article_types")
-public class ArticleType {
+public class TypeArticle {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(unique = true)
-  private String articleType;
+  private String type;
 
-  public ArticleType(String articleType) {
-    this.articleType = articleType;
+  public TypeArticle(String type) {
+    this.type = type;
   }
 
 }

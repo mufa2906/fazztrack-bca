@@ -8,18 +8,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.dailynews.models.Article;
-import com.example.dailynews.models.ArticleWishlist;
+import com.example.dailynews.models.WishlistArticle;
 import com.example.dailynews.models.User;
 import com.example.dailynews.payloads.req.AddArticleWishlistRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
 import com.example.dailynews.repositories.ArticleRepository;
-import com.example.dailynews.repositories.ArticleWishlistRepository;
+import com.example.dailynews.repositories.WishlistArticleRepository;
 import com.example.dailynews.repositories.UserRepository;
 
 @Service
 public class ArticleWishlistServiceImpl implements ArticleWishlistService {
   @Autowired
-  ArticleWishlistRepository wishlistRepository;
+  WishlistArticleRepository wishlistRepository;
 
   @Autowired
   ArticleRepository articleRepository;
@@ -37,7 +37,7 @@ public class ArticleWishlistServiceImpl implements ArticleWishlistService {
       throw new NoSuchElementException("User is not found!");
     });
 
-    ArticleWishlist wishlist = new ArticleWishlist(user, article);
+    WishlistArticle wishlist = new WishlistArticle(user, article);
     wishlistRepository.save(wishlist);
 
     return ResponseHandler.responseData(201,
@@ -46,7 +46,7 @@ public class ArticleWishlistServiceImpl implements ArticleWishlistService {
 
   @Override
   public ResponseEntity<?> getArticleWishlistService() {
-    List<ArticleWishlist> wishlist = wishlistRepository.findAll();
+    List<WishlistArticle> wishlist = wishlistRepository.findAll();
     return ResponseHandler.responseData(200,
         "show all wishlist!", wishlist);
   }
@@ -57,7 +57,7 @@ public class ArticleWishlistServiceImpl implements ArticleWishlistService {
       throw new NoSuchElementException("User is not found!");
     });
 
-    List<ArticleWishlist> wishlist = wishlistRepository.findByUser(user);
+    List<WishlistArticle> wishlist = wishlistRepository.findByUser(user);
     return ResponseHandler.responseData(200,
         "show all "+ user.getUsername()+"'s wishlist!", wishlist);
   }

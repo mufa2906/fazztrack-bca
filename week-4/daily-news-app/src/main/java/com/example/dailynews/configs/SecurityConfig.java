@@ -3,7 +3,6 @@ package com.example.dailynews.configs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -47,6 +46,7 @@ public class SecurityConfig {
     http.authorizeHttpRequests(auth -> {
       auth.requestMatchers("/users/**").permitAll()
           .requestMatchers("/articles/**").permitAll()
+          .requestMatchers( "/files/**").permitAll()
           .requestMatchers("/admin/**").hasRole("ADMIN")
           .anyRequest().fullyAuthenticated();
     });

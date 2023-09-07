@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "article_comments")
-public class ArticleComment {
+public class CommentArticle {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -43,7 +43,7 @@ public class ArticleComment {
 
   private Boolean isDeleted = false;
 
-  public ArticleComment(String commentText, Article article, String commentator) {
+  public CommentArticle(String commentText, Article article, String commentator) {
     this.commentText = commentText;
     this.article = article;
     this.commentator = commentator;

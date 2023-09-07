@@ -1,5 +1,7 @@
 package com.example.dailynews.controllers.admin;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.dailynews.payloads.req.AddArticleTypeRequest;
 import com.example.dailynews.payloads.req.AddRoleRequest;
@@ -18,6 +22,7 @@ import com.example.dailynews.services.articleComment.ArticleCommentService;
 import com.example.dailynews.services.articleType.ArticleTypeService;
 import com.example.dailynews.services.articleWishlist.ArticleWishlistService;
 import com.example.dailynews.services.role.RoleService;
+import com.example.dailynews.services.storageArticle.StorageArticleService;
 import com.example.dailynews.services.user.UserService;
 
 import jakarta.validation.Valid;
@@ -43,6 +48,9 @@ public class AdminController {
 
   @Autowired
   ArticleCommentService commentService;
+
+  @Autowired
+  StorageArticleService storageArticleService;
 
   @GetMapping("/users/{id}")
   public ResponseEntity<?> getUserById(@PathVariable String id) {

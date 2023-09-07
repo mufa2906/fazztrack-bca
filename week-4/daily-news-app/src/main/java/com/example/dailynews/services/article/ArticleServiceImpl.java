@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.dailynews.models.Article;
-import com.example.dailynews.models.ArticleType;
+import com.example.dailynews.models.TypeArticle;
 import com.example.dailynews.models.Role;
 import com.example.dailynews.models.User;
 import com.example.dailynews.payloads.req.AddArticleRequest;
@@ -18,7 +18,7 @@ import com.example.dailynews.payloads.req.UpdateArticleRequest;
 import com.example.dailynews.payloads.req.ValidateArticleRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
 import com.example.dailynews.repositories.ArticleRepository;
-import com.example.dailynews.repositories.ArticleTypeRepository;
+import com.example.dailynews.repositories.TypeArticleRepository;
 import com.example.dailynews.repositories.RoleRepository;
 import com.example.dailynews.repositories.UserRepository;
 
@@ -31,7 +31,7 @@ public class ArticleServiceImpl implements ArticleService {
   UserRepository userRepository;
 
   @Autowired
-  ArticleTypeRepository articleTypeRepository;
+  TypeArticleRepository articleTypeRepository;
 
   @Autowired
   RoleRepository roleRepository;
@@ -54,7 +54,7 @@ public class ArticleServiceImpl implements ArticleService {
       throw new NoSuchElementException("You dont have authority to create article!");
     }
 
-    ArticleType articleType = articleTypeRepository.findById(request.getArticleType()).orElseThrow(() -> {
+    TypeArticle articleType = articleTypeRepository.findById(request.getArticleType()).orElseThrow(() -> {
       throw new NoSuchElementException("Article type is not found!");
     });
 
@@ -104,7 +104,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     if (request.getArticleType() != null) {
-      ArticleType type = articleTypeRepository.findById(request.getArticleType()).orElseThrow(() -> {
+      TypeArticle type = articleTypeRepository.findById(request.getArticleType()).orElseThrow(() -> {
         throw new NoSuchElementException("Article type is not found!");
       });
       article.setArticleType(type);
