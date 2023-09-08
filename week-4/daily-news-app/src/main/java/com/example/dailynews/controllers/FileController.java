@@ -21,11 +21,23 @@ public class FileController {
   @Autowired
   StorageArticleService storageArticleService;
 
-  @PostMapping
+  @PostMapping("/store")
   @PreAuthorize("hasRole('ADMIN') or hasRole('CREATOR')")
   public ResponseEntity<?> storeImage(@RequestParam(value = "file") MultipartFile file,
       @RequestParam(value = "articleId") String articleId) throws IOException {
     return storageArticleService.storeImage(file, articleId);
+  }
+
+  @PostMapping("/{imageId}/delete")
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<?> deleteImage(@PathVariable String imageId) {
+    return storageArticleService.deleteImage(imageId);
+  }
+
+  @GetMapping
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<?> getAllImage() {
+    return storageArticleService.getImages();
   }
 
   @GetMapping("/{imageId}")

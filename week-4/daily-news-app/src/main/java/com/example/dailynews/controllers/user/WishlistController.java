@@ -34,6 +34,12 @@ public class WishlistController {
     return wishlistService.addArticleWishlist(request);
   }
 
+  @PostMapping("/delete")
+  @PreAuthorize("#request.username == authentication.name")
+  public ResponseEntity<?> deleteArticleWishlist(@RequestBody @Valid AddArticleWishlistRequest request) {
+    return wishlistService.addArticleWishlist(request);
+  }
+
   @GetMapping("/user")
   public ResponseEntity<?> getArticleWishlistByUser(@RequestParam(value = "token") String token) {
     //ngambil token username
@@ -46,7 +52,7 @@ public class WishlistController {
     String token = language.substring(7);
     String username = jwtUtil.getUsernameFromToken(token);
     // code that uses the language variable
-    return new ResponseEntity<String>(username, HttpStatus.OK);
+    return new ResponseEntity<String>("Hallo".concat(username), HttpStatus.OK);
   }
 
 

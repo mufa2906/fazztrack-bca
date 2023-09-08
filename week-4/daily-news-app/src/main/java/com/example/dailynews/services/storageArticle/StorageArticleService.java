@@ -9,4 +9,8 @@ public interface StorageArticleService {
   ResponseEntity<?> storeImage(MultipartFile file, String articleId) throws IOException;
 
   ResponseEntity<?> loadImage(String imageId);
+
+  ResponseEntity<?> deleteImage(String imageId);
+
+  ResponseEntity<?> getImages();
 }
