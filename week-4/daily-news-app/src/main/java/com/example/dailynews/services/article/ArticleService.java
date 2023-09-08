@@ -9,7 +9,7 @@ import com.example.dailynews.payloads.req.article.ValidateArticleRequest;
 public interface ArticleService {
   ResponseEntity<?> addArticleService(AddArticleRequest request);
 
-  ResponseEntity<?> getArticlesService();
+  ResponseEntity<?> getArticlesService(Boolean isDeleted);
 
   ResponseEntity<?> updateArticlesService(UpdateArticleRequest request, String id);
   
@@ -24,6 +24,8 @@ public interface ArticleService {
   ResponseEntity<?> validityArticlesService(ValidateArticleRequest request, String id);
 
   ResponseEntity<?> getArticlesByIdService(String id);
+
+  ResponseEntity<?> deleteArticlesByIdService(String id);
 
 
 }

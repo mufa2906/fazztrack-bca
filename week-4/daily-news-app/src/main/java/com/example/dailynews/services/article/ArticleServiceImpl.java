@@ -21,6 +21,7 @@ import com.example.dailynews.repositories.ArticleRepository;
 import com.example.dailynews.repositories.TypeArticleRepository;
 import com.example.dailynews.repositories.RoleRepository;
 import com.example.dailynews.repositories.UserRepository;
+import com.example.dailynews.validators.ArticleValidation;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -35,6 +36,9 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Autowired
   RoleRepository roleRepository;
+
+  @Autowired
+  ArticleValidation articleValidation;
 
   @Override
   public ResponseEntity<?> addArticleService(AddArticleRequest request) {
@@ -65,27 +69,30 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public ResponseEntity<?> getArticlesService() {
-    List<Article> articles = articleRepository.findAll();
+  public ResponseEntity<?> getArticlesService(Boolean isDeleted) {
+    List<Article> articles;
+    if (isDeleted == null) {
+      articles = articleRepository.findAll();
+    } else {
+      articles = articleRepository.findByIsDeleted(isDeleted);
+    }
     return ResponseHandler.responseData(200, "Show all articles!", articles);
 
   }
 
   @Override
   public ResponseEntity<?> getArticlesByIdService(String id) {
-    Article article = articleRepository.findById(id).orElseThrow(() -> {
-      throw new NoSuchElementException("Article is not found!");
-    });
-    article.setViewsCount(article.getViewsCount()+1);
+    Article article = articleRepository.findById(id).orElse(null);
+    articleValidation.validateArticle(article);
+    article.setViewsCount(article.getViewsCount() + 1);
     articleRepository.save(article);
     return ResponseHandler.responseData(200, "Article successfully showed!", article);
   }
 
   @Override
   public ResponseEntity<?> updateArticlesService(UpdateArticleRequest request, String id) {
-    Article article = articleRepository.findById(id).orElseThrow(() -> {
-      throw new NoSuchElementException("Article is not found!");
-    });
+    Article article = articleRepository.findById(id).orElse(null);
+    articleValidation.validateArticle(article);
 
     User updater = userRepository.findById(request.getUpdaterId()).orElseThrow(() -> {
       throw new NoSuchElementException("User is not found!");
@@ -149,17 +156,30 @@ public class ArticleServiceImpl implements ArticleService {
 
     Set<Role> validatorRoles = validator.getRoles();
 
-    if (!validatorRoles.contains(roleRepository.findByName("ROLE_ADMIN"))){
+    if (!validatorRoles.contains(roleRepository.findByName("ROLE_ADMIN"))) {
       throw new NoSuchElementException("You dont have authority to validate this article!");
     }
 
-    Article article = articleRepository.findById(articleId).orElseThrow(() -> {
-      throw new NoSuchElementException("Article is not found!");
-    });
+    Article article = articleRepository.findById(articleId).orElse(null);
+    articleValidation.validateArticle(article);
 
-    article.setIsValid(true);
+    if (!article.getIsValid()) {
+      article.setIsValid(true);
+      articleRepository.save(article);
+      return ResponseHandler.responseMessage(200, "Article with title '" + article.getTitle() + "' is valid!");
+    }
+    return ResponseHandler.responseMessage(200, "Article with title '" + article.getTitle() + "' already valid!");
+  }
+
+  @Override
+  public ResponseEntity<?> deleteArticlesByIdService(String id) {
+    Article article = articleRepository.findById(id).orElse(null);
+    articleValidation.validateArticle(article);
+
+    article.setIsDeleted(true);
     articleRepository.save(article);
-    return ResponseHandler.responseMessage(200, "Article with title '" + article.getTitle() + "' is valid!");
+
+    return ResponseHandler.responseMessage(200, "Succesfully deleted article");
   }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dailynews.payloads.req.article.AddArticleCommentRequest;
@@ -26,8 +27,8 @@ public class PublicArticleController {
   ArticleCommentService articleCommentService;
 
   @GetMapping
-  public ResponseEntity<?> getArticles() {
-    return articleService.getArticlesService();
+  public ResponseEntity<?> getArticles(@RequestParam(value = "isDeleted", defaultValue ="") Boolean isDeleted) {
+    return articleService.getArticlesService(isDeleted);
   }
 
   @GetMapping("/trending")

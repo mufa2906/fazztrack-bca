@@ -32,5 +32,10 @@ public class CreatorController {
     return articleService.updateArticlesService(request, id);
   }
 
+  @PostMapping("/{id}/delete")
+  public ResponseEntity<?> deleteArticle(@PathVariable String id) {
+    return articleService.deleteArticlesByIdService(id);
+  }
+
 
 }

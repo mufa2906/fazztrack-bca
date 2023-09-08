@@ -20,7 +20,7 @@ public class UserValidation {
       throw new NoSuchElementException("User has not yet registered");
     }
 
-    if (user.getIsDeleted().equals(true)) {
+    if (user.getIsDeleted()) {
       throw new NoSuchElementException("User already deleted");
     }
   }
