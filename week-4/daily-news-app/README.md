@@ -9,10 +9,14 @@ Untuk menjalankannya, clone dan jalankan perintah berikut:
 
 ## List of Service Methods
 
-- Authentication:
+- User:
   - **Sign Up**: POST - <http://localhost:9090/users/register>
   - **Sign In**: POST - <http://localhost:9090/users/login>
   - **Forgot Pass**: POST - <http://localhost:9090/users/forgot-password>
+  - **Update User**: POST - <http://localhost:9090/users/{username}/update>
+  - **Delete User**: POST - <http://localhost:9090/users/{username}/delete>
+  - **Get All User**: GET - <http://localhost:9090/users>
+  - **Get User**: GET - <http://localhost:9090/users/{username}>
 - Article:
   - **Create Article**: POST - <http://localhost:9090/articles/create>
   - **Update Article**: POST - <http://localhost:9090/{id}/update>
@@ -33,12 +37,16 @@ Untuk menjalankannya, clone dan jalankan perintah berikut:
   - **Get Article Wishlist**: GET - <http://localhost:9090/admin/article-wishlist>
 - Article Types
   - **Add Article Types**: POST - <http://localhost:9090/admin/article-types>
+  - **Delete Article Types**: POST - <http://localhost:9090/admin/article-types/delete?type="?">
   - **Get Article Types**: GET - <http://localhost:9090/admin/article-types>
 - Image Storage
   - **Add Image File**: POST - <http://localhost:9090/files/article>
+  - **Delete Image File**: POST - <http://localhost:9090/files/article/delete>
   - **Load Image File**: GET - <http://localhost:9090/files/article/{id}>
+  - **Load All Image File**: GET - <http://localhost:9090/files/article>
 - Roles
   - **Add Roles**: POST - <http://localhost:9090/admin/roles>
+  - **Delete Roles**: POST - <http://localhost:9090/admin/roles/delete?name="?">
   - **Get Roles**: GET - <http://localhost:9090/admin/roles>
 
 ## Documentation API Online
