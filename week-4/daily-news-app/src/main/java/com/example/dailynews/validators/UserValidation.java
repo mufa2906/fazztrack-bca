@@ -29,7 +29,7 @@ public class UserValidation {
     if (!Objects.isNull(request.getEmail())) {
       user.setEmail(request.getEmail());
     }
-    if (!Objects.isNull(request.getPassword())){
+    if (!Objects.isNull(request.getPassword())) {
       user.setPassword(passwordEncoder.encode(request.getPassword()));
     }
   }

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
 
@@ -138,10 +137,9 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public ResponseEntity<?> getUserByIdService(String id) {
-    User user = userRepository.findById(id).orElseThrow(() -> {
-      throw new NoSuchElementException("Username/Email has not registered yet!");
-    });
+  public ResponseEntity<?> getUserByUsernameService(String username) {
+    User user = userRepository.findByUsername(username);
+    userValidation.validateUser(user);
 
     return ResponseHandler.responseData(200, "Show user details!", user);
     // return ResponseHandler.responseMessage(200, "Show user details!");

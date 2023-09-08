@@ -16,7 +16,7 @@ public interface UserService {
 
   ResponseEntity<?> getUsersService(Boolean isDeleted);
 
-  ResponseEntity<?> getUserByIdService(String id);
+  ResponseEntity<?> getUserByUsernameService(String username);
 
   ResponseEntity<?> updateUserByUsernameService(UpdateUserRequest request, String username);
 

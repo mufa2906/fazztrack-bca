@@ -57,9 +57,9 @@ public class AdminController {
     return userService.deleteUserByUsernameService(username);
   }
 
-  @GetMapping("/users/{id}")
-  public ResponseEntity<?> getUserById(@PathVariable String id) {
-    return userService.getUserByIdService(id);
+  @GetMapping("/users/{username}")
+  public ResponseEntity<?> getUserById(@PathVariable String username) {
+    return userService.getUserByUsernameService(username);
   }
 
   @GetMapping("/article-types")

@@ -50,7 +50,7 @@ public class UserController {
 
   @PostMapping("/{username}/update")
   @PreAuthorize("#username == authentication.name or hasRole('ROLE_ADMIN')")
-  public ResponseEntity<?> updateUserByUsername(UpdateUserRequest request, @PathVariable String username) {
+  public ResponseEntity<?> updateUserByUsername(@RequestBody UpdateUserRequest request, @PathVariable String username) {
     return userService.updateUserByUsernameService(request, username);
   }
 
