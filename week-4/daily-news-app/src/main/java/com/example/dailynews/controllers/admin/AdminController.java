@@ -72,6 +72,11 @@ public class AdminController {
     return articleTypeService.addArticleTypeService(request);
   }
 
+  @PostMapping("/article-types/delete")
+  public ResponseEntity<?> deleteArticleType(@RequestParam(value="type", required=true) String type) {
+    return articleTypeService.deleteArticleTypeService(type);
+  }
+
   @PutMapping("/articles/{articleId}/valid")
   public ResponseEntity<?> validateArticles(@RequestBody @Valid ValidateArticleRequest request,
       @PathVariable String articleId) {

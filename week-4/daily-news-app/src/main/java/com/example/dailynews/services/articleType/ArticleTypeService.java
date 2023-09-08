@@ -8,4 +8,6 @@ public interface ArticleTypeService {
   ResponseEntity<?> addArticleTypeService(AddArticleTypeRequest request);
 
   ResponseEntity<?> getArticleTypesService();
+
+  ResponseEntity<?> deleteArticleTypeService(String type);
 }
