@@ -114,8 +114,8 @@ public class UserServiceImpl implements UserService {
     User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail()).orElseThrow(() -> {
       throw new NoSuchElementException("Username/Email has not registered yet!");
     });
-
-    user.setPassword(request.getNewPassword());
+    String password = passwordEncoder.encode(request.getNewPassword());
+    user.setPassword(password);
     userRepository.save(user);
 
     return ResponseHandler.responseData(200, "Password successfully changed!", user);
