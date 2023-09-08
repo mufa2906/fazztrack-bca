@@ -6,6 +6,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -26,7 +28,7 @@ public class Article {
 
   private String title;
 
-  @Column(columnDefinition="TEXT")
+  @Column(columnDefinition = "TEXT")
   private String description;
 
   @ManyToOne
@@ -37,19 +39,26 @@ public class Article {
   @JoinColumn(name = "article_type_id")
   private TypeArticle articleType;
 
-  @CreationTimestamp
-  private LocalDateTime createdAt;
-
-  @UpdateTimestamp
-  private LocalDateTime updatedAt;
   @ManyToOne
   @JoinColumn(name = "updater_id")
   private User updateBy;
 
-  private Boolean isDeleted = false;
   private Boolean isValid = false;
+
   private Long viewsCount = 0L;
+
   private Long likesCount = 0L;
+
+  @JsonIgnore
+  @CreationTimestamp
+  private LocalDateTime createdAt;
+
+  @JsonIgnore
+  @UpdateTimestamp
+  private LocalDateTime updatedAt;
+
+  @JsonIgnore
+  private Boolean isDeleted = false;
 
   public Article(String title, String description, User author, TypeArticle articleType) {
     this.title = title;

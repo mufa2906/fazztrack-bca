@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.dailynews.models.TypeArticle;
-import com.example.dailynews.payloads.req.AddArticleTypeRequest;
+import com.example.dailynews.payloads.req.article.AddArticleTypeRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
 import com.example.dailynews.repositories.TypeArticleRepository;
 

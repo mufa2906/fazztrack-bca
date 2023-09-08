@@ -1,4 +1,4 @@
-package com.example.dailynews.payloads.req;
+package com.example.dailynews.payloads.req.user;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;

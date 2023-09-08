@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dailynews.payloads.req.AddArticleCommentRequest;
+import com.example.dailynews.payloads.req.article.AddArticleCommentRequest;
 import com.example.dailynews.services.article.ArticleService;
 import com.example.dailynews.services.articleComment.ArticleCommentService;
 

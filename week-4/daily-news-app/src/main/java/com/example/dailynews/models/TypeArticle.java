@@ -1,5 +1,10 @@
 package com.example.dailynews.models;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +26,13 @@ public class TypeArticle {
 
   @Column(unique = true)
   private String type;
+
+  @JsonIgnore
+  @CreationTimestamp
+  private LocalDateTime createdAt;
+
+  @JsonIgnore
+  private Boolean isDeleted = false;
 
   public TypeArticle(String type) {
     this.type = type;

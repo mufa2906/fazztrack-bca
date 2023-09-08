@@ -42,12 +42,15 @@ public class User {
   @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
 
+  @JsonIgnore
   @CreationTimestamp
   private LocalDateTime createdAt;
 
+  @JsonIgnore
   @UpdateTimestamp
   private LocalDateTime updatedAt;
 
+  @JsonIgnore
   private Boolean isDeleted = false;
 
   public User(String username, String email, String password) {

@@ -2,7 +2,7 @@ package com.example.dailynews.models;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,9 +27,9 @@ public class Role {
   @Column(unique=true)
   private String name;
 
-  @UpdateTimestamp
+  @CreationTimestamp
   @JsonIgnore
-  private LocalDateTime updatedAt;
+  private LocalDateTime createdAt;
 
   @JsonIgnore
   private Boolean isDeleted = false;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dailynews.models.Article;
 import com.example.dailynews.models.CommentArticle;
-import com.example.dailynews.payloads.req.AddArticleCommentRequest;
+import com.example.dailynews.payloads.req.article.AddArticleCommentRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
 import com.example.dailynews.repositories.CommentArticleRepository;
 import com.example.dailynews.repositories.ArticleRepository;

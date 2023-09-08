@@ -2,7 +2,7 @@ package com.example.dailynews.services.articleComment;
 
 import org.springframework.http.ResponseEntity;
 
-import com.example.dailynews.payloads.req.AddArticleCommentRequest;
+import com.example.dailynews.payloads.req.article.AddArticleCommentRequest;
 
 public interface ArticleCommentService {
   ResponseEntity<?> addArticleCommentService(AddArticleCommentRequest request, String articleId);

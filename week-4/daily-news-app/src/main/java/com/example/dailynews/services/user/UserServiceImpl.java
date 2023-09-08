@@ -20,12 +20,14 @@ import org.springframework.stereotype.Service;
 import com.example.dailynews.configs.JwtUtil;
 import com.example.dailynews.models.Role;
 import com.example.dailynews.models.User;
-import com.example.dailynews.payloads.req.UserLoginRequest;
-import com.example.dailynews.payloads.req.UserRegisRequest;
-import com.example.dailynews.payloads.req.UserResetPassRequest;
+import com.example.dailynews.payloads.req.user.UpdateUserRequest;
+import com.example.dailynews.payloads.req.user.UserLoginRequest;
+import com.example.dailynews.payloads.req.user.UserRegisRequest;
+import com.example.dailynews.payloads.req.user.UserResetPassRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
 import com.example.dailynews.repositories.RoleRepository;
 import com.example.dailynews.repositories.UserRepository;
+import com.example.dailynews.validators.UserValidation;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,6 +46,9 @@ public class UserServiceImpl implements UserService {
   @Autowired
   AuthenticationManager authenticationManager;
 
+  @Autowired
+  UserValidation userValidation;
+
   @Override
   public ResponseEntity<?> regisUserService(UserRegisRequest request, String role) {
     if (userRepository.existsByUsername(request.getUsername())) {
@@ -56,10 +61,11 @@ public class UserServiceImpl implements UserService {
 
     String password = passwordEncoder.encode(request.getPassword());
 
-    String strRole = (role.equals(null) || role.equals("") || !role.substring(0, 5).equals("ROLE_")) ? "ROLE_USER" : role;
+    String strRole = (role.equals(null) || role.equals("") || !role.substring(0, 5).equals("ROLE_")) ? "ROLE_USER"
+        : role;
 
     Role roleUser = roleRepository.findByName(strRole);
-    if(Objects.isNull(roleUser)){
+    if (Objects.isNull(roleUser)) {
       roleUser = new Role(strRole);
       roleRepository.save(roleUser);
     }
@@ -76,44 +82,41 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public ResponseEntity<?> loginUserService(UserLoginRequest request) {
-    if (!userRepository.existsByUsername(request.getUsername())) {
-      throw new NoSuchElementException("Username belum melakukan registrasi");
-    }
-
     User user = userRepository.findByUsername(request.getUsername());
-
-    if (user.getIsDeleted()) {
-      throw new NoSuchElementException("Username already deleted!");
-    }
+    userValidation.validateUser(user);
 
     if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
       throw new IllegalArgumentException("Wrong password!");
     }
 
-    //buat userpass token
-    UsernamePasswordAuthenticationToken userAuthToken = new UsernamePasswordAuthenticationToken(user.getUsername(), request.getPassword());
+    // buat userpass token
+    UsernamePasswordAuthenticationToken userAuthToken = new UsernamePasswordAuthenticationToken(user.getUsername(),
+        request.getPassword());
 
-    //auth user
+    // auth user
     Authentication authentication = authenticationManager.authenticate(userAuthToken);
 
-    //buat security context holder
+    // buat security context holder
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
     String token = jwtUtil.createToken(request.getUsername());
 
     Map<String, Object> data = new HashMap<>();
-    data.put("username",user.getUsername());
-    data.put("token",token);
+    data.put("username", user.getUsername());
+    data.put("token", token);
 
     return ResponseHandler.responseData(200, "Login success!", data);
   }
 
   @Override
   public ResponseEntity<?> resetPassUserService(UserResetPassRequest request) {
+    User user = userRepository.findByUsername(request.getUsername());
+    userValidation.validateUser(user);
 
-    User user = userRepository.getUsernameOrEmail(request.getUsernameOrEmail()).orElseThrow(() -> {
-      throw new NoSuchElementException("Username/Email has not registered yet!");
-    });
+    if (passwordEncoder.matches(request.getNewPassword(), user.getPassword())) {
+      throw new IllegalArgumentException("Your new password same with your old password!");
+    }
+
     String password = passwordEncoder.encode(request.getNewPassword());
     user.setPassword(password);
     userRepository.save(user);
@@ -144,6 +147,24 @@ public class UserServiceImpl implements UserService {
     // return ResponseHandler.responseMessage(200, "Show user details!");
   }
 
-  
+  @Override
+  public ResponseEntity<?> updateUserByUsernameService(UpdateUserRequest request, String username) {
+    User user = userRepository.findByUsername(username);
+    userValidation.validateUser(user);
+    userValidation.validateUpdateUser(user, request);
+    userRepository.save(user);
+
+    return ResponseHandler.responseData(200, "Successfuly update user details!", user);
+  }
+
+  @Override
+  public ResponseEntity<?> deleteUserByUsernameService(String username) {
+    User user = userRepository.findByUsername(username);
+    userValidation.validateUser(user);
+    user.setIsDeleted(true);
+    userRepository.save(user);
+
+    return ResponseHandler.responseMessage(200, "Successfuly delete user!");
+  }
 
 }

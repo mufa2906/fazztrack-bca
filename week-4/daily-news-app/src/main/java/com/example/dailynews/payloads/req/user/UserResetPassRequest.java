@@ -1,12 +1,12 @@
-package com.example.dailynews.payloads.req;
+package com.example.dailynews.payloads.req.user;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
 public class UserResetPassRequest {
-  @NotEmpty(message = "Username/email is required.")
-  private String usernameOrEmail;
+  @NotEmpty(message = "Username is required.")
+  private String username;
   @NotEmpty(message = "New Password is required.")
   private String newPassword;
 }

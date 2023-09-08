@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.dailynews.models.Article;
 import com.example.dailynews.models.WishlistArticle;
 import com.example.dailynews.models.User;
-import com.example.dailynews.payloads.req.AddArticleWishlistRequest;
+import com.example.dailynews.payloads.req.article.AddArticleWishlistRequest;
 import com.example.dailynews.payloads.res.ResponseHandler;
 import com.example.dailynews.repositories.ArticleRepository;
 import com.example.dailynews.repositories.WishlistArticleRepository;

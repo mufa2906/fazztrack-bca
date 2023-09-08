@@ -2,7 +2,7 @@ package com.example.dailynews.services.articleWishlist;
 
 import org.springframework.http.ResponseEntity;
 
-import com.example.dailynews.payloads.req.AddArticleWishlistRequest;
+import com.example.dailynews.payloads.req.article.AddArticleWishlistRequest;
 
 public interface ArticleWishlistService {
   ResponseEntity<?> addArticleWishlist(AddArticleWishlistRequest request);

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dailynews.payloads.req.AddArticleRequest;
-import com.example.dailynews.payloads.req.UpdateArticleRequest;
+import com.example.dailynews.payloads.req.article.AddArticleRequest;
+import com.example.dailynews.payloads.req.article.UpdateArticleRequest;
 import com.example.dailynews.services.article.ArticleService;
 
 import jakarta.validation.Valid;

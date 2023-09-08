@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,9 +33,11 @@ public class WishlistArticle {
   @JoinColumn(name = "article_id")
   private Article article;
 
+  @JsonIgnore
   @CreationTimestamp
   private LocalDateTime createdAt;
-
+  
+  @JsonIgnore
   private Boolean isDeleted = false;
 
   public WishlistArticle(User user, Article article) {

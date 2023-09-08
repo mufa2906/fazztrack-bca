@@ -2,7 +2,7 @@ package com.example.dailynews.models;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,10 +37,11 @@ public class ImageArticle {
   @JoinColumn(name = "article_id")
   private Article article;
 
-  @UpdateTimestamp
+  @CreationTimestamp
   @JsonIgnore
-  private LocalDateTime updatedAt;
+  private LocalDateTime cretedAt;
 
+  @JsonIgnore
   private Boolean isDeleted = false;
 
   public ImageArticle(String imageName, byte[] data, Article article) {

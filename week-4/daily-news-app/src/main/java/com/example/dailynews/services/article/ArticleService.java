@@ -2,9 +2,9 @@ package com.example.dailynews.services.article;
 
 import org.springframework.http.ResponseEntity;
 
-import com.example.dailynews.payloads.req.AddArticleRequest;
-import com.example.dailynews.payloads.req.UpdateArticleRequest;
-import com.example.dailynews.payloads.req.ValidateArticleRequest;
+import com.example.dailynews.payloads.req.article.AddArticleRequest;
+import com.example.dailynews.payloads.req.article.UpdateArticleRequest;
+import com.example.dailynews.payloads.req.article.ValidateArticleRequest;
 
 public interface ArticleService {
   ResponseEntity<?> addArticleService(AddArticleRequest request);
