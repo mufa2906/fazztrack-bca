@@ -2,6 +2,7 @@ package com.example.dailynews.services.articleWishlist;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +34,7 @@ public class ArticleWishlistServiceImpl implements ArticleWishlistService {
       throw new NoSuchElementException("Article is not found!");
     });
 
-    User user = userRepository.findById(request.getUserId()).orElseThrow(() -> {
-      throw new NoSuchElementException("User is not found!");
-    });
+    User user = userRepository.findByUsername(request.getUsername());
 
     List<WishlistArticle> userWishlist = wishlistRepository.findByUser(user);
     // for (WishlistArticle wishlist: userWishlist) {
@@ -67,10 +66,11 @@ public class ArticleWishlistServiceImpl implements ArticleWishlistService {
   }
 
   @Override
-  public ResponseEntity<?> getArticleWishlistByUserService(String userId) {
-    User user = userRepository.findById(userId).orElseThrow(() -> {
-      throw new NoSuchElementException("User is not found!");
-    });
+  public ResponseEntity<?> getArticleWishlistByUserService(String username) {
+    User user = userRepository.findByUsername(username);
+    if (Objects.isNull(user)){
+      throw new NoSuchElementException("User is not found");
+    }
 
     List<WishlistArticle> wishlist = wishlistRepository.findByUser(user);
     return ResponseHandler.responseData(200,
