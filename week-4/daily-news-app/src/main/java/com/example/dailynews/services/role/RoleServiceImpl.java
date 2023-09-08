@@ -52,6 +52,7 @@ public class RoleServiceImpl implements RoleService {
     if (Objects.isNull(role)) {
       throw new IllegalArgumentException("Role is not found!");
     }
+    
     role.setIsDeleted(true);
     roleRepository.save(role);
 
