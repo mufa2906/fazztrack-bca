@@ -1,0 +1,124 @@
+*{
+  box-sizing: border-box;
+  font-size: 12px;
+  border-radius: 0.5em;
+}
+
+body{
+  margin: 0;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+form{
+  width: 290px;
+}
+
+fieldset {
+  background-color: lightblue;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+legend{
+  font-size:2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+section:first-of-type {
+  margin-top: 1em;
+}
+
+section{
+  margin-bottom:10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  align-items: center;
+}
+
+section:last-of-type {
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-end;
+}
+
+label,button{
+  font-weight: bold;
+}
+
+input{
+  border:none;
+  line-height: 1.5em;
+}
+
+input[type=radio] {
+  margin:0;
+}
+
+.gender-input{
+  width:50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.adress-section{
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+button[type=submit]{
+  width:100%;
+  border: 1px solid black;
+  line-height: 2em;
+}
+
+button[type=submit]:hover{
+  background-color: blue;
+  color: white;
+}
+
+.page{
+  justify-content: center;
+  gap: 2em;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.page-section{
+  justify-content:center;
+  gap: 1em;
+}
+
+.page{
+  border-radius: 1em;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+}
+
+.page a{
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+.login{
+  background-color: blue;
+}
+
+.login a{
+  color: white;
+}

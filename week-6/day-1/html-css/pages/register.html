@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style-register.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <form action="">
+        <fieldset class="box-form">
+          <legend>Form Register</legend>
+          <section class="page-section">
+            <div class="login page"><a href="./login.html">Login</a></div>
+            <div class="register page"><a href="./register.html">Register</a></div>
+          </section>
+          <section >
+            <label for="fname">Full Name: </label>
+            <input id="fname" name="fname" type="text" />
+          </section>
+          <section >
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="email" />
+          </section>
+          <section>
+            <label for="password">Password: </label>
+            <input id="password" name="password" type="password" />
+          </section>
+          <section >
+            <label for="gender">Gender: </label>
+            <div class="gender-input">
+              <input id="male" type="radio" name="gender-value" value="male" />
+              <label for="male">Male</label>
+              <input id="female" type="radio" name="gender-value" value="female"/>
+              <label for="female">Female</label>
+            </div>
+          </section>
+          <section >
+            <label for="dob">Date of Birth: </label>
+            <input id="dob" name="dob" type="date" />
+          </section>
+          <section class="adress-section">
+            <label for="address">Address: </label>
+            <textarea name="address" id="address" cols="30" rows="5"></textarea>
+          </section>
+          <section >
+            <button type="submit">Daftar</button>
+          </section>
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>

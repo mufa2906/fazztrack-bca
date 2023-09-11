@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style-form.css" />
+  </head>
+
+  <style></style>
+
+  <body>
+    <main>
+      <h1>HTML FORM</h1>
+      <form action="">
+        <fieldset class="box-form">
+          <legend>Personal Details</legend>
+          <section class="mb-10">
+            <label for="salutation">Salutation</label> <br />
+            <select name="salutation" id="salutation">
+              <option value="none">--None--</option>
+              <option value="mr">Mr</option>
+              <option value="mrs">Mrs</option>
+              <option value="ms">Ms</option>
+            </select>
+          </section>
+          <section class="mb-10">
+            <label for="fname">First Name: </label>
+            <input id="fname" name="fname" type="text" />
+          </section>
+          <section class="mb-10">
+            <label for="lname">Last Name: </label>
+            <input id="lname" name="lname" type="text" />
+          </section>
+          <section class="mb-10">
+            <label for="gender">Gender: </label>
+            <input id="male" type="radio" />
+            <label for="male">Male</label>
+            <input id="female" type="radio" />
+            <label for="female">Female</label>
+          </section>
+          <section class="mb-10">
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="email" />
+          </section>
+          <section class="mb-10">
+            <label for="dob">Date of Birth: </label>
+            <input id="dob" name="dob" type="date" />
+          </section>
+          <section class="mb-10">
+            <label for="address">Address: </label> <br />
+            <textarea name="address" id="address" cols="30" rows="5"></textarea>
+          </section>
+          <section class="mb-10">
+            <button type="submit">Submit</button>
+          </section>
+        </fieldset>
+      </form>
+      <a href="./latihan-position.html">Ke Latihan Position</a>
+    </main>
+  </body>
+</html>

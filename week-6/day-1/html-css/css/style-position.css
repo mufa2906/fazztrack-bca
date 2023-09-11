@@ -1,0 +1,55 @@
+.box{
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+}
+
+.satu{
+  position:sticky;
+  top:0px;
+  left:200px;
+  background-color: lightblue;
+}
+.dua{
+  position:absolute;
+  background-color: lightcoral;
+  top:100vw;
+  left:300px;
+}
+.tiga{
+  position: absolute;
+  background-color: lightgreen;
+  top:10px;
+  left:50px;
+}
+.empat{
+  position:fixed;
+  top:500px;
+  left:500px;
+  background-color: lightsalmon;
+}
+.lima{
+  background-color: lightseagreen;
+}
+.enam{
+  background-color: lightskyblue;
+}
+.relative{
+  position: relative;
+}
+
+.flex{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex2{
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+}
+
+.flex-reverse{
+  display: flex;
+  flex-direction: column-reverse;
+}

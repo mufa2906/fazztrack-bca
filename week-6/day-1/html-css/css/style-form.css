@@ -1,0 +1,18 @@
+input {
+  background-color: grey;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+}
+
+.mb-10{
+  margin-bottom: 10px;
+}
+
+.box-form{
+  border: 2px solid black;
+  padding: 8px;
+  width:fit-content;
+  border-radius: 8px;
+  margin: 0 auto;
+}
