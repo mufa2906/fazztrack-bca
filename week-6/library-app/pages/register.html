@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style-login.css" />
+    <link rel="stylesheet" href="../css/style-register.css" />
     <title>Document</title>
   </head>
   <body>
@@ -21,10 +21,28 @@
       </header>
       <main>
         <section class="form-desc-sect">
-          <h1>Login</h1>
-          <p>Welcome Back, Please Login to your account</p>
+          <h1>Register</h1>
+          <p>Welcome Back, Please Register to create account</p>
         </section>
         <section class="form-input-sect">
+          <div class="form-input">
+            <label for="username-input">Username</label>
+            <input
+              type="text"
+              name="username-input"
+              id="username-input"
+              placeholder="Enter your username"
+            />
+          </div>
+          <div class="form-input">
+            <label for="fullname-input">Full name</label>
+            <input
+              type="text"
+              name="fullname-input"
+              id="fullname-input"
+              placeholder="Enter your full name"
+            />
+          </div>
           <div class="form-input">
             <label for="email-input">Email Address</label>
             <input
@@ -44,22 +62,15 @@
             />
           </div>
         </section>
-        <section class="form-addon-sect">
-          <div>
-            <input type="checkbox" name="remember-me" id="remember-me" />
-            <label for="remember-me">Remember me</label>
-          </div>
-          <a href="" id="forgot-password">Forgot Password</a>
-        </section>
         <section class="form-button-sect">
-          <a class="login-btn">Login</a>
-          <a href="./register.html" class="signup-btn" >Sign up</a>
+          <a class="signup-btn" onclick="">Sign up</a>
+          <a href="./login.html" class="login-btn" >Login</a>
         </section>
       </main>
       <footer>
         <p>
-          By signing up, you agree to Book’s <span>Terms and Conditions</span> & <span>Privacy
-          Policy</span>
+          By signing up, you agree to Book’s <span>Terms and Conditions</span> &
+          <span>Privacy Policy</span>
         </p>
       </footer>
     </section>
