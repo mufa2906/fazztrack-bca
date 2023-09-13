@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- External CSS -->
-    <link rel="stylesheet" href="../css/style-detail.css" />
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -12,6 +10,8 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../css/style-detail.css" />
     <!-- Font Awesome -->
     <script
       src="https://kit.fontawesome.com/52fd0fa68f.js"
@@ -23,9 +23,136 @@
     <main class="container-fluid d-flex flex-column p-0">
       <div class="image-hero-detail flex-fill position-relative">
         <div class="d-flex justify-content-end gap-3 p-3 me-3 text-white">
-          <h4>Edit</h4>
-          <h4>Delete</h4>
-          <img id="image-detail" class="position-absolute img-fluid" src="../assets/image-detail-dilan.png" alt="">
+          <!-- Button trigger edit modal -->
+          <button
+            type="button"
+            class="btn text-white fs-4 p-0"
+            data-bs-toggle="modal"
+            data-bs-target="#editModal"
+          >
+            Edit
+          </button>
+
+          <!-- Modal edit-->
+          <div
+            class="modal fade"
+            id="editModal"
+            tabindex="-1"
+            aria-labelledby="editModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header px-5 border-0">
+                  <h1 class="modal-title fs-3 text-black" id="editModalLabel">
+                    Edit Data
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    id="button-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body px-5 border-0">
+                  <div class="text-black container-fluid d-grid row-gap-3">
+                    <div class="row align-items-center">
+                      <label for="url-image-book" class="col-md-4 p-0 fs-5"
+                        >Url Image</label
+                      >
+                      <input
+                        id="url-image"
+                        name="url-image"
+                        type="text"
+                        class="col-8 rounded-2 border-1 book-detail-input lh-lg"
+                        placeholder="http://gambar.com/dilan.jpg"
+                      />
+                    </div>
+                    <div class="row align-items-center">
+                      <label for="title-book" class="col-md-4 p-0 fs-5"
+                        >Title</label
+                      >
+                      <input
+                        id="dob"
+                        name="text"
+                        type="text"
+                        class="col-8 rounded-2 border-1 book-detail-input lh-lg"
+                        placeholder="Dilan 1990"
+                      />
+                    </div>
+                    <div class="row align-items-start">
+                      <label for="description-book" class="col-md-4 p-0 fs-5"
+                        >Description</label
+                      >
+                      <textarea
+                        class="col-8 rounded-2 border-1 book-detail-input lh-lg"
+                        name="description-book"
+                        id="description-book"
+                        cols="30"
+                        rows="4"
+                        placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac diam eget est rutrum ultrices. Donec laoreet enim a massa dapibus, cursus egestas dui pulvinar."
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer px-5 border-0">
+                  <button
+                    type="button"
+                    class="btn btn-warning save-edit-detail-button fs-5 m-0"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button trigger delete modal -->
+          <button
+            type="button"
+            class="btn text-white fs-4 p-0"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModal"
+          >
+            Delete
+          </button>
+
+          <!-- Modal delete-->
+          <div
+            class="modal fade"
+            id="deleteModal"
+            tabindex="-1"
+            aria-labelledby="deleteModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header border-0">
+                  <button
+                    type="button"
+                    class="btn-close"
+                    id="button-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div
+                  class="modal-body d-flex flex-column align-items-center text-black p-5 m-5 gap-3"
+                >
+                  <img src="../assets/checked.png" alt="" class="w-25" />
+                  <h2 class="text-center">Data <span class="fw-bold">Dilan 1990</span> berhasil dihapus !</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <img
+            id="image-detail"
+            class="position-absolute img-fluid"
+            src="../assets/image-detail-dilan.png"
+            alt=""
+          />
         </div>
       </div>
       <div class="image-desc-detail">
@@ -34,7 +161,9 @@
         >
           <div>
             <h4 class="mb-1">
-              <span class="badge bg-warning rounded-pill badge-detail">Novel</span>
+              <span class="badge bg-warning rounded-pill badge-detail"
+                >Novel</span
+              >
             </h4>
             <h2 class="fw-bold mb-1 title-book-detail">Dilan 1990</h2>
             <p class="fs-5 mb-1">30 Juni 2019</p>
@@ -43,28 +172,37 @@
             <h2 class="availability-text">Available</h2>
           </div>
         </section>
-        <section class="d-flex ">
+        <section class="d-flex">
           <p class="w-75 desc-book-detail mb-0">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac diam
-            eget est rutrum ultrices. Donec laoreet enim a massa dapibus, cursus
-            egestas dui pulvinar. Proin sit amet accumsan lectus. Nullam auctor
-            auctor consequat. Donec semper magna erat, sed fringilla lacus pretium
-            eget. Cras porttitor, nibh sit amet interdum bibendum, nibh velit
-            accumsan tellus, vel vehicula tellus leo vitae ipsum. Praesent sit
-            amet libero sed orci ullamcorper efficitur. Pellentesque in euismod
-            purus, sit amet ultrices tortor. Vestibulum ante dui, tempor at dui
-            id, tincidunt euismod diam. Integer pellentesque massa nibh, ac
-            eleifend odio malesuada sed. Phasellus orci sem, cursus nec orci ut,
-            accumsan facilisis lacus. Nullam at elementum nibh, ac gravida felis.
-            In sagittis rhoncus nisi tempus dignissim. Sed fringilla consequat
-            ante vitae lobortis. Cras posuere ligula vel enim suscipit malesuada.
-            Vivamus non nulla ut ante imperdiet euismod quis nec massa.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac
+            diam eget est rutrum ultrices. Donec laoreet enim a massa dapibus,
+            cursus egestas dui pulvinar. Proin sit amet accumsan lectus. Nullam
+            auctor auctor consequat. Donec semper magna erat, sed fringilla
+            lacus pretium eget. Cras porttitor, nibh sit amet interdum bibendum,
+            nibh velit accumsan tellus, vel vehicula tellus leo vitae ipsum.
+            Praesent sit amet libero sed orci ullamcorper efficitur.
+            Pellentesque in euismod purus, sit amet ultrices tortor. Vestibulum
+            ante dui, tempor at dui id, tincidunt euismod diam. Integer
+            pellentesque massa nibh, ac eleifend odio malesuada sed. Phasellus
+            orci sem, cursus nec orci ut, accumsan facilisis lacus. Nullam at
+            elementum nibh, ac gravida felis. In sagittis rhoncus nisi tempus
+            dignissim. Sed fringilla consequat ante vitae lobortis. Cras posuere
+            ligula vel enim suscipit malesuada. Vivamus non nulla ut ante
+            imperdiet euismod quis nec massa.
           </p>
-          <div class="align-self-end justify-self-end flex-fill d-flex justify-content-end ">
+          <div
+            class="align-self-end justify-self-end flex-fill d-flex justify-content-end"
+          >
             <a href="#" class="btn btn-warning borrow-button fs-4">Borrow</a>
           </div>
         </section>
       </div>
     </main>
+    <!-- script bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

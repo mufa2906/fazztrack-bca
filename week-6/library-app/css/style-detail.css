@@ -52,7 +52,8 @@ main{
   font-weight: 300;
 }
 
-.image-desc-detail .borrow-button{
+.image-desc-detail .borrow-button,
+.modal-footer .save-edit-detail-button{
   background: #FBCC38;
   color: white;
   padding: 0.5rem 2.5rem;
@@ -64,4 +65,24 @@ main{
   height: auto;
   top:50%;
   right:4%;
+}
+
+.book-detail-input{
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+}
+
+.book-detail-input::placeholder{
+  color: rgba(200, 186, 186, 1);
+  ;
+}
+
+.modal-footer .save-edit-detail-button{
+  background-color: rgba(244, 207, 93, 1);
+  padding:0.5rem 2.5rem;
+}
+
+.btn-close{
+  opacity: 1;
+  background-image: url(../assets/close.png);
 }

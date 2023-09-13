@@ -64,3 +64,12 @@ input.search::placeholder {
 .list-group-item {
   border:none;
 }
+
+#add-book-btn{
+  color: inherit;
+}
+
+.modal-footer #save-add-book-home-button{
+  background-color: rgba(244, 207, 93, 1);
+  padding:0.5rem 2.5rem;
+}
