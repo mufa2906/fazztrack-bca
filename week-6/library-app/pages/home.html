@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../css/style-home.css" />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/52fd0fa68f.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Flickity -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+    />
+    <title>Home</title>
+  </head>
+
+  <style>
+    .carousel-cell {
+      width: 50%;
+      height: 300px;
+      margin-right: 10px;
+      background-color: #8c8;
+      border-radius: 5px;
+    }
+
+    .cover-book {
+      object-fit: cover;
+      object-position: center 10%;
+    }
+  </style>
+
+  <body>
+    <div class="container-fluid p-0 d-flex">
+      <aside class="sidebar bg-light-subtle w-25 container-fluid p-4">
+        <a href="" class="menu-icon d-flex justify-content-end">
+          <img src="../assets/menu.png" alt=""/>
+        </a>
+        <section class="user-sect d-flex flex-column justify-content-center align-items-center my-4 gap-2">
+          <img src="../assets/pp-niki.png" alt="" class="user-image" style="width:150px" />
+          <h3 class="user-name">Niki Zefanya</h3>
+          <a href="" class="logout-btn nav-link">
+            <img src="../assets/logout.png" alt="">
+            Logout
+          </a>
+        </section>
+        <section class="menu-list-sect">
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <a href="" class="explore-btn nav-link fs-4">Explore</a>
+              </li>
+              <li class="mb-3">
+                <a href="" class="history-btn nav-link fs-4">History</a>
+              </li>
+              <li class="mb-3">
+                <a href="" class="add-book-btn nav-link fs-4">Add Book*</a>
+              </li>
+            </ul>
+        </section>
+      </aside>
+      <section class="bg-blue container-fluid p-0">
+        <header class="container-fluid p-0">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle fw-bold"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      All Categories
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li>
+                        <a class="dropdown-item" href="#">Comedy</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Finance</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle fw-bold"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      All times
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li>
+                        <a class="dropdown-item" href="#">Another action</a>
+                      </li>
+                      <li><hr class="dropdown-divider" /></li>
+                      <li>
+                        <a class="dropdown-item" href="#"
+                          >Something else here</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <section
+                  class="d-flex align-items-center justify-content-between w-75 ps-5"
+                >
+                  <form class="d-flex w-100" role="search">
+                    <input
+                      class="form-control me-2 rounded-pill search"
+                      type="search"
+                      placeholder="Search book"
+                      aria-label="Search"
+                    />
+                  </form>
+                  <div class="container-fluid d-flex justify-content-end ps-0">
+                    <a
+                      class="navbar-brand fs-2 d-flex align-items-center"
+                      href="#"
+                    >
+                      <img
+                        src="../assets/bookshelf.png"
+                        alt="Logo"
+                        width="50"
+                        height="50"
+                        class="d-inline-block align-text-center"
+                      />
+                      <h2 class="m-0 fs-3">Library</h2>
+                    </a>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <main class="container-fluid p-0">
+          <section
+            class="my-3 container-fluid p-0"
+            data-flickity='{"wrapAround":true}'
+          >
+            <div
+              class="cover-book carousel-cell rounded-4"
+              id="cover-ubur-ubur-lembur"
+            >
+              <div class="h-100 d-flex flex-column">
+                <div class="h-50"></div>
+                <div
+                  class="desc-book d-flex flex-column justify-content-end p-4 container-fluid h-50 rounded-4"
+                >
+                  <h2 class="text-white">Ubur Ubur Lembur</h2>
+                  <h6 class="text-white">Raditya Dika</h6>
+                </div>
+              </div>
+            </div>
+            <div
+              class="cover-book carousel-cell rounded-4"
+              id="cover-laskar-pelangi"
+            >
+              <div class="h-100 d-flex flex-column">
+                <div class="h-50"></div>
+                <div
+                  class="desc-book d-flex flex-column justify-content-end p-4 container-fluid h-50 rounded-4"
+                >
+                  <h2 class="text-white">Laskar Pelangi</h2>
+                  <h6 class="text-white">Andrea Hirata</h6>
+                </div>
+              </div>
+            </div>
+            <div class="cover-book carousel-cell rounded-4" id="cover-dilan">
+              <div class="h-100 d-flex flex-column">
+                <div class="h-50"></div>
+                <div
+                  class="desc-book d-flex flex-column justify-content-end p-4 container-fluid h-50 rounded-4"
+                >
+                  <h2 class="text-white">Dilan 1990</h2>
+                  <h6 class="text-white">Pidi Baiq</h6>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="container-fluid p-4 d-flex flex-column gap-4">
+            <div>
+              <h2 class="fs-4 fw-bold text-list-book">List Book</h2>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col">
+                <div class="card h-100 rounded-4" style="max-width: 320px">
+                  <img
+                    src="../assets/cover-dilan.png"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title text-center title-book">
+                      Dilan 1990
+                    </h5>
+                    <p class="card-text">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.dfaadsf
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100 rounded-4" style="max-width: 320px">
+                  <img
+                    src="../assets/cover-seni-bodo-amat.png"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body">
+                    <h5
+                      class="card-title text-center title-book"
+                    >
+                      Sebuah Seni Untuk Bersikap Bodoh Amat
+                    </h5>
+                    <p class="card-text">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100 rounded-4" style="max-width: 320px">
+                  <img
+                    src="../assets/cover-react-native.png"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body">
+                    <h5
+                      class="card-title text-center title-book"
+                    >
+                      React Native
+                    </h5>
+                    <p class="card-text">
+                      This is a longer card with supporting text below as a
+                      natural lead-in to additional content.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </section>
+    </div>
+    <!-- script bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <!-- flickity -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  </body>
+</html>

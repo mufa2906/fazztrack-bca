@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Airbnb Cereal";
+  src: url("../fonts/AirbnbCereal/AirbnbCereal_W_Md.otf");
+  font-weight: 500;
+}
+
+/* @font-face {
+  font-family: "Airbnb Cereal";
+  src: url("../fonts/AirbnbCereal/AirbnbCereal_W_Lt.otf");
+  font-weight: 400;
+} */
+
+* {
+  box-sizing: border-box;
+  font-family: "Airbnb Cereal";
+  color: #424242;
+}
+
+html {
+  font-size: 17px;
+}
+
+input.search {
+  background-image: url("../assets/magnifying-glass-solid.svg");
+  background-size: 20px;
+  background-position: 2rem center;
+  background-repeat: no-repeat;
+  text-indent: 3.5rem;
+}
+
+input.search::placeholder {
+  font-family: "Airbnb Cereal";
+  color: #cacaca;
+}
+
+.cover-book {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#cover-ubur-ubur-lembur {
+  background-image: url("../assets/cover-ubur-ubur-lembur.png");
+}
+
+#cover-laskar-pelangi {
+  background-image: url("../assets/cover-laskar-pelangi.png");
+}
+#cover-dilan {
+  background-image: url("../assets/cover-dilan.png");
+}
+
+.desc-book{
+  background-color: rgba(0,0,0,0.2);
+}
+
+.title-book{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 2rem;
+}
+
+.list-group-item {
+  border:none;
+}
