@@ -37,6 +37,7 @@ input.search::placeholder {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
 }
 
 #cover-ubur-ubur-lembur {
@@ -72,4 +73,18 @@ input.search::placeholder {
 .modal-footer #save-add-book-home-button{
   background-color: rgba(244, 207, 93, 1);
   padding:0.5rem 2.5rem;
+}
+
+#collapseOpen{
+  z-index: 2;
+}
+
+#collapseClose{
+  border-right: 1px solid rgba(219, 219, 219, 1);
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.card-book-list{
+  max-width: 320px; box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
 }
