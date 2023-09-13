@@ -62,7 +62,7 @@
               <h3 class="user-name text-center container-fluid text-nowrap">
                 Niki Zefanya
               </h3>
-              <a href="" class="logout-btn nav-link">
+              <a href="./login.html" class="logout-btn nav-link">
                 <img src="../assets/logout.png" alt="" />
                 Logout
               </a>
@@ -76,7 +76,7 @@
                   <a href="" class="history-btn nav-link fs-4">History</a>
                 </li>
                 <li class="mb-3">
-                  <!-- Button trigger edit modal -->
+                  <!-- Button trigger add modal -->
                   <button
                     type="button"
                     class="btn nav-link fs-4 p-0 text-black"
@@ -86,96 +86,89 @@
                   >
                     Add Book
                   </button>
-
-                  <!-- Modal edit-->
-                  <div
-                    class="modal fade"
-                    id="addBookModal"
-                    tabindex="-1"
-                    aria-labelledby="addBook
-              ModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header px-5 border-0">
-                          <h1
-                            class="modal-title fs-3 text-black"
-                            id="addBook
-                        ModalLabel"
-                          >
-                            Add Data
-                          </h1>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            id="button-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body px-5 border-0">
-                          <div
-                            class="text-black container-fluid d-grid row-gap-3"
-                          >
-                            <div class="row align-items-center">
-                              <label
-                                for="url-image-book"
-                                class="col-md-4 p-0 fs-5"
-                                >Url Image</label
-                              >
-                              <input
-                                id="url-image"
-                                name="url-image"
-                                type="text"
-                                class="col-8 rounded-2 border-1 book-detail-input lh-lg"
-                                placeholder="Url Image.."
-                              />
-                            </div>
-                            <div class="row align-items-center">
-                              <label for="title-book" class="col-md-4 p-0 fs-5"
-                                >Title</label
-                              >
-                              <input
-                                id="dob"
-                                name="text"
-                                type="text"
-                                class="col-8 rounded-2 border-1 book-detail-input lh-lg"
-                                placeholder="Title..."
-                              />
-                            </div>
-                            <div class="row align-items-start">
-                              <label
-                                for="description-book"
-                                class="col-md-4 p-0 fs-5"
-                                >Description</label
-                              >
-                              <textarea
-                                class="col-8 rounded-2 border-1 book-detail-input lh-lg"
-                                name="description-book"
-                                id="description-book"
-                                cols="30"
-                                rows="4"
-                                placeholder="Description..."
-                              ></textarea>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="modal-footer px-5 border-0">
-                          <button
-                            type="button"
-                            class="btn btn-warning fs-5 m-0 text-white"
-                            id="save-add-book-home-button"
-                          >
-                            Save
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </li>
               </ul>
             </section>
+          </div>
+        </div>
+        <!-- Modal add-->
+        <div
+          class="modal fade"
+          id="addBookModal"
+          tabindex="-1"
+          aria-labelledby="addBook
+  ModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header px-5 border-0">
+                <h1
+                  class="modal-title fs-3 text-black"
+                  id="addBook
+            ModalLabel"
+                >
+                  Add Data
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  id="button-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body px-5 border-0">
+                <div class="text-black container-fluid d-grid row-gap-3">
+                  <div class="row align-items-center">
+                    <label for="url-image-book" class="col-md-4 p-0 fs-5"
+                      >Url Image</label
+                    >
+                    <input
+                      id="url-image"
+                      name="url-image"
+                      type="text"
+                      class="col-8 rounded-2 border-1 book-detail-input lh-lg"
+                      placeholder="Url Image.."
+                    />
+                  </div>
+                  <div class="row align-items-center">
+                    <label for="title-book" class="col-md-4 p-0 fs-5"
+                      >Title</label
+                    >
+                    <input
+                      id="dob"
+                      name="text"
+                      type="text"
+                      class="col-8 rounded-2 border-1 book-detail-input lh-lg"
+                      placeholder="Title..."
+                    />
+                  </div>
+                  <div class="row align-items-start">
+                    <label for="description-book" class="col-md-4 p-0 fs-5"
+                      >Description</label
+                    >
+                    <textarea
+                      class="col-8 rounded-2 border-1 book-detail-input lh-lg"
+                      name="description-book"
+                      id="description-book"
+                      cols="30"
+                      rows="4"
+                      placeholder="Description..."
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer px-5 border-0">
+                <button
+                  type="button"
+                  class="btn btn-warning fs-5 m-0 text-white"
+                  id="save-add-book-home-button"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <!-- Sidebar-Close -->
@@ -194,8 +187,13 @@
         </div>
       </aside>
       <section class="bg-blue container-fluid flex-fill p-0 h-100">
-        <header class="container-fluid p-0" style="border-bottom: 1px solid rgba(202, 202, 202, 1); box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-        ">
+        <header
+          class="container-fluid p-0"
+          style="
+            border-bottom: 1px solid rgba(202, 202, 202, 1);
+            box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+          "
+        >
           <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -325,7 +323,7 @@
               <h2 class="fs-4 fw-bold text-list-book">List Book</h2>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
-              <div class="col">
+              <a class="col" href="./detail.html" style="text-decoration: none">
                 <div class="card h-100 rounded-4 card-book-list">
                   <img
                     src="../assets/cover-dilan.png"
@@ -343,8 +341,8 @@
                     </p>
                   </div>
                 </div>
-              </div>
-              <div class="col">
+              </a>
+              <a class="col" href="./detail.html" style="text-decoration: none">
                 <div class="card h-100 rounded-4 card-book-list">
                   <img
                     src="../assets/cover-seni-bodo-amat.png"
@@ -362,8 +360,8 @@
                     </p>
                   </div>
                 </div>
-              </div>
-              <div class="col">
+              </a>
+              <a class="col" href="./detail.html" style="text-decoration: none">
                 <div class="card h-100 rounded-4 card-book-list">
                   <img
                     src="../assets/cover-react-native.png"
@@ -380,7 +378,7 @@
                     </p>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </section>
         </main>
