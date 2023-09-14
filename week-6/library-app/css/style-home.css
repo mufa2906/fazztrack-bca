@@ -33,11 +33,18 @@ input.search::placeholder {
   color: #cacaca;
 }
 
+.carousel-cell {
+  width: 50%;
+  height: 300px;
+  margin-right: 10px;
+  background-color: #8c8;
+  border-radius: 5px;
+}
+
 .cover-book {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-
 }
 
 #cover-ubur-ubur-lembur {
@@ -51,77 +58,102 @@ input.search::placeholder {
   background-image: url("../assets/cover-dilan.png");
 }
 
-.desc-book{
-  background-color: rgba(0,0,0,0.2);
+.desc-book {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-.title-book{
+.title-book {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-
-.desc-title-book{
+.desc-title-book {
   display: -webkit-box;
-  -webkit-line-clamp: 4; 
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .list-group-item {
-  border:none;
+  border: none;
 }
 
-#add-book-btn{
+#add-book-btn {
   color: inherit;
 }
 
-.modal-footer #save-add-book-home-button{
+.modal-footer #save-add-book-home-button {
   background-color: rgba(244, 207, 93, 1);
-  padding:0.5rem 2.5rem;
+  padding: 0.5rem 2.5rem;
 }
 
-#collapseOpen{
+#collapseOpen {
   z-index: 2;
 }
 
-#collapseClose{
+.sidebar-open,
+.sidebar-close {
+  position: sticky;
+  top: 25px;
+}
+
+.user-image {
+  width: 75%;
+}
+
+#collapseClose {
   border-right: 1px solid rgba(219, 219, 219, 1);
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.25);
   z-index: 1;
 }
 
-.card-book-list{
+.card-book-list {
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
 }
 
-.modal{
+.modal {
   z-index: 1060;
 }
 
-.modal-backdrop{
+.modal-backdrop {
   z-index: 1050;
 }
 
-@media screen and (max-width:992px) {
-  html{
+.logo-name {
+  font-size: 1.2rem;
+}
+
+.logo-image {
+  width: 25%;
+}
+
+.header-logo {
+  border-bottom: 1px solid rgba(202, 202, 202, 1);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+* a{
+  text-decoration: none;
+}
+@media screen and (max-width: 992px) {
+  html {
     font-size: 12px;
   }
-  .navbar-collapse{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-self: center;
   }
-  .navbar-nav{
-    margin:auto;
+  .navbar-nav {
+    margin: auto;
   }
-  .search-logo-sect{
-    width: 100%!important;
+  .search-logo-sect {
+    width: 100% !important;
   }
-  #navbarSupportedContent a.nav-link{
+  #navbarSupportedContent a.nav-link {
     font-size: 1.5rem;
   }
 }

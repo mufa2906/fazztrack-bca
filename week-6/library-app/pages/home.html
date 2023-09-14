@@ -26,21 +26,6 @@
     <title>Home</title>
   </head>
 
-  <style>
-    .carousel-cell {
-      width: 50%;
-      height: 300px;
-      margin-right: 10px;
-      background-color: #8c8;
-      border-radius: 5px;
-    }
-
-    .cover-book {
-      object-fit: cover;
-      object-position: center 10%;
-    }
-  </style>
-
   <body>
     <div class="container-fluid p-0 d-flex">
       <aside class="p-0 d-flex flex-fill">
@@ -49,16 +34,11 @@
           class="bg-light-subtle container-fluid collapse collapse-horizontal"
           id="collapseOpen"
         >
-          <div style="position: sticky; top: 25px">
+          <div class="sidebar-open">
             <section
               class="user-sect d-flex flex-column justify-content-center align-items-center my-4 gap-2 container-fluid"
             >
-              <img
-                src="../assets/pp-niki.png"
-                alt=""
-                class="user-image"
-                style="width: 75%"
-              />
+              <img src="../assets/pp-niki.png" alt="" class="user-image" />
               <h3 class="user-name text-center container-fluid text-nowrap">
                 Niki Zefanya
               </h3>
@@ -175,8 +155,7 @@
         <div class="bg-light-subtle p-4" id="collapseClose">
           <a
             href=""
-            class="menu-icon d-flex justify-content-end"
-            style="position: sticky; top: 25px"
+            class="menu-icon d-flex justify-content-end sidebar-close"
             data-bs-toggle="collapse"
             data-bs-target="#collapseOpen"
             aria-expanded="false"
@@ -187,13 +166,7 @@
         </div>
       </aside>
       <section class="bg-blue container-fluid flex-fill p-0 h-100">
-        <header
-          class="container-fluid p-0"
-          style="
-            border-bottom: 1px solid rgba(202, 202, 202, 1);
-            box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-          "
-        >
+        <header class="container-fluid p-0 header-logo">
           <nav class="navbar navbar-expand bg-body-tertiary">
             <div class="container-fluid">
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -261,9 +234,7 @@
                       <img
                         src="../assets/bookshelf.png"
                         alt="Logo"
-                        width="50"
-                        height="50"
-                        class="d-inline-block align-text-center"
+                        class="d-inline-block align-text-center logo-image"
                       />
                       <h2 class="m-0 fs-3">Library</h2>
                     </a>
@@ -323,7 +294,7 @@
               <h2 class="fs-4 fw-bold text-list-book">List Book</h2>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
-              <a class="col justify-content-center" href="./detail.html" style="text-decoration: none">
+              <a class="col justify-content-center" href="./detail.html">
                 <div class="card h-100 rounded-4 card-book-list">
                   <img
                     src="../assets/cover-dilan.png"
@@ -337,16 +308,16 @@
                     <p class="card-text desc-title-book">
                       This is a longer card with supporting text below as a
                       natural lead-in to additional content. This content is a
-                      little bit longer. This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      little bit longer. This is a longer card with supporting
+                      text below as a natural lead-in to additional content.
+                      This content is a little bit longer.This is a longer card
+                      with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.
                     </p>
                   </div>
                 </div>
               </a>
-              <a class="col" href="./detail.html" style="text-decoration: none">
+              <a class="col" href="./detail.html">
                 <div class="card h-100 rounded-4 card-book-list">
                   <img
                     src="../assets/cover-seni-bodo-amat.png"
@@ -365,7 +336,7 @@
                   </div>
                 </div>
               </a>
-              <a class="col" href="./detail.html" style="text-decoration: none">
+              <a class="col" href="./detail.html">
                 <div class="card h-100 rounded-4 card-book-list">
                   <img
                     src="../assets/cover-react-native.png"
