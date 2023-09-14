@@ -59,7 +59,15 @@ input.search::placeholder {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 0 2rem;
+}
+
+
+.desc-title-book{
+  display: -webkit-box;
+  -webkit-line-clamp: 4; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .list-group-item {
@@ -86,7 +94,7 @@ input.search::placeholder {
 }
 
 .card-book-list{
-  max-width: 320px; box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
 }
 
 .modal{
@@ -95,4 +103,25 @@ input.search::placeholder {
 
 .modal-backdrop{
   z-index: 1050;
+}
+
+@media screen and (max-width:992px) {
+  html{
+    font-size: 12px;
+  }
+  .navbar-collapse{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-self: center;
+  }
+  .navbar-nav{
+    margin:auto;
+  }
+  .search-logo-sect{
+    width: 100%!important;
+  }
+  #navbarSupportedContent a.nav-link{
+    font-size: 1.5rem;
+  }
 }
