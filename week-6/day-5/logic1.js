@@ -1,5 +1,6 @@
 n = 9;
 function nomor1() {
+  console.log("Nomor 1")
   for (y = 1; y <= n; y++) {
     let row = "";
     for (x = 1; x <= n; x++) {
@@ -14,6 +15,7 @@ function nomor1() {
 }
 
 function nomor2() {
+  console.log("Nomor 2")
   for (y = 1; y <= n; y++) {
     let row = "";
     for (x = 1; x <= n; x++) {
@@ -28,6 +30,7 @@ function nomor2() {
 }
 
 function nomor3() {
+  console.log("Nomor 3")
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < n; x++) {
@@ -42,6 +45,7 @@ function nomor3() {
 }
 
 function nomor4() {
+  console.log("Nomor 4")
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < n; x++) {
@@ -58,6 +62,7 @@ function nomor4() {
 }
 
 function nomor5() {
+  console.log("Nomor 5")
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < n; x++) {
@@ -74,6 +79,7 @@ function nomor5() {
 }
 
 function nomor6() {
+  console.log("Nomor 6")
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < y + 1; x++) {
@@ -84,6 +90,7 @@ function nomor6() {
 }
 
 function nomor7() {
+  console.log("Nomor 7")
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < n; x++) {
@@ -98,6 +105,7 @@ function nomor7() {
 }
 
 function nomor8() {
+  console.log("Nomor 8")
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < n; x++) {
@@ -114,6 +122,7 @@ function nomor8() {
 }
 
 function nomor9() {
+  console.log("Nomor 9")
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < n; x++) {
@@ -130,6 +139,7 @@ function nomor9() {
 }
 
 function nomor10() {
+  console.log("Nomor 10")
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < n; x++) {
@@ -154,3 +164,14 @@ function nomor10() {
     console.log(row);
   }
 }
+
+nomor1()
+nomor2()
+nomor3()
+nomor4()
+nomor5()
+nomor6()
+nomor7()
+nomor8()
+nomor9()
+nomor10()
