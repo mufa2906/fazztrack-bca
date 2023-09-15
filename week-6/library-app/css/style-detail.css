@@ -26,7 +26,8 @@ main{
 }
 
 .image-hero-detail {
-  height:15rem;
+  height: 15rem;
+  min-height:5rem;
   background-image: url("../assets/cover-dilan.png");
   background-size: cover;
   background-position: center;
