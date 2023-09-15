@@ -23,22 +23,20 @@
     <main class="container-fluid d-flex flex-column p-0">
       <div class="image-hero-detail flex-fill position-relative">
         <div
-          class="d-flex justify-content-end gap-3 p-3 me-3 text-white justify-content-between"
+          class="d-flex gap-3 p-3 me-3 text-white justify-content-between align-items-center"
         >
           <div
-            class="rounded-circle bg-white d-flex align-content-center"
-            style="width: 40px; height: 40px"
+            class="rounded-circle bg-white d-flex align-content-center back-arrow-container"
           >
             <a href="./home.html"
               ><img
                 src="../assets/arrow-left-solid.svg"
                 alt=""
-                class="position-block"
-                style="width: 30px; height: 30px; margin: 5px"
+                class="position-block back-arrow"
               />
             </a>
           </div>
-          <div class="d-flex justify-content-end gap-3 ">
+          <div class="d-flex justify-content-end gap-3">
             <!-- Button trigger edit modal -->
             <button
               type="button"
@@ -165,21 +163,14 @@
                 </div>
               </div>
             </div>
-
-            <img
-              id="image-detail"
-              class="position-absolute img-fluid"
-              src="../assets/image-detail-dilan.png"
-              alt=""
-            />
           </div>
         </div>
       </div>
       <div class="image-desc-detail">
         <section
-          class="d-flex mb-4 justify-content-between align-items-center w-75"
+          class="d-flex mb-4 align-items-center w-100 position-relative title-sect"
         >
-          <div>
+          <div class="w-50">
             <h4 class="mb-1">
               <span class="badge bg-warning rounded-pill badge-detail"
                 >Novel</span
@@ -188,12 +179,21 @@
             <h2 class="fw-bold mb-1 title-book-detail">Dilan 1990</h2>
             <p class="fs-5 mb-1">30 Juni 2019</p>
           </div>
-          <div class="d-flex align-items-center">
+          <div class="availability-text-sect d-flex align-items-center w-25 justify-content-end">
             <h2 class="availability-text">Available</h2>
           </div>
+          
+          <div class="position-absolute image-detail-container w-25">
+            <img
+              id="image-detail"
+              class=""
+              src="../assets/image-detail-dilan.png"
+              alt=""
+            />
+          </div>
         </section>
-        <section class="d-flex">
-          <p class="w-75 desc-book-detail mb-0">
+        <section class="d-flex description-sect">
+          <p class="w-75 desc-book-detail mb-0 ">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac
             diam eget est rutrum ultrices. Donec laoreet enim a massa dapibus,
             cursus egestas dui pulvinar. Proin sit amet accumsan lectus. Nullam
@@ -211,7 +211,7 @@
             imperdiet euismod quis nec massa.
           </p>
           <div
-            class="align-self-end justify-self-end flex-fill d-flex justify-content-end"
+            class="flex-fill d-flex align-items-end justify-content-center"
           >
             <a href="./home.html" class="btn btn-warning borrow-button fs-4"
               >Borrow</a

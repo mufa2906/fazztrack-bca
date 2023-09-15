@@ -20,12 +20,16 @@ html {
   font-size: 17px;
 }
 
+
+
 input.search {
   background-image: url("../assets/magnifying-glass-solid.svg");
-  background-size: 20px;
-  background-position: 2rem center;
+  background-size: 1rem;
+  background-position: 1rem center;
   background-repeat: no-repeat;
-  text-indent: 3.5rem;
+  text-indent: 3rem;
+  display: flex;
+  align-content: center;
 }
 
 input.search::placeholder {
@@ -134,7 +138,7 @@ input.search::placeholder {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
-* a{
+* a {
   text-decoration: none;
 }
 @media screen and (max-width: 992px) {
@@ -153,7 +157,14 @@ input.search::placeholder {
   .search-logo-sect {
     width: 100% !important;
   }
+
   #navbarSupportedContent a.nav-link {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 9px;
   }
 }
