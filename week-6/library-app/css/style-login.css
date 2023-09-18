@@ -163,6 +163,7 @@ input {
   border-radius: 0.3rem;
   border: 1px solid var(--grey-font);
   background-color: transparent;
+  text-decoration: none;
 }
 
 .form-button-sect .login-btn {
