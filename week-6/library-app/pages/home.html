@@ -39,8 +39,8 @@
               class="user-sect d-flex flex-column justify-content-center align-items-center my-4 gap-2 container-fluid"
             >
               <img src="../assets/pp-niki.png" alt="" class="user-image" />
-              <h3 class="user-name text-center container-fluid text-nowrap">
-                Niki Zefanya
+              <h3 class="user-name text-center container-fluid text-nowrap" id="user-fullname">
+                Blablabla
               </h3>
               <a href="./login.html" class="logout-btn nav-link">
                 <img src="../assets/logout.png" alt="" />
@@ -152,7 +152,7 @@
           </div>
         </div>
         <!-- Sidebar-Close -->
-        <div class="bg-light-subtle p-4" id="collapseClose">
+        <div class="bg-light-subtle p-4 " id="collapseClose">
           <a
             href=""
             class="menu-icon d-flex justify-content-end sidebar-close"
@@ -171,13 +171,14 @@
             <div class="container-fluid">
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <!-- Bootstrap Dropdown -->
                   <li class="nav-item dropdown">
                     <a
-                      class="nav-link dropdown-toggle fw-bold"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                    class="nav-link dropdown-toggle fw-bold"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                     >
                       All Categories
                     </a>
@@ -191,17 +192,17 @@
                       </li>
                     </ul>
                   </li>
+                  <!-- DOM Manipulation Dropdown -->
                   <li class="nav-item dropdown">
                     <a
-                      class="nav-link dropdown-toggle fw-bold"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                    class="nav-link dropdown-toggle fw-bold"
+                    id="dropdown-alltimes"
+                    href="#"
+                    role="button"
                     >
                       All times
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" id="menu-dropdown-alltimes">
                       <li><a class="dropdown-item" href="#">Action</a></li>
                       <li>
                         <a class="dropdown-item" href="#">Another action</a>
@@ -367,5 +368,6 @@
     ></script>
     <!-- flickity -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="../js/Home.js"></script>
   </body>
 </html>
