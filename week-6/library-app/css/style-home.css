@@ -140,7 +140,19 @@ input.search::placeholder {
 
 * a {
   text-decoration: none;
+  cursor: pointer;
 }
+
+.show{
+  display: block;
+}
+
+.hide{
+  display: none;
+}
+
+
+
 @media screen and (max-width: 992px) {
   html {
     font-size: 12px;

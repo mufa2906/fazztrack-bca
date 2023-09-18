@@ -27,8 +27,31 @@ collapseClose.addEventListener("click", () => {
 const dropdownAlltimes = document.querySelector("#dropdown-alltimes");
 const menuDropdownAlltimes = document.querySelector("#menu-dropdown-alltimes");
 
-dropdownAlltimes.addEventListener("click", () =>{
+dropdownAlltimes.addEventListener("click", () => {
   menuDropdownAlltimes.style.position = "absolute";
   menuDropdownAlltimes.style.top = "100%";
   menuDropdownAlltimes.classList.toggle("show");
-})
+});
+
+//modal
+const addBookBtn = document.querySelector("#add-book-btn");
+const addBookModal = document.querySelector("#addBookModal");
+addBookModal.style.zIndex = "1060";
+
+//modal backdrop
+const modalBackdrop = document.createElement("div");
+modalBackdrop.classList.add("modal-backdrop","hide");
+modalBackdrop.style.opacity=0.5
+
+document.body.appendChild(modalBackdrop);
+
+addBookBtn.addEventListener("click", () => {
+  addBookModal.classList.toggle("show");
+  modalBackdrop.classList.toggle("hide");
+});
+
+const buttonCloseModal = document.querySelector("#button-close");
+buttonCloseModal.addEventListener("click", () => {
+  addBookModal.classList.toggle("show");
+  modalBackdrop.classList.toggle("hide");
+});
