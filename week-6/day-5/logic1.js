@@ -5,9 +5,9 @@ function nomor1() {
     let row = "";
     for (x = 1; x <= n; x++) {
       if (x == y) {
-        row += "*";
+        row += "* ";
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
@@ -20,9 +20,9 @@ function nomor2() {
     let row = "";
     for (x = 1; x <= n; x++) {
       if (x == 10 - y) {
-        row += "*";
+        row += "* ";
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
@@ -35,9 +35,9 @@ function nomor3() {
     let row = "";
     for (x = 0; x < n; x++) {
       if (x == y || x == n - y - 1) {
-        row += "*";
+        row += "* ";
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
@@ -50,11 +50,11 @@ function nomor4() {
     let row = "";
     for (x = 0; x < n; x++) {
       if (x == y || x == 8 - y) {
-        row += "*";
+        row += "* ";
       } else if (x == 4 || y == 4) {
-        row += "*";
+        row += "* ";
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
@@ -67,11 +67,11 @@ function nomor5() {
     let row = "";
     for (x = 0; x < n; x++) {
       if (x == y || x == n - y - 1) {
-        row += "*";
+        row += "* ";
       } else if (x == 0 || x == n - 1 || y == 0 || y == n - 1) {
-        row += "*";
+        row += "* ";
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
@@ -83,7 +83,7 @@ function nomor6() {
   for (y = 0; y < n; y++) {
     let row = "";
     for (x = 0; x < y + 1; x++) {
-      row += "*";
+      row += "* ";
     }
     console.log(row);
   }
@@ -95,9 +95,9 @@ function nomor7() {
     let row = "";
     for (x = 0; x < n; x++) {
       if (x >= n - y - 1) {
-        row += "*";
+        row += "* ";
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
@@ -110,11 +110,11 @@ function nomor8() {
     let row = "";
     for (x = 0; x < n; x++) {
       if (x >= y && x <= n - y - 1) {
-        row += "*";
+        row += "* ";
       } else if (x <= y && x >= n - y - 1) {
-        row += "*";
+        row += "* ";
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
@@ -127,11 +127,11 @@ function nomor9() {
     let row = "";
     for (x = 0; x < n; x++) {
       if (y >= x && y <= n - x - 1) {
-        row += "*";
+        row += "* ";
       } else if (y <= x && y >= n - x - 1) {
-        row += "*";
+        row += "* ";
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
@@ -144,21 +144,21 @@ function nomor10() {
     let row = "";
     for (x = 0; x < n; x++) {
       if (y == 4) {
-        row += "*";
+        row += "* ";
       } else if (x <= y && y < 4) {
         if (y < parseInt(n / 2)) {
-          row += "*";
+          row += "* ";
         } else {
-          row += " ";
+          row += "  ";
         }
       } else if (x >= y && y > 4) {
         if (y >= parseInt(n / 2)) {
-          row += "*";
+          row += "* ";
         } else {
-          row += " ";
+          row += "  ";
         }
       } else {
-        row += " ";
+        row += "  ";
       }
     }
     console.log(row);
