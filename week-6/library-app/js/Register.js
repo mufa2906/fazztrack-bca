@@ -41,9 +41,9 @@ signupBtn.addEventListener("click", (e) => {
 
         if (!error.success) {
           reject(error.message);
+        } else {
+          resolve("Success create user!");
         }
-
-        resolve("Success create user!");
       }, 2000);
     });
   };

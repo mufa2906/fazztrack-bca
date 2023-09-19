@@ -40,8 +40,8 @@ addBookModal.style.zIndex = "1060";
 
 //modal backdrop
 const modalBackdrop = document.createElement("div");
-modalBackdrop.classList.add("modal-backdrop","hide");
-modalBackdrop.style.opacity=0.5
+modalBackdrop.classList.add("modal-backdrop", "hide");
+modalBackdrop.style.opacity = 0.5;
 
 document.body.appendChild(modalBackdrop);
 
@@ -54,4 +54,57 @@ const buttonCloseModal = document.querySelector("#button-close");
 buttonCloseModal.addEventListener("click", () => {
   addBookModal.classList.toggle("show");
   modalBackdrop.classList.toggle("hide");
+});
+
+//add Book to List
+const saveAddBookBtn = document.querySelector("#save-add-book-home-button");
+const listBookWrapper = document.querySelector("#list-book-wrapper");
+
+saveAddBookBtn.addEventListener("click", () => {
+  const urlImageBook = document.querySelector("#url-image").value;
+  const titleBook = document.querySelector("#title").value;
+  const descriptionBook = document.querySelector("#description-book").value;
+
+  const capitalize = (title) => {
+    const array = title.split(" ");
+    const textCapilatize = [];
+    array.forEach((word) => {
+      text = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      textCapilatize.push(text);
+    });
+    console.log(textCapilatize);
+    return textCapilatize.join(" ");
+  };
+
+  title = capitalize(titleBook);
+
+  const newBook = document.createElement("a");
+  newBook.classList.add("col", "justify-content-center");
+  newBook.href = "./detail2.html";
+  newBook.innerHTML = `
+                <div class="card h-100 rounded-4 card-book-list">
+                  <img
+                    src="../assets/${urlImageBook}"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title text-center title-book">
+                      ${title}
+                    </h5>
+                    <p class="card-text desc-title-book">
+                      ${descriptionBook}
+                    </p>
+                  </div>
+                </div>
+  `;
+  listBookWrapper.appendChild(newBook);
+
+  const object = {
+    urlImage: `../assets/${urlImageBook}`,
+    title: title,
+    description: descriptionBook,
+  };
+
+  localStorage.setItem("bookDetail", JSON.stringify(object));
 });

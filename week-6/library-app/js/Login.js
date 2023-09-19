@@ -21,10 +21,10 @@ loginBtn.addEventListener("click", (e) => {
 
         if (!isUser) {
           reject("Email or Password is wrong. Please try again!");
+        } else{
+          resolve("Login Success");
+          localStorage.setItem("userLogin", JSON.stringify(isUser))
         }
-
-        resolve("Login Success");
-        localStorage.setItem("userLogin", JSON.stringify(isUser))
       }, 2000);
     });
   };
