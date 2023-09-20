@@ -51,6 +51,7 @@ signupBtn.addEventListener("click", (e) => {
   createUser(newUser)
     .then((e) => {
       localStorage.setItem("users", JSON.stringify(existingUsers));
+      window.location.href="../pages/login.html"
       alert(e);
     })
     .catch((err) => {
