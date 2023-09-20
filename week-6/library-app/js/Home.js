@@ -65,6 +65,11 @@ saveAddBookBtn.addEventListener("click", () => {
   const titleBook = document.querySelector("#title").value;
   const descriptionBook = document.querySelector("#description-book").value;
 
+  if (!urlImageBook || !titleBook || !descriptionBook) {
+    alert("Please enter all required information");
+    return;
+  }
+
   const capitalize = (title) => {
     const array = title.split(" ");
     const textCapilatize = [];
@@ -107,4 +112,6 @@ saveAddBookBtn.addEventListener("click", () => {
   };
 
   localStorage.setItem("bookDetail", JSON.stringify(object));
+  addBookModal.classList.toggle("show");
+  modalBackdrop.classList.toggle("hide");
 });
