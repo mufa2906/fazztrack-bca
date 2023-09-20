@@ -38,13 +38,17 @@ savedBookDetail.addEventListener("click", () => {
   titleBook = capitalize(titleBook);
   title.textContent = titleBook;
 
-  const object = {
+  const updateBook = {
+    index: bookDetail.index,
     urlImage: urlImageBook,
     title: titleBook,
     description: descriptionBook,
   };
 
-  localStorage.setItem("bookDetail", JSON.stringify(object));
+  localStorage.setItem("bookDetail", JSON.stringify(updateBook));
+  const listBook = JSON.parse(localStorage.getItem("listBook"));
+  listBook[bookDetail.index] = updateBook;
+  localStorage.setItem("listBook", JSON.stringify(listBook));
 
   description.textContent = descriptionBook;
   imgUrl.src = urlImageBook;

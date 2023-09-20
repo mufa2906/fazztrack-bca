@@ -77,19 +77,25 @@ saveAddBookBtn.addEventListener("click", () => {
       text = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
       textCapilatize.push(text);
     });
-    console.log(textCapilatize);
     return textCapilatize.join(" ");
   };
 
   title = capitalize(titleBook);
 
-  const newBook = document.createElement("a");
-  newBook.classList.add("col", "justify-content-center");
-  newBook.href = "./detail2.html";
-  newBook.innerHTML = `
+  addNewBook(urlImageBook, title, descriptionBook);
+  addBookModal.classList.toggle("show");
+  modalBackdrop.classList.toggle("hide");
+});
+
+//add new book to list
+const addNewBook = (urlImageBook, title, descriptionBook) => {
+  const bookElement = document.createElement("a");
+  bookElement.classList.add("col", "justify-content-center");
+  bookElement.href = "./detail2.html";
+  bookElement.innerHTML = `
                 <div class="card h-100 rounded-4 card-book-list">
                   <img
-                    src="../assets/${urlImageBook}"
+                    src="${urlImageBook}"
                     class="card-img-top"
                     alt="..."
                   />
@@ -103,15 +109,52 @@ saveAddBookBtn.addEventListener("click", () => {
                   </div>
                 </div>
   `;
-  listBookWrapper.appendChild(newBook);
+  listBookWrapper.appendChild(bookElement);
 
-  const object = {
-    urlImage: `../assets/${urlImageBook}`,
+  const books = JSON.parse(localStorage.getItem("listBook")) || [];
+  const newBook = {
+    urlImage: `${urlImageBook}`,
     title: title,
     description: descriptionBook,
   };
 
-  localStorage.setItem("bookDetail", JSON.stringify(object));
-  addBookModal.classList.toggle("show");
-  modalBackdrop.classList.toggle("hide");
-});
+  books.push(newBook);
+
+  localStorage.setItem("listBook", JSON.stringify(books));
+};
+
+// Show list book added
+const showListBook = () => {
+  const listBook = JSON.parse(localStorage.getItem("listBook"));
+  if (listBook) {
+    listBook.forEach((book) => {
+      const index = listBook.indexOf(book);
+      const bookElement = document.createElement("a");
+      bookElement.classList.add("col", "justify-content-center");
+      bookElement.href = "./detail2.html";
+      bookElement.innerHTML = `
+                  <div class="card h-100 rounded-4 card-book-list">
+                    <img
+                      src="${book.urlImage}"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title text-center title-book">
+                        ${book.title}
+                      </h5>
+                      <p class="card-text desc-title-book">
+                        ${book.description}
+                      </p>
+                    </div>
+                  </div>
+    `;
+      bookElement.addEventListener("click", () => {
+        book.index = index;
+        localStorage.setItem("bookDetail", JSON.stringify(book));
+      });
+      listBookWrapper.appendChild(bookElement);
+    });
+  }
+};
+showListBook();
