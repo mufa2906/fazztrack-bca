@@ -1,6 +1,9 @@
-import "./card.css"
+import { Link } from "react-router-dom";
+import "./card.css";
 
-function Card({imgProd, price, name}) {
+function Card(props) {
+  const { imgProd, price, name, id } = props;
+
   return (
     <div className="card-container">
       <div className="image">
@@ -8,12 +11,12 @@ function Card({imgProd, price, name}) {
         <p>{price}</p>
       </div>
       <div className="desc">
-        <a href="#">
+        <Link to={`products/${id}`}>
           <p>{name}</p>
-        </a>
+        </Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default Card
+export default Card;

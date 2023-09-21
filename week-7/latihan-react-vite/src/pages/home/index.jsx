@@ -1,9 +1,7 @@
-import { useState } from "react";
-import Card from "../../components/card/Card";
-import Navbar from "../../components/navbar/Navbar";
-import "./home.css";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Card from "../../components/card/Card";
+import "./home.css";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +9,7 @@ const Home = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "http://hplussport.com/api/products/order/price"
+        "http://hplussport.com/api/products"
       );
       console.log(response.data);
       setProducts(response.data);
@@ -25,7 +23,7 @@ const Home = () => {
   return (
     <div className="container">
       {/* navbar */}
-      <Navbar />
+      {/* <Navbar /> */}
       {/* main */}
       <main>
         <section className="header">
@@ -36,18 +34,19 @@ const Home = () => {
         </section>
         <section className="prod">
           {/* Card */}
-          <Card
+          {/* <Card
             imgProd={
               "https://plus.unsplash.com/premium_photo-1694124534101-444a039aee89?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
             }
             price={`Rp ${20000}`}
             name={"Bawang putih"}
-          />
+          /> */}
 
           {products.map((product) => {
             return (
               <Card
                 key={product.id}
+                id={product.id}
                 imgProd={product.image}
                 price={product.price}
                 name={product.name}
