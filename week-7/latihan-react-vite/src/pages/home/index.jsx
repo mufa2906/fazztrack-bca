@@ -9,7 +9,7 @@ const Home = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "http://hplussport.com/api/products"
+        "https://hplussport.com/api/products"
       );
       console.log(response.data);
       setProducts(response.data);
