@@ -9,8 +9,7 @@
 5. Font Awesome
 
 ## Pages
-
-**1. REGISTER** : <https://fazztrack-bca.vercel.app/week-6/library-app/pages/register.html>
+**1. REGISTER** : <https://library-app-drab.vercel.app/pages/register.html>
 
 - **Desktop View**
   ![!\[Alt text\](image-1.png)](pagesScreenshot/register-desktop.png)
@@ -23,7 +22,7 @@
   
   ![!\[Alt text\](image-8.png)](pagesScreenshot/register-mobile.png)
   
-**2. LOGIN** : <https://fazztrack-bca.vercel.app/week-6/library-app/pages/login.html>
+**2. LOGIN** : <https://library-app-drab.vercel.app/pages/login.html>
 - **Desktop View**
   ![!\[Alt text\](image.png)](pagesScreenshot/login-desktop.png)
 
@@ -35,7 +34,7 @@
 
   ![!\[Alt text\](image-9.png)  ](pagesScreenshot/login-mobile.png)
 
-**3. HOME** : <https://fazztrack-bca.vercel.app/week-6/library-app/pages/home.html>
+**3. HOME** : <https://library-app-drab.vercel.app/pages/home.html>
 - **Desktop View**  
   ![!\[Alt text\](image-2.png)](pagesScreenshot/home-desktop.png)
   ![!\[Alt text\](image-3.png)](pagesScreenshot/home-sidebar-desktop.png)
@@ -50,7 +49,7 @@
   ![!\[Alt text\](image-11.png)](pagesScreenshot/home-mobile.png)
   ![!\[Alt text\](image-11.png)](pagesScreenshot/home-sidebar-mobile.png)
 
-**4. DETAIL** : <https://fazztrack-bca.vercel.app/week-6/library-app/pages/detail.html>
+**4. DETAIL** : <https://library-app-drab.vercel.app/pages/detail.html>
 - **Desktop View**  
   ![!\[Alt text\](image-5.png)](pagesScreenshot/detail-desktop.png)
 
