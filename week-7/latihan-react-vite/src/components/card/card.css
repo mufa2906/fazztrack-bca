@@ -1,0 +1,22 @@
+/* card */
+.card-container {
+  border-radius: 7px;
+  width: 164px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 8px;
+}
+
+.image img {
+  border-radius: 7px;
+  width: 100%;
+  max-height: 100%;
+}
+
+.image p {
+  text-align: center;
+}
+
+.card-container .desc {
+  padding: 10px;
+  text-align: center;
+}

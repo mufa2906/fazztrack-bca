@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100vw;
+}
+
+/* main */
+main {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 ;
+  margin-top: 45px;
+}
+
+input:focus {
+  outline: 0;
+}
+
+.prod{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
