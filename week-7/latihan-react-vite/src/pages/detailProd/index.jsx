@@ -14,7 +14,9 @@ function DetailProd() {
         `https://hplussport.com/api/products?id=${productId}`
       );
       setProduct(response.data[0])
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   useEffect(() => {

@@ -42,7 +42,7 @@ const Home = () => {
             name={"Bawang putih"}
           /> */}
 
-          {products.map((product) => {
+          {products ? (products.map((product) => {
             return (
               <Card
                 key={product.id}
@@ -52,7 +52,8 @@ const Home = () => {
                 name={product.name}
               />
             );
-          })}
+          })) : <h1>No Data</h1>
+          }
         </section>
       </main>
     </div>

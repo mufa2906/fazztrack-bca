@@ -1,29 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.jsx";
-import DetailProd from "./pages/detailProd";
-import Home from "./pages/home";
-import AddProd from "./pages/addProd/index.jsx";
-// import './index.css'
+import LoginForm from "./components/loginForm/LoginForm.jsx";
+import Login from "./pages/login/index.jsx";
+import RegisForm from "./components/regisForm/RegisForm.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-    // loader: rootLoader,
+    element: <Login />,
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <LoginForm />,
       },
       {
-        path: "products/:productId",
-        element: <DetailProd />,
-      },
-      {
-        path: "add",
-        element: <AddProd />,
+        path: "/register",
+        element: <RegisForm />,
       },
     ],
   },

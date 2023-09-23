@@ -8,6 +8,7 @@ function Navbar() {
     <nav className="navbar-container">
       <div className="logo">
         <Link to="/">Logo</Link>
+        <Link to="/add">Add Product</Link>
         </div>
       <div className="btn-group">
         <div className="btn-login">Login</div>

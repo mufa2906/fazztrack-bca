@@ -31,7 +31,7 @@ html {
 }
 
 .hero-container {
-  background-image: url("../assets/mollie-sivaram-_1gBVgy8gIU-unsplash.png");
+  background-image: url("../../assets/images/mollie-sivaram-_1gBVgy8gIU-unsplash.png");
   background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: multiply;
   background-size: cover;
