@@ -2,9 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginForm from "./components/loginForm/LoginForm.jsx";
-import Login from "./pages/login/index.jsx";
+import Login from "./pages/auth/index.jsx";
 import RegisForm from "./components/regisForm/RegisForm.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './index.css'
 
 const router = createBrowserRouter([
   {

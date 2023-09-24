@@ -1,65 +1,5 @@
-:root {
-  --white: #f9f9f9;
-  --light-black: #424242;
-  --grey-font: #d0cccc;
-  --grey-rectangle: #e0e0e0;
-}
-
-@font-face {
-  font-family: "Airbnb Cereal";
-  src: url("../fonts/AirbnbCereal/AirbnbCereal_W_Md.otf");
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /* border:1px solid red; */
-}
-
-html {
-  font-family: "Airbnb Cereal";
-  font-size: 17px;
-}
-
-
-
-.main-container {
-  display: flex;
-  max-width: 100vw;
-  min-height: 100vh;
-}
-
-.hero-container {
-  background-image: url("../../assets/images/mollie-sivaram-_1gBVgy8gIU-unsplash.png");
-  background-color: rgba(0, 0, 0, 0.3);
-  background-blend-mode: multiply;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #f9f9f9;
-  flex: 1;
-}
-
-.hero-container header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3.5rem;
-}
-
-.hero-title,
 .form-desc-sect h1 {
   font-size: 2.5rem;
-}
-
-.hero-credit {
-  display: flex;
-  align-items: flex-end;
-  padding: 1rem;
 }
 
 .form-container {
@@ -166,12 +106,12 @@ input {
   text-decoration: none;
 }
 
-.form-button-sect .login-btn {
+.form-button-sect #login-btn-login {
   background-color: black;
   color: white;
 }
 
-.form-button-sect .signup-btn {
+.form-button-sect #signup-btn-login {
   background-color: transparent;
   color: black;
 }
@@ -192,38 +132,8 @@ input {
   -webkit-text-stroke: 0;
 }
 
-@media (max-width: 1200px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 992px) {
-  html {
-    font-size: 12px;
-  }
-}
 
 @media (max-width: 576px) {
-  html {
-    font-size: 10px;
-  }
-  .hero-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-  }
-  .hero-title, .hero-credit {
-    display: none;
-  }
-
-  .main-container{
-    display: flex;
-    justify-content: center;
-    align-self: center;
-  }
-  
   .form-container {
     width: 90%;
     display: flex;
@@ -255,12 +165,12 @@ input {
     border: 1px solid black;
   }
 
-  .form-button-sect .login-btn {
+  .form-button-sect #login-btn-login {
     background-color: black;
     color: white;
   }
   
-  .form-button-sect .signup-btn {
+  .form-button-sect #signup-btn-login {
     background-color: transparent;
     color: black;
   }

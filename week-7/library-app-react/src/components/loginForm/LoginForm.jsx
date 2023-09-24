@@ -1,6 +1,6 @@
-import React from "react";
 import logo from "../../assets/images/bookshelf.png";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+import "./LoginForm.css";
 
 function LoginForm() {
   return (
@@ -43,8 +43,8 @@ function LoginForm() {
           </a>
         </section>
         <section className="form-button-sect">
-          <a className="login-btn">Login</a>
-          <Link to="./register" className="signup-btn">
+          <Link to="/" className="login-btn" id="login-btn-login">Login</Link>
+          <Link to="./register" className="signup-btn" id="signup-btn-login" >
             Sign up
           </Link>
         </section>

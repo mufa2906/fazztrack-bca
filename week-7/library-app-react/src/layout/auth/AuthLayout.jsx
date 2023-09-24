@@ -1,8 +1,7 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import "./style-login.css";
+import './AuthLayout.css'
+import PropTypes from "prop-types";
 
-function Login() {
+function AuthLayout({ children }) {
   return (
     <>
       <div className="main-container">
@@ -14,11 +13,14 @@ function Login() {
             <p className="hero-credit">Photo by Mark Pan4ratte on Unsplash</p>
           </footer>
         </section>
-
-        <Outlet />
+        {children}
       </div>
     </>
   );
 }
 
-export default Login;
+AuthLayout.propTypes = {
+  children: PropTypes.element,
+};
+
+export default AuthLayout;

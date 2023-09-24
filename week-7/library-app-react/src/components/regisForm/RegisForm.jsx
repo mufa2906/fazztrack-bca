@@ -1,6 +1,6 @@
-import React from "react";
 import logo from "../../assets/images/bookshelf.png";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+import './RegisForm.css'
 
 function RegisForm() {
   return (
@@ -52,10 +52,10 @@ function RegisForm() {
           </div>
         </section>
         <section className="form-button-sect">
-          <a href="" className="signup-btn">
+          <Link to="/register" className="signup-btn" id="signup-btn-register">
             Sign up
-          </a>
-          <Link to="/" className="login-btn">
+          </Link>
+          <Link to="/" className="login-btn" id="login-btn-register">
             Login
           </Link>
         </section>
