@@ -5,20 +5,28 @@ import CarouselWrapperHome from "../../components/carouselWrapperHome/CarouselWr
 import HeaderHome from "../../components/headerHome/HeaderHome";
 import Sidebar from "../../components/sidebarHome/SidebarHome";
 import PropTypes from "prop-types";
-import './HomeLayout.css'
+import "./HomeLayout.css";
 import { useState } from "react";
+import { getBooks } from "../../services/book";
+import { useEffect } from "react";
 
 function HomeLayout() {
-  const [carousels, setCarousels] = useState([]);
+  // const [carousels, setCarousels] = useState([]);
   const [books, setBooks] = useState([]);
 
-  const carousels= [
-    {
-      imgUrl :
+  const fetchBooks = async () => {
+    try {
+      const res = await getBooks();
+      setBooks(res.data);
+      console.log(books);
+    } catch (error) {
+      console.log(error);
     }
-  ]
+  };
 
-
+  useEffect(() => {
+    fetchBooks();
+  }, []);
 
   return (
     <>
@@ -28,10 +36,14 @@ function HomeLayout() {
           <HeaderHome />
           <main className="container-fluid p-0">
             <CarouselWrapperHome>
-              <CarouselHome />
+              {books.slice(0, 5).map((book) => {
+                return <CarouselHome image={book.image} key={book.id} />;
+              })}
             </CarouselWrapperHome>
             <CardWrapperHome>
-              <CardHome />
+              {books.slice(0, 5).map((book) => {
+                return <CardHome image={book.image} key={book.id} />;
+              })}
             </CardWrapperHome>
           </main>
         </section>

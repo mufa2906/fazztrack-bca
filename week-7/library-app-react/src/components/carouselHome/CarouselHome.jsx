@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
-function CarouselHome() {
+function CarouselHome({image}) {
   return (
     <>
       <Link
         className="cover-book carousel-cell rounded-4"
         id="cover-ubur-ubur-lembur"
+        style={{ backgroundImage: `url(${image})` }}
       >
         <div className="h-100 d-flex flex-column">
           <div className="h-50"></div>
@@ -15,7 +16,7 @@ function CarouselHome() {
           </div>
         </div>
       </Link>
-      <div className="cover-book carousel-cell rounded-4" id="cover-laskar-pelangi">
+      {/* <div className="cover-book carousel-cell rounded-4" id="cover-laskar-pelangi">
         <div className="h-100 d-flex flex-column">
           <div className="h-50"></div>
           <div className="desc-book d-flex flex-column justify-content-end p-4 container-fluid h-50 rounded-bottom-4">
@@ -32,7 +33,7 @@ function CarouselHome() {
             <h6 className="text-white">Pidi Baiq</h6>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
