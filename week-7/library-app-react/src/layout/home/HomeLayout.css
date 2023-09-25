@@ -1,27 +1,3 @@
-@font-face {
-  font-family: "Airbnb Cereal";
-  src: url("../fonts/AirbnbCereal/AirbnbCereal_W_Md.otf");
-  font-weight: 500;
-}
-
-/* @font-face {
-  font-family: "Airbnb Cereal";
-  src: url("../fonts/AirbnbCereal/AirbnbCereal_W_Lt.otf");
-  font-weight: 400;
-} */
-
-* {
-  box-sizing: border-box;
-  font-family: "Airbnb Cereal";
-  color: #424242;
-}
-
-html {
-  font-size: 17px;
-}
-
-
-
 input.search {
   background-image: url("../assets/magnifying-glass-solid.svg");
   background-size: 1rem;
@@ -52,14 +28,14 @@ input.search::placeholder {
 }
 
 #cover-ubur-ubur-lembur {
-  background-image: url("../assets/cover-ubur-ubur-lembur.png");
+  background-image: url("../../assets/images/cover-ubur-ubur-lembur.png");
 }
 
 #cover-laskar-pelangi {
-  background-image: url("../assets/cover-laskar-pelangi.png");
+  background-image: url("../../assets/images/cover-laskar-pelangi.png");
 }
 #cover-dilan {
-  background-image: url("../assets/cover-dilan.png");
+  background-image: url("../../assets/images/cover-dilan.png");
 }
 
 .desc-book {
