@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import id.tokobukufarhan.library.models.Author;
 import id.tokobukufarhan.library.models.Book;
-import id.tokobukufarhan.library.models.Publisher;
 import id.tokobukufarhan.library.payloads.req.BookRequest;
 import id.tokobukufarhan.library.payloads.res.ResponseHandler;
 import id.tokobukufarhan.library.repositories.AuthorRepository;
@@ -38,16 +36,8 @@ public class BookServiceImpl implements BookService {
 
   @Override
   public ResponseEntity<?> addBookService(BookRequest request) {
-    // cek input udah pake maven repository springboot starter validation
-    // find author dan penerbit
-    // buat objek buku
-    Author author = authorRepository.findByName(request.getNamaPengarang());
-    authorValidation.validateAuthor(author);
 
-    Publisher publisher = publisherRepository.findByName(request.getNamaPenerbit());
-    publisherValidation.validatePublisher(publisher);
-
-    Book book = new Book(request.getJudul(), request.getTahunTerbit(), author, publisher);
+    Book book = new Book(request.getTitle(), request.getUrlImage(), request.getDescription());
 
     bookRepository.save(book);
 
@@ -83,25 +73,16 @@ public class BookServiceImpl implements BookService {
       throw new NoSuchElementException("id is not found");
     });
 
-    if (request.getJudul() != "") {
-      book.setTitle(request.getJudul());
+    if (request.getTitle() != "") {
+      book.setTitle(request.getTitle());
     }
 
-    if (request.getTahunTerbit() != "") {
-      book.setYear(request.getTahunTerbit());
+    if (request.getUrlImage() != "") {
+      book.setUrlImage(request.getUrlImage());
     }
 
-    
-    if (request.getNamaPengarang() != "") {
-      Author author = authorRepository.findByName(request.getNamaPengarang());
-      authorValidation.validateAuthor(author);
-      book.setAuthor(author);
-    }
-
-    if (request.getNamaPenerbit() != "") {
-      Publisher publisher = publisherRepository.findByName(request.getNamaPenerbit());
-      publisherValidation.validatePublisher(publisher);
-      book.setPublisher(publisher);
+    if (request.getDescription() != "") {
+      book.setDescription(request.getDescription());
     }
 
     bookRepository.save(book);

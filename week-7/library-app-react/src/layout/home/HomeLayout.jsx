@@ -17,8 +17,7 @@ function HomeLayout() {
   const fetchBooks = async () => {
     try {
       const res = await getBooks();
-      setBooks(res.data);
-      console.log(books);
+      setBooks(res.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -37,13 +36,59 @@ function HomeLayout() {
           <main className="container-fluid p-0">
             <CarouselWrapperHome>
               {books.slice(0, 5).map((book) => {
-                return <CarouselHome image={book.image} key={book.id} />;
+                return (
+                  <CarouselHome
+                    key={book.id}
+                    id={book.id}
+                    image={book.urlImage}
+                    title={book.title}
+                    description={book.description}
+                  />
+                );
               })}
+              {/* {books.length > 0 ? (
+                books.slice(0, 5).map((book) => {
+                  return (
+                    <CarouselHome
+                      key={book.id}
+                      id={book.id}
+                      image={book.urlImage}
+                      title={book.title}
+                      description={book.description}
+                    />
+                  );
+                })
+              ) : (
+                <h1>Takde</h1>
+              )} */}
             </CarouselWrapperHome>
             <CardWrapperHome>
               {books.slice(0, 5).map((book) => {
-                return <CardHome image={book.image} key={book.id} />;
+                return (
+                  <CardHome
+                    key={book.id}
+                    id={book.id}
+                    image={book.urlImage}
+                    title={book.title}
+                    description={book.description}
+                  />
+                );
               })}
+              {/* {books.length > 0 ? (
+                books.slice(0, 5).map((book) => {
+                  return (
+                    <CardHome
+                      key={book.id}
+                      id={book.id}
+                      image={book.urlImage}
+                      title={book.title}
+                      description={book.description}
+                    />
+                  );
+                })
+              ) : (
+                <h1>Takde</h1>
+              )} */}
             </CardWrapperHome>
           </main>
         </section>

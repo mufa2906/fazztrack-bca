@@ -3,7 +3,6 @@ package id.tokobukufarhan.library.configs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -29,12 +28,12 @@ public class SecurityConfig {
   JwtFilter jwtFilter;
 
   @Bean
-  public PasswordEncoder passwordEncoder() {
+  PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
   @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     // disable csrf
     http.csrf(csrf -> {
       csrf.disable();
@@ -47,13 +46,14 @@ public class SecurityConfig {
 
     // authorize request
     http.authorizeHttpRequests(auth -> {
-      auth.requestMatchers("/hello").permitAll()
-          .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
-          .requestMatchers("/admin/**").hasRole("ADMIN")
-          .requestMatchers("/guest/**").permitAll()
-          // .requestMatchers(HttpMethod.GET, "/books/**").hasAnyRole("USER", "ADMIN")
-          .requestMatchers(HttpMethod.GET, "/files/**").permitAll()
-          .anyRequest().fullyAuthenticated();
+      // auth.requestMatchers("/hello").permitAll()
+      //     .requestMatchers("/users/**").permitAll()
+      //     .requestMatchers("/admin/**").hasRole("ADMIN")
+      //     .requestMatchers("/guest/**").permitAll()
+      //     .requestMatchers(HttpMethod.GET, "/books/**").hasAnyRole("USER", "ADMIN")
+      //     .requestMatchers(HttpMethod.GET, "/files/**").permitAll()
+      //     .anyRequest().fullyAuthenticated();
+      auth.anyRequest().permitAll();
     });
 
     //set authentication provider

@@ -1,27 +1,31 @@
-function CardHome() {
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+function CardHome({ id, image, title, description }) {
   return (
-    <a className="col justify-content-center" href="./detail.html">
-      <div className="card h-100 rounded-4 card-book-list">
-        <img
-          // nanti get src nya ngehit api gambarnya
-          src="../assets/cover-dilan.png"
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body">
-          <h5 className="card-title text-center title-book">Dilan 1990</h5>
-          <p className="card-text desc-title-book">
-            This is a longer card with supporting text below as a natural
-            lead-in to additional content. This content is a little bit longer.
-            This is a longer card with supporting text below as a natural
-            lead-in to additional content. This content is a little bit
-            longer.This is a longer card with supporting text below as a natural
-            lead-in to additional content. This content is a little bit longer.
-          </p>
+    <>
+      <Link to={`../books/${id}`} className="col justify-content-center">
+        <div className="card h-100 rounded-4 card-book-list">
+          <img
+            // nanti get src nya ngehit api gambarnya
+            src={image}
+            className="card-img-top"
+            alt="..."
+          />
+          <div className="card-body">
+            <h5 className="card-title text-center title-book">{title}</h5>
+            <p className="card-text desc-title-book">{description}</p>
+          </div>
         </div>
-      </div>
-    </a>
+      </Link>
+    </>
   );
 }
+
+CardHome.propTypes = {
+  id: PropTypes.string,
+  image: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+};
 
 export default CardHome;

@@ -9,36 +9,27 @@ import org.hibernate.annotations.UuidGenerator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @Entity
+@NoArgsConstructor
 @Table(name = "books")
 public class Book {
   @Id
   @UuidGenerator
   private String id;
 
-  @Column(length = 100)
+  @Column
   private String title;
 
-  @Column(length = 4)
-  private String year;
+  @Column
+  private String urlImage;
 
-  @ManyToOne
-  @JoinColumn(name = "author_id")
-  private Author author;
-  
-  @ManyToOne
-  @JoinColumn(name = "publisher_id")
-  private Publisher publisher;
+  @Column(columnDefinition = "TEXT")
+  private String description;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
@@ -47,11 +38,10 @@ public class Book {
   private LocalDateTime updatedAt;
   private Boolean isDeleted = false;
 
-  public Book(String title, String year, Author author, Publisher publisher) {
+  public Book(String title, String urlImage, String description) {
     this.title = title;
-    this.year = year;
-    this.author = author;
-    this.publisher = publisher;
+    this.urlImage = urlImage;
+    this.description = description;
   }
 
 }

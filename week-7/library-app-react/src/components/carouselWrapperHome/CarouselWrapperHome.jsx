@@ -10,21 +10,23 @@ const flickityOptions = {
 
 function CarouselWrapperHome({ children }) {
   return (
-    <Flickity
-      className={"carousel my-3 container-fluid p-0"} // default ''
-      elementType={"div"} // default 'div'
-      options={flickityOptions} // takes flickity options {}
-      disableImagesLoaded={true} // default false
-      reloadOnUpdate // default false
-      static // default false
-    >
-      {children}
-    </Flickity>
+    <>
+      <Flickity
+        className={"carousel my-3 container-fluid p-0"} // default ''
+        elementType={"div"} // default 'div'
+        options={flickityOptions} // takes flickity options {}
+        disableImagesLoaded={true} // default false
+        reloadOnUpdate // default false
+        static // default false
+      >
+        {children}
+      </Flickity>
+    </>
   );
 }
 
 CarouselWrapperHome.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.arrayOf(PropTypes.element),
 };
 
 export default CarouselWrapperHome;

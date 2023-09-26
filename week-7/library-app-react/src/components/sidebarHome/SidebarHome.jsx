@@ -1,18 +1,20 @@
-
 function Sidebar() {
   return (
-    <aside className="p-0 d-flex flex-fill">
+    <>
+      {" "}
+      <aside className="p-0 d-flex flex-fill">
         {/* <!-- Sidebar-Open --> */}
         <div
           className="bg-light-subtle container-fluid collapse collapse-horizontal"
           id="collapseOpen"
         >
           <div className="sidebar-open">
-            <section
-              className="user-sect d-flex flex-column justify-content-center align-items-center my-4 gap-2 container-fluid"
-            >
+            <section className="user-sect d-flex flex-column justify-content-center align-items-center my-4 gap-2 container-fluid">
               <img src="../assets/pp-niki.png" alt="" className="user-image" />
-              <h3 className="user-name text-center container-fluid text-nowrap" id="user-fullname">
+              <h3
+                className="user-name text-center container-fluid text-nowrap"
+                id="user-fullname"
+              >
                 Blablabla
               </h3>
               <a href="./login.html" className="logout-btn nav-link">
@@ -23,10 +25,14 @@ function Sidebar() {
             <section className="menu-list-sect">
               <ul className="list-unstyled">
                 <li className="mb-3">
-                  <a href="" className="explore-btn nav-link fs-4">Explore</a>
+                  <a href="" className="explore-btn nav-link fs-4">
+                    Explore
+                  </a>
                 </li>
                 <li className="mb-3">
-                  <a href="" className="history-btn nav-link fs-4">History</a>
+                  <a href="" className="history-btn nav-link fs-4">
+                    History
+                  </a>
                 </li>
                 <li className="mb-3">
                   {/* <!-- Button trigger add modal --> */}
@@ -34,7 +40,7 @@ function Sidebar() {
                     type="button"
                     className="btn nav-link fs-4 p-0 text-black"
                     id="add-book-btn"
-                    >
+                  >
                     {/* <!-- data-bs-toggle="modal" */}
                     {/* data-bs-target="#addBookModal" --> */}
                     Add Book
@@ -138,7 +144,8 @@ function Sidebar() {
           </a>
         </div>
       </aside>
-  )
+    </>
+  );
 }
 
-export default Sidebar
+export default Sidebar;

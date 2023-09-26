@@ -2,12 +2,9 @@ package id.tokobukufarhan.library.services.user;
 
 import java.util.Base64;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,12 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import id.tokobukufarhan.library.configs.JwtUtil;
-import id.tokobukufarhan.library.models.Role;
 import id.tokobukufarhan.library.models.User;
 import id.tokobukufarhan.library.payloads.req.UserLoginRequest;
 import id.tokobukufarhan.library.payloads.req.UserRegistRequest;
 import id.tokobukufarhan.library.payloads.res.ResponseHandler;
-import id.tokobukufarhan.library.repositories.RoleRepository;
 import id.tokobukufarhan.library.repositories.UserRepository;
 
 @Service
@@ -33,8 +28,7 @@ public class UserServiceImpl implements UserService {
   @Autowired
   UserRepository userRepository;
 
-  @Autowired
-  RoleRepository roleRepository;
+
 
   @Autowired
   PasswordEncoder passwordEncoder;
@@ -56,22 +50,8 @@ public class UserServiceImpl implements UserService {
       throw new IllegalArgumentException("Username already registered");
     }
 
-    //check req param kosong ato ngga
-    String strRole = (role.equals("") || role.equals(null)) ?
-    "ROLE_USER" : role;
-
-    //Check ke db
-    Role roleUser = roleRepository.findByName(strRole);
-    if(Objects.isNull(roleUser)) {
-      roleUser = new Role(strRole);
-      roleRepository.save(roleUser);
-    }
-
-    Set<Role> roles = new HashSet<>();
-    roles.add(roleUser);
-
     User user = new User(request.getUsername(), request.getEmail(), passwordEncoder.encode(request.getPassword()));
-    user.setRoles(roles);
+    // user.setRoles(roles);
     userRepository.save(user);
 
     // return ResponseHandler.responseMessage(201, "User successfully created!",

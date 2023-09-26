@@ -1,12 +1,13 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginForm from "./components/loginForm/LoginForm.jsx";
-import Auth from "./pages/auth/index.jsx";
 import RegisForm from "./components/regisForm/RegisForm.jsx";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import './index.css'
+import './index.css';
+import Auth from "./pages/auth/index.jsx";
+import Detail from "./pages/detail/index.jsx";
 import Home from "./pages/home/index.jsx";
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+  },
+  {
+    path: "/books/:bookId",
+    element: <Detail />,
   }
 ]);
 

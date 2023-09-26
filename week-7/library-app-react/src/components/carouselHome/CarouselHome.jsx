@@ -1,41 +1,30 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function CarouselHome({image}) {
+function CarouselHome({ id, image, title }) {
   return (
     <>
       <Link
+        to={`../books/${id}`}
         className="cover-book carousel-cell rounded-4"
-        id="cover-ubur-ubur-lembur"
         style={{ backgroundImage: `url(${image})` }}
       >
         <div className="h-100 d-flex flex-column">
           <div className="h-50"></div>
           <div className="desc-book d-flex flex-column justify-content-end p-4 container-fluid h-50 rounded-bottom-4">
-            <h2 className="text-white">Ubur Ubur Lembur</h2>
+            <h2 className="text-white">{title}</h2>
             <h6 className="text-white">Raditya Dika</h6>
           </div>
         </div>
       </Link>
-      {/* <div className="cover-book carousel-cell rounded-4" id="cover-laskar-pelangi">
-        <div className="h-100 d-flex flex-column">
-          <div className="h-50"></div>
-          <div className="desc-book d-flex flex-column justify-content-end p-4 container-fluid h-50 rounded-bottom-4">
-            <h2 className="text-white">Laskar Pelangi</h2>
-            <h6 className="text-white">Andrea Hirata</h6>
-          </div>
-        </div>
-      </div>
-      <div className="cover-book carousel-cell rounded-4" id="cover-dilan">
-        <div className="h-100 d-flex flex-column">
-          <div className="h-50"></div>
-          <div className="desc-book d-flex flex-column justify-content-end p-4 container-fluid h-50 rounded-bottom-4">
-            <h2 className="text-white">Dilan 1990</h2>
-            <h6 className="text-white">Pidi Baiq</h6>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }
+
+CarouselHome.propTypes = {
+  id: PropTypes.string,
+  image: PropTypes.string,
+  title: PropTypes.string,
+};
 
 export default CarouselHome;
