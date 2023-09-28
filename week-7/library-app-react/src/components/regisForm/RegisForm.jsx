@@ -1,8 +1,57 @@
 import logo from "../../assets/images/bookshelf.png";
 import { Link } from "react-router-dom";
-import './RegisForm.css'
+import "./RegisForm.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {registerUser} from "../../services/auth"
 
 function RegisForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [username, setUsername] = useState("");
+
+  const navigate = useNavigate();
+  const userRegis = async (e) => {
+    try {
+      e.preventDefault();
+
+      if (email == "") {
+        alert("Please enter your email");
+        return;
+      }
+      if (password == "") {
+        alert("Please enter your password");
+        return;
+      }
+      if (username == "") {
+        alert("Please enter your username");
+        return;
+      }
+      if (fullname == "") {
+        alert("Please enter your fullname");
+        return;
+      }
+
+      const data = {
+        email,
+        password,
+        username,
+        fullname,
+      };
+      console.log(data);
+      const res = await registerUser(data);
+      // localStorage.setItem("token", res.data.data?.token);
+      // localStorage.setItem("fullname", res.data.data?.fullname);
+      // console.log(res);
+      alert(res.data.message);
+      if (res.data.status == 201) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <section className="form-container">
@@ -21,6 +70,7 @@ function RegisForm() {
               name="username-input"
               id="username-input"
               placeholder="Enter your username"
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="form-input">
@@ -30,6 +80,7 @@ function RegisForm() {
               name="fullname-input"
               id="fullname-input"
               placeholder="Enter your full name"
+              onChange={(e) => setFullname(e.target.value)}
             />
           </div>
           <div className="form-input">
@@ -39,6 +90,7 @@ function RegisForm() {
               name="email-input"
               id="email-input"
               placeholder="Enter your email address"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-input">
@@ -48,11 +100,12 @@ function RegisForm() {
               name="password-input"
               id="password-input"
               placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </section>
         <section className="form-button-sect">
-          <Link to="/register" className="signup-btn" id="signup-btn-register">
+          <Link className="signup-btn" id="signup-btn-register" onClick={userRegis} >
             Sign up
           </Link>
           <Link to="/" className="login-btn" id="login-btn-register">

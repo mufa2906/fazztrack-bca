@@ -1,23 +1,6 @@
-
-
-
-* {
-  box-sizing: border-box;
-  font-family: "Airbnb Cereal";
-  /* border: 1px solid red; */
-}
-
-html {
-  font-size: 17px;
-}
-
-main{
-  min-height:100vh;
-}
-
 .image-hero-detail {
   height: 15rem;
-  min-height:5rem;
+  min-height: 5rem;
   background-color: black;
   background-size: cover;
   background-position: center;
@@ -32,98 +15,48 @@ main{
   padding: 0.5rem 1.5rem;
 }
 
-.availability-text{
-  color: #99D815;
+.availability-text {
+  color: #99d815;
 }
 
-.title-book-detail{
-  font-size:3rem;
+.title-book-detail {
+  font-size: 3rem;
 }
 
-.desc-book-detail{
+.desc-book-detail {
   font-weight: 300;
-  text-align: justify; 
+  text-align: justify;
 }
 
-.image-desc-detail .borrow-button,
-.modal-footer .save-edit-detail-button{
-  background: #FBCC38;
+.image-desc-detail .borrow-button {
+  background: #fbcc38;
   color: white;
   padding: 0.5rem 2.5rem;
 }
 
-.image-detail-container{
+.image-detail-container {
   height: auto;
-  top:-8rem;
+  top: -8rem;
   right: 0;
   display: flex;
   justify-content: center;
 }
 
-#image-detail{
+#image-detail {
   width: 10rem;
 }
 
-.book-detail-input{
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  padding: 0.5rem 1rem;
-}
-
-.book-detail-input::placeholder{
-  color: rgba(200, 186, 186, 1);
-  ;
-}
-
-.modal-footer .save-edit-detail-button{
-  background-color: rgba(244, 207, 93, 1);
-  padding:0.5rem 2.5rem;
-}
-
-.btn-close{
-  opacity: 1;
-  background-image: url(../assets/close.png);
-}
-
-.back-arrow-container{
-  display: flex;
-  align-content: center;
-  width: 2rem;
-  height: 2rem;
-}
-
-.back-arrow{
-  width: 100%;
-  height: 100%;
-  padding: 10%;
-}
-
-@media (max-width: 1200px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 992px) {
-  html {
-    font-size: 12px;
-  }
-}
-
 @media (max-width: 576px) {
-  html {
-    font-size: 10px;
+  .availability-text-sect {
+    width: 50% !important;
   }
 
-  .availability-text-sect{
-    width: 50%!important;
+  .image-detail-container {
+    width: 100% !important;
+    top: -13rem;
   }
 
-  .image-detail-container{
-    width: 100%!important;
-    top:-13rem;
-  }
-
-  #image-detail{
+  #image-detail {
     border-radius: 1rem;
   }
 
@@ -131,12 +64,12 @@ main{
     padding: 3rem;
   }
 
-  .description-sect{
+  .description-sect {
     flex-direction: column;
-    gap:2rem;
+    gap: 2rem;
   }
 
-  .desc-book-detail{
-    width: 100%!important;
+  .desc-book-detail {
+    width: 100% !important;
   }
 }

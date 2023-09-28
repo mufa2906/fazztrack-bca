@@ -2,9 +2,12 @@ package id.tokobukufarhan.library.services.user;
 
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +20,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import id.tokobukufarhan.library.configs.JwtUtil;
+import id.tokobukufarhan.library.models.Role;
 import id.tokobukufarhan.library.models.User;
 import id.tokobukufarhan.library.payloads.req.UserLoginRequest;
 import id.tokobukufarhan.library.payloads.req.UserRegistRequest;
 import id.tokobukufarhan.library.payloads.res.ResponseHandler;
+import id.tokobukufarhan.library.repositories.RoleRepository;
 import id.tokobukufarhan.library.repositories.UserRepository;
 
 @Service
@@ -28,7 +33,8 @@ public class UserServiceImpl implements UserService {
   @Autowired
   UserRepository userRepository;
 
-
+  @Autowired
+  RoleRepository roleRepository;
 
   @Autowired
   PasswordEncoder passwordEncoder;
@@ -50,8 +56,22 @@ public class UserServiceImpl implements UserService {
       throw new IllegalArgumentException("Username already registered");
     }
 
-    User user = new User(request.getUsername(), request.getEmail(), passwordEncoder.encode(request.getPassword()));
-    // user.setRoles(roles);
+    String password = passwordEncoder.encode(request.getPassword());
+
+    String strRole = (role.equals(null) || role.equals("") || !role.substring(0, 5).equals("ROLE_")) ? "ROLE_USER"
+        : role;
+
+    Role roleUser = roleRepository.findByName(strRole);
+    if (Objects.isNull(roleUser)) {
+      roleUser = new Role(strRole);
+      roleRepository.save(roleUser);
+    }
+
+    Set<Role> roles = new HashSet<>();
+    roles.add(roleUser);
+
+    User user = new User(request.getUsername(),request.getFullname(), request.getEmail(), password);
+    user.setRoles(roles);
     userRepository.save(user);
 
     // return ResponseHandler.responseMessage(201, "User successfully created!",
@@ -66,7 +86,7 @@ public class UserServiceImpl implements UserService {
       throw new IllegalArgumentException("Username already registered");
     }
 
-    User user = new User(request.getUsername(), request.getEmail(), request.getPassword());
+    User user = new User(request.getUsername(),request.getFullname(), request.getEmail(), request.getPassword());
 
     userRepository.save(user);
 
@@ -116,9 +136,9 @@ public class UserServiceImpl implements UserService {
     // }
 
     // // validate password
-    // if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-    // throw new NoSuchElementException("Bad Credentials: Password doesn't match!");
-    // }
+    if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+    throw new NoSuchElementException("Bad Credentials: Password doesn't match!");
+    }
 
     // kita buat usernamepassword token
     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
@@ -138,6 +158,7 @@ public class UserServiceImpl implements UserService {
     Map<String, Object> data = new HashMap<>();
     data.put("email", user.getEmail());
     data.put("token", token);
+    data.put("fullname", user.getFullname());
 
     // return ResponseHandler.responseMessage(200, "Success login!", true);
     return ResponseHandler.responseData(200, "Success login!", data);

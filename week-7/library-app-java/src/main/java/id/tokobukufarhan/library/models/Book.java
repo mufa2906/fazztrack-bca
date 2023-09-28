@@ -37,6 +37,7 @@ public class Book {
   @UpdateTimestamp
   private LocalDateTime updatedAt;
   private Boolean isDeleted = false;
+  private Boolean isBorrowed = false;
 
   public Book(String title, String urlImage, String description) {
     this.title = title;

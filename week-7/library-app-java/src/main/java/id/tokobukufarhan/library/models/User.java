@@ -29,23 +29,22 @@ public class User {
   @UuidGenerator
   private String id;
 
-  @Column(length = 100, unique= true)
+  @Column(length = 100, unique = true)
   private String username;
 
-  @Column(unique= true)
+  @Column
+  private String fullname;
+
+  @Column(unique = true)
   private String email;
 
   @JsonIgnore
   private String password;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-    name = "users_roles", 
-    joinColumns = @JoinColumn(name = "user_id"), 
-    inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+  @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
-  
+
   @CreationTimestamp
   private LocalDateTime createdAt;
 
@@ -53,8 +52,9 @@ public class User {
   private LocalDateTime updatedAt;
   private Boolean isDeleted = false;
 
-  public User(String username, String email, String password) {
+  public User(String username, String fullname, String email, String password) {
     this.username = username;
+    this.fullname = fullname;
     this.email = email;
     this.password = password;
   }

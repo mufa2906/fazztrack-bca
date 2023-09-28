@@ -37,6 +37,18 @@ public class BookServiceImpl implements BookService {
   @Override
   public ResponseEntity<?> addBookService(BookRequest request) {
 
+    if (request.getTitle() == "") {
+      throw new IllegalArgumentException("Title cannot be empty");
+    }
+
+    if (request.getUrlImage() == "") {
+      throw new IllegalArgumentException("URL image cannot be empty");
+    }
+
+    if (request.getDescription() == "") {
+      throw new IllegalArgumentException("Description cannot be empty");
+    }
+
     Book book = new Book(request.getTitle(), request.getUrlImage(), request.getDescription());
 
     bookRepository.save(book);

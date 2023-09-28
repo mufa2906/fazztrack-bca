@@ -1,0 +1,38 @@
+.btn-close {
+  opacity: 1;
+  background-image: url(../../assets/icons/close.png);
+}
+
+.modal-footer .save-button {
+  background-color: rgba(244, 207, 93, 1);
+  padding: 0.5rem 2.5rem;
+  color: white;
+}
+
+/* Modal component */
+.book-detail-input {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+}
+
+.book-detail-input::placeholder {
+  color: rgba(200, 186, 186, 1);
+}
+
+.btn-close {
+  opacity: 1;
+  background-image: url(../../assets/icons/close.png);
+}
+
+.back-arrow-container {
+  display: flex;
+  align-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.back-arrow {
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+}

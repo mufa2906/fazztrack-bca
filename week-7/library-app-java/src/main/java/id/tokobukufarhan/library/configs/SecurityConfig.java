@@ -3,6 +3,7 @@ package id.tokobukufarhan.library.configs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -44,13 +45,17 @@ public class SecurityConfig {
       session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     });
 
+
+
     // authorize request
     http.authorizeHttpRequests(auth -> {
       // auth.requestMatchers("/hello").permitAll()
       //     .requestMatchers("/users/**").permitAll()
-      //     .requestMatchers("/admin/**").hasRole("ADMIN")
+      //     // .requestMatchers("/admin/**").hasRole("ADMIN")
       //     .requestMatchers("/guest/**").permitAll()
-      //     .requestMatchers(HttpMethod.GET, "/books/**").hasAnyRole("USER", "ADMIN")
+      //     //karena ada method pattern kena cors dikasih hasRole juga kena cors, tapi pake preautorize aman
+      //     // .requestMatchers(HttpMethod.GET,"/books/**").hasRole("ADMIN")
+      //     .requestMatchers("/books/**").permitAll()
       //     .requestMatchers(HttpMethod.GET, "/files/**").permitAll()
       //     .anyRequest().fullyAuthenticated();
       auth.anyRequest().permitAll();

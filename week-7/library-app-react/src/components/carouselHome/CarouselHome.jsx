@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-
+import './CarouselHome.css'
 function CarouselHome({ id, image, title }) {
   return (
     <>
       <Link
         to={`../books/${id}`}
-        className="cover-book carousel-cell rounded-4"
+        className="carousel-cell rounded-4"
         style={{ backgroundImage: `url(${image})` }}
       >
         <div className="h-100 d-flex flex-column">

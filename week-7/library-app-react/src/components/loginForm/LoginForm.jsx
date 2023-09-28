@@ -1,8 +1,46 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/bookshelf.png";
-import { Link } from "react-router-dom";
+import { loginUser } from "../../services/auth";
 import "./LoginForm.css";
 
 function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const userLogin = async (e) => {
+    try {
+      e.preventDefault();
+
+      if (email == "") {
+        alert("Please enter your email");
+        return;
+      }
+      if (password == "") {
+        alert("Please enter your password");
+        return;
+      }
+
+      const data = {
+        email,
+        password,
+      };
+      console.log(data);
+      const res = await loginUser(data);
+      localStorage.setItem("token", res.data.data?.token);
+      localStorage.setItem("fullname", res.data.data?.fullname);
+      console.log(res);
+      alert(res.data.message);
+      if (res.data.status == 200) {
+        navigate("./home");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section className="form-container">
@@ -21,6 +59,7 @@ function LoginForm() {
               name="email-input"
               id="email-input"
               placeholder="Enter your email address"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-input">
@@ -30,6 +69,7 @@ function LoginForm() {
               name="password-input"
               id="password-input"
               placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </section>
@@ -43,8 +83,10 @@ function LoginForm() {
           </a>
         </section>
         <section className="form-button-sect">
-          <Link to="/" className="login-btn" id="login-btn-login">Login</Link>
-          <Link to="./register" className="signup-btn" id="signup-btn-login" >
+          <Link className="login-btn" id="login-btn-login" onClick={userLogin}>
+            Login
+          </Link>
+          <Link to="./register" className="signup-btn" id="signup-btn-login">
             Sign up
           </Link>
         </section>

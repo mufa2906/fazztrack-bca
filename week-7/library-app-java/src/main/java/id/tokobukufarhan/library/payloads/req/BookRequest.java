@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 public class BookRequest {
-  @NotEmpty(message = "Title is required!")
+  // @NotEmpty(message = "Title is required!")
   private String title;
 
-  @NotEmpty(message = "URL Image is required!")
+  // @NotEmpty(message = "URL Image is required!")
   private String urlImage;
 
-  @NotEmpty(message = "Description is required!")
+  // @NotEmpty(message = "Description is required!")
   private String description;
 
 }

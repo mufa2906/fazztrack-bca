@@ -1,0 +1,31 @@
+.sidebar-open,
+.sidebar-close {
+  position: sticky;
+  top: 25px;
+}
+
+#collapseOpen {
+  z-index: 2;
+}
+
+#collapseClose {
+  border-right: 1px solid rgba(219, 219, 219, 1);
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.user-image {
+  width: 75%;
+}
+
+#add-book-btn {
+  color: inherit;
+}
