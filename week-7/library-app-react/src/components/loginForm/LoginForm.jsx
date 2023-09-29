@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/bookshelf.png";
 import { loginUser } from "../../services/auth";
 import "./LoginForm.css";
+import Swal from "sweetalert2";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -15,11 +16,21 @@ function LoginForm() {
       e.preventDefault();
 
       if (email == "") {
-        alert("Please enter your email");
+        Swal.fire({
+          title: "Error!",
+          text: "Please enter your email",
+          icon: "error",
+          confirmButtonText: "OKAY, I WILL ENTER THE EMAIL",
+        });
         return;
       }
       if (password == "") {
-        alert("Please enter your password");
+        Swal.fire({
+          title: "Error!",
+          text: "Please enter your password",
+          icon: "error",
+          confirmButtonText: "OKAY, I WILL ENTER THE PASSWORD",
+        });
         return;
       }
 
@@ -31,12 +42,25 @@ function LoginForm() {
       const res = await loginUser(data);
 
       console.log(res);
-      alert(res.data.message);
       if (res.data.status == 200) {
-        localStorage.setItem("token", res.data.data?.token);
-        localStorage.setItem("fullname", res.data.data?.fullname);
-        localStorage.setItem("roles", res.data.data?.roles[0].name);
-        navigate("./home");
+        Swal.fire({
+          title: `SUCCESS`,
+          text: res.data.message,
+          icon: "success",
+          showConfirmButton: false,
+        }).then(() => {
+          localStorage.setItem("token", res.data.data?.token);
+          localStorage.setItem("fullname", res.data.data?.fullname);
+          localStorage.setItem("roles", res.data.data?.roles[0].name);
+          navigate("./home");
+        });
+      } else {
+        Swal.fire({
+          title: `ERROR STATUS ${res.data.status}`,
+          text: res.data.message,
+          icon: "error",
+          showConfirmButton: false,
+        })
       }
     } catch (error) {
       console.log(error);

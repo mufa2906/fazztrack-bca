@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createBook, removeBook, updateBook } from "../../services/book";
 import "./ModalBook.css";
+import Swal from "sweetalert2";
 
 function ModalBook({ modalName, book, setBook, books, setBooks }) {
   const navigate = useNavigate();
@@ -16,10 +17,21 @@ function ModalBook({ modalName, book, setBook, books, setBooks }) {
       e.preventDefault();
 
       const res = await removeBook(book.id, token);
-      alert(res.data.message);
 
       if (res.data.status === 200) {
-        navigate("/home");
+        Swal.fire({
+          title: `SUCCESS`,
+          text: res.data.message,
+          icon: "success",
+          showConfirmButton: false,
+        }).then(navigate("/home"));
+      } else {
+        Swal.fire({
+          title: `ERROR STATUS ${res.data.status}`,
+          text: res.data.message,
+          icon: "error",
+          showConfirmButton: false,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -31,7 +43,12 @@ function ModalBook({ modalName, book, setBook, books, setBooks }) {
       e.preventDefault();
 
       if (title == "" && urlImage == "" && description == "") {
-        return alert("Please enter Required Field!");
+        Swal.fire({
+          title: `ERROR VALIDATION`,
+          text: "Please enter Required Field!",
+          icon: "error",
+          confirmButtonText: "Yeah, I Will enter the required field!",
+        });
       }
 
       const data = {
@@ -42,9 +59,21 @@ function ModalBook({ modalName, book, setBook, books, setBooks }) {
 
       const res = await createBook(data, token);
       if (res.data.status === 201) {
+        Swal.fire({
+          title: `SUCCESS`,
+          text: res.data.message,
+          icon: "success",
+          showConfirmButton: false,
+        });
         setBooks([...books, res.data.data]);
+      } else {
+        Swal.fire({
+          title: `ERROR STATUS ${res.data.status}`,
+          text: res.data.message,
+          icon: "error",
+          showConfirmButton: false,
+        });
       }
-      alert(res.data.message);
       console.log(books);
     } catch (error) {
       console.log(error);
@@ -56,7 +85,12 @@ function ModalBook({ modalName, book, setBook, books, setBooks }) {
       e.preventDefault();
 
       if (title == "" && urlImage == "" && description == "") {
-        return alert("Please enter Required Field!");
+        Swal.fire({
+          title: `ERROR VALIDATION`,
+          text: "Please enter Required Field!",
+          icon: "error",
+          confirmButtonText: "Yeah, I Will enter the required field!",
+        });
       }
 
       const data = {
@@ -66,11 +100,24 @@ function ModalBook({ modalName, book, setBook, books, setBooks }) {
       };
 
       const res = await updateBook(data, book.id, token);
-      alert(res.data.message);
-      // console.log(res.data,'resp');
       if (res.data.status === 200) {
+        Swal.fire({
+          title: `SUCCESS`,
+          text: res.data.message,
+          icon: "success",
+          showConfirmButton: false,
+        });
         setBook(res.data.data);
+      } else {
+        Swal.fire({
+          title: `ERROR STATUS ${res.data.status}`,
+          text: res.data.message,
+          icon: "error",
+          showConfirmButton: false,
+        });
       }
+      // console.log(res.data,'resp');
+
       // console.log(book,'book'); //booknya telat berubah, mungkin karena keduluan dari setbooknya
     } catch (error) {
       console.log(error);

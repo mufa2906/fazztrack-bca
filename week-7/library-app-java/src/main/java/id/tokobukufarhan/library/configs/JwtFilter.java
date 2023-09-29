@@ -43,8 +43,7 @@ public class JwtFilter extends OncePerRequestFilter {
          */
         String email = jwtUtil.getEmailFromToken(token);
         if (email != null) {
-          // Ambil data user, kemungkinan disini dia mengetahui rolenya di user
-          // getauthorities
+          //Ambil data user, kemungkinan disini dia mengetahui rolenya di user getauthorities
           UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(email);
           UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
               userDetails.getPassword(), userDetails.getAuthorities());
@@ -59,11 +58,11 @@ public class JwtFilter extends OncePerRequestFilter {
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
-
-    if (request.getMethod() == "OPTIONS") {
+    
+    if(request.getMethod().equals("OPTIONS")){
       response.setStatus(200);
     } else {
-
+      
       filterChain.doFilter(request, response);
     }
   }

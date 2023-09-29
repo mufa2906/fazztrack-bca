@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import "./RegisForm.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {registerUser} from "../../services/auth"
+import { registerUser } from "../../services/auth";
+import Swal from "sweetalert2";
 
 function RegisForm() {
   const [email, setEmail] = useState("");
@@ -17,19 +18,39 @@ function RegisForm() {
       e.preventDefault();
 
       if (email == "") {
-        alert("Please enter your email");
+        Swal.fire({
+          title: "Error!",
+          text: "Please enter your email",
+          icon: "error",
+          confirmButtonText: "OKAY, I WILL ENTER THE EMAIL",
+        });
         return;
       }
       if (password == "") {
-        alert("Please enter your password");
+        Swal.fire({
+          title: "Error!",
+          text: "Please enter your password",
+          icon: "error",
+          confirmButtonText: "OKAY, I WILL ENTER THE PASSWORD",
+        });
         return;
       }
       if (username == "") {
-        alert("Please enter your username");
+        Swal.fire({
+          title: "Error!",
+          text: "Please enter your username",
+          icon: "error",
+          confirmButtonText: "OKAY, I WILL ENTER THE USERNAME",
+        });
         return;
       }
       if (fullname == "") {
-        alert("Please enter your fullname");
+        Swal.fire({
+          title: "Error!",
+          text: "Please enter your fullname",
+          icon: "error",
+          confirmButtonText: "OKAY, I WILL ENTER THE FULLNAME",
+        });
         return;
       }
 
@@ -44,9 +65,20 @@ function RegisForm() {
       // localStorage.setItem("token", res.data.data?.token);
       // localStorage.setItem("fullname", res.data.data?.fullname);
       // console.log(res);
-      alert(res.data.message);
-      if (res.data.status == 201) {
-        navigate("/");
+      if (res.data.status === 201) {
+        Swal.fire({
+          title: `SUCCESS`,
+          text: res.data.message,
+          icon: "success",
+          showConfirmButton: false,
+        }).then(()=>navigate("/"));
+      } else {
+        Swal.fire({
+          title: `ERROR STATUS ${res.data.status}`,
+          text: res.data.message,
+          icon: "error",
+          showConfirmButton: false,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -105,7 +137,11 @@ function RegisForm() {
           </div>
         </section>
         <section className="form-button-sect">
-          <Link className="signup-btn" id="signup-btn-register" onClick={userRegis} >
+          <Link
+            className="signup-btn"
+            id="signup-btn-register"
+            onClick={userRegis}
+          >
             Sign up
           </Link>
           <Link to="/" className="login-btn" id="login-btn-register">
