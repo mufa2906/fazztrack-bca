@@ -35,7 +35,7 @@ public class BookController {
 
   // @CrossOrigin(origins="http://localhost:5173")
   @GetMapping("books/{id}")
-  // @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public ResponseEntity<?> getBookById(@PathVariable String id) {
     // try {
     return bookService.getBookByIdService(id);

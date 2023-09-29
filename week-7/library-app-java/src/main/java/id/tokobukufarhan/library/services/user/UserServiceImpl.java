@@ -159,6 +159,7 @@ public class UserServiceImpl implements UserService {
     data.put("email", user.getEmail());
     data.put("token", token);
     data.put("fullname", user.getFullname());
+    data.put("roles", user.getRoles());
 
     // return ResponseHandler.responseMessage(200, "Success login!", true);
     return ResponseHandler.responseData(200, "Success login!", data);

@@ -1,6 +1,7 @@
 package id.tokobukufarhan.library.configs;
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,7 +43,8 @@ public class JwtFilter extends OncePerRequestFilter {
          */
         String email = jwtUtil.getEmailFromToken(token);
         if (email != null) {
-          //Ambil data user, kemungkinan disini dia mengetahui rolenya di user getauthorities
+          // Ambil data user, kemungkinan disini dia mengetahui rolenya di user
+          // getauthorities
           UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(email);
           UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
               userDetails.getPassword(), userDetails.getAuthorities());
@@ -57,8 +59,13 @@ public class JwtFilter extends OncePerRequestFilter {
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
-    
-    filterChain.doFilter(request, response);
+
+    if (request.getMethod() == "OPTIONS") {
+      response.setStatus(200);
+    } else {
+
+      filterChain.doFilter(request, response);
+    }
   }
 
 }

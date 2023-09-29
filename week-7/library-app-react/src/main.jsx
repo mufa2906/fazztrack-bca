@@ -9,6 +9,22 @@ import './index.css';
 import Auth from "./pages/auth/index.jsx";
 import Detail from "./pages/detail/index.jsx";
 import Home from "./pages/home/index.jsx";
+import { Navigate } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+
+const PrivateRoute = ({ element, ...rest }) => {
+  const token = localStorage.getItem("token"); // Ambil token dari local storage atau dari mana pun Anda menyimpannya
+
+  // Periksa apakah pengguna memiliki token
+  if (!token) {
+    // Jika tidak ada token, kembalikan pengguna ke halaman utama atau halaman login
+    return <Navigate to="/" />;
+  }
+
+  // Jika pengguna memiliki token, izinkan akses ke elemen yang diberikan
+  return <Route {...rest} element={element} />;
+};
+
 
 const router = createBrowserRouter([
   {
@@ -27,11 +43,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <PrivateRoute element={<Home />} />,
   },
   {
     path: "/books/:bookId",
-    element: <Detail />,
+    element: <PrivateRoute element={<Detail />} />,
   }
 ]);
 

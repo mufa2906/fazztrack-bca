@@ -8,11 +8,12 @@ import "./DetailLayout.css";
 
 function DetailLayout() {
   const [book, setBook] = useState({});
-  const [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NTkyMjgzNiwiZXhwIjoxNjk1OTI2NDM2LCJlbWFpbCI6InVzZXJAZ21haWwuY29tIn0.usPBkxhBIo1siSKWcJR5IgJw-xhVPbrAw0Z-LUo0ZBY');
+  const token = localStorage.getItem("token");
   const { bookId } = useParams();
-  const fetchBookById = async (bookId,token) => {
+  const role = localStorage.getItem("roles");
+  const fetchBookById = async (bookId, token) => {
     try {
-      const res = await getBookById(bookId,token);
+      const res = await getBookById(bookId, token);
       setBook(res.data.data);
       console.log(res);
     } catch (error) {
@@ -21,14 +22,14 @@ function DetailLayout() {
   };
 
   useEffect(() => {
-    fetchBookById(bookId,token);
-  }, [bookId,token]);
+    fetchBookById(bookId, token);
+  }, [bookId, token]);
 
-  
+
   return (
     <>
       <main className="container-fluid d-flex flex-column p-0">
-        <ModalBook modalName={"edit"} book={book} setBook={setBook}  />
+        <ModalBook modalName={"edit"} book={book} setBook={setBook} />
         <ModalBook modalName={"delete"} book={book} />
         <div
           className="image-hero-detail position-relative"
@@ -45,7 +46,7 @@ function DetailLayout() {
                 />
               </Link>
             </div>
-            <div className="d-flex justify-content-end gap-3">
+            <div className={`justify-content-end gap-3 ${role==="ROLE_ADMIN"?"d-flex":"hide"}`}>
               <ModalBookTrigger modalName={"edit"} />
               <ModalBookTrigger modalName={"delete"} />
             </div>

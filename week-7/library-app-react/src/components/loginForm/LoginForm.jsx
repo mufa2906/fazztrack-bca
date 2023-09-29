@@ -29,11 +29,13 @@ function LoginForm() {
       };
       console.log(data);
       const res = await loginUser(data);
-      localStorage.setItem("token", res.data.data?.token);
-      localStorage.setItem("fullname", res.data.data?.fullname);
+
       console.log(res);
       alert(res.data.message);
       if (res.data.status == 200) {
+        localStorage.setItem("token", res.data.data?.token);
+        localStorage.setItem("fullname", res.data.data?.fullname);
+        localStorage.setItem("roles", res.data.data?.roles[0].name);
         navigate("./home");
       }
     } catch (error) {

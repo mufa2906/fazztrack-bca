@@ -8,6 +8,7 @@ function Sidebar() {
   const clearLocal = () => {
     localStorage.clear();
   };
+  const role = localStorage.getItem("roles");
   return (
     <>
       {" "}
@@ -48,7 +49,7 @@ function Sidebar() {
 
                   <button
                     type="button"
-                    className="btn nav-link fs-4 p-0 text-black"
+                    className={`btn nav-link fs-4 p-0 text-black ${role==="ROLE_ADMIN"?"d-flex":"hide"}`}
                     id="add-book-btn"
                     data-bs-toggle="modal"
                     data-bs-target="#addModal"

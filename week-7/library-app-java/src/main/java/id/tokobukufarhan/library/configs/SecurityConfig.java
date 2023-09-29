@@ -49,16 +49,16 @@ public class SecurityConfig {
 
     // authorize request
     http.authorizeHttpRequests(auth -> {
-      // auth.requestMatchers("/hello").permitAll()
-      //     .requestMatchers("/users/**").permitAll()
-      //     // .requestMatchers("/admin/**").hasRole("ADMIN")
-      //     .requestMatchers("/guest/**").permitAll()
-      //     //karena ada method pattern kena cors dikasih hasRole juga kena cors, tapi pake preautorize aman
-      //     // .requestMatchers(HttpMethod.GET,"/books/**").hasRole("ADMIN")
-      //     .requestMatchers("/books/**").permitAll()
-      //     .requestMatchers(HttpMethod.GET, "/files/**").permitAll()
-      //     .anyRequest().fullyAuthenticated();
-      auth.anyRequest().permitAll();
+      auth.requestMatchers("/hello").permitAll()
+          .requestMatchers("/users/**").permitAll()
+          // .requestMatchers("/admin/**").hasRole("ADMIN")
+          .requestMatchers("/guest/**").permitAll()
+          //karena ada method pattern kena cors dikasih hasRole juga kena cors, tapi pake preautorize aman
+          // .requestMatchers(HttpMethod.GET,"/books/**").hasRole("ADMIN")
+          .requestMatchers("/books/**").permitAll()
+          .requestMatchers(HttpMethod.GET, "/files/**").permitAll()
+          .anyRequest().fullyAuthenticated();
+      // auth.anyRequest().permitAll();
     });
 
     //set authentication provider
